@@ -456,30 +456,31 @@
 
 
 
-
+  <div id="giteement-ctn"></div>
   
-  <div id="gitment-ctn"></div>
-  
-    <!-- 中文 -->
-    <link rel="stylesheet" href="/lib/gitment.css">
-    <script src="/lib/gitment.js"></script>
+    <link rel="stylesheet" href="/lib/default.css">
+    <script src="/lib/giteement.browser.js"></script>
   
   <script>
-    <!-- id: "搭建博客第一天" -->
-    var gitment = new Gitment({
-      id: "20200425125702",
-      owner: 'Nanfengyuan',
-      repo: 'nanfeng blog',
-      oauth: {
-        client_id: '7656db123fbf8a437d22',
-        client_secret: '89978e13422f7b2a3b061c5707dfe040216919ae',
-      },
-    })
-    gitment.render('gitment-ctn')
+  <!-- id: "搭建博客第一天" -->
+  var giteement = new Giteement({
+    id: '20200425125702',
+    owner: 'nanfeng',
+    repo: 'nanfeng blog',
+    backcall_uri: 'https://nanfeng-iot.cn',
+    oauth_uri: 'https://cors-anywhere.herokuapp.com/https://gitee.com/oauth/token',
+    oauth: {
+      client_id: '549f9c9f98e3d1544843daf3ba1f283cf9d09b5603094c890acb54510e2b2064',
+      client_secret: '67650531648258814dfc4edf09f58a77fc5962d15a4643b479550d6fa18a71df'
+    },
+  })
+  giteement.render('giteement-ctn')
   </script>
 
 
-  
+
+
+
 
 
 
