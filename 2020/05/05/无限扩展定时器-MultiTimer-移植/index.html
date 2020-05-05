@@ -6,20 +6,30 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://nanfeng-iot.cn">
-  <title>Archives: 2020 | nanfeng-IOT</title>
+  <title>无限扩展定时器 MultiTimer 移植  | nanfeng-IOT</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="分享嵌入式、物联网开发知识总结">
-<meta property="og:type" content="website">
-<meta property="og:title" content="nanfeng-IOT">
-<meta property="og:url" content="https://nanfeng-iot.cn/archives/2020/index.html">
+  <meta name="description" content="之前看过几个大佬做的MultiTimer定时器移植到STM32上，可无限扩展定时器任务，简单实用。站在巨人的肩膀上，今天将MultiTimer的移植操作一遍，在此记录记录 项目移植目的：采用正点原子STM32精英开发板，使用STM32 TIM4定时器扩展出两个定时器，配置两个定时器timer1、timer2，timer1循环1s定时，timer2定时一次2s">
+<meta property="og:type" content="article">
+<meta property="og:title" content="无限扩展定时器 MultiTimer 移植 ">
+<meta property="og:url" content="https://nanfeng-iot.cn/2020/05/05/%E6%97%A0%E9%99%90%E6%89%A9%E5%B1%95%E5%AE%9A%E6%97%B6%E5%99%A8-MultiTimer-%E7%A7%BB%E6%A4%8D/index.html">
 <meta property="og:site_name" content="nanfeng-IOT">
-<meta property="og:description" content="分享嵌入式、物联网开发知识总结">
+<meta property="og:description" content="之前看过几个大佬做的MultiTimer定时器移植到STM32上，可无限扩展定时器任务，简单实用。站在巨人的肩膀上，今天将MultiTimer的移植操作一遍，在此记录记录 项目移植目的：采用正点原子STM32精英开发板，使用STM32 TIM4定时器扩展出两个定时器，配置两个定时器timer1、timer2，timer1循环1s定时，timer2定时一次2s">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200504230928.png">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200504231116.png">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200504231443.png">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200504232314.png">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200504235531.png">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200504235801.png">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20191109220511.png">
+<meta property="article:published_time" content="2020-05-05T00:23:46.000Z">
+<meta property="article:modified_time" content="2020-05-05T00:35:02.568Z">
 <meta property="article:author" content="nan feng">
 <meta property="article:tag" content="嵌入式设计 物联网 C语言">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200504230928.png">
   
     <link rel="alternative" href="/atom.xml" title="nanfeng-IOT" type="application/atom+xml">
   
@@ -198,118 +208,320 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-无限扩展定时器-MultiTimer-移植" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
   
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
+    <h1 class="article-title" itemprop="name">
+      无限扩展定时器 MultiTimer 移植 
+    </h1>
+  
+
+
+  
+  
+        
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
 <a href="/2020/05/05/%E6%97%A0%E9%99%90%E6%89%A9%E5%B1%95%E5%AE%9A%E6%97%B6%E5%99%A8-MultiTimer-%E7%A7%BB%E6%A4%8D/" class="archive-article-date">
         <time datetime="2020-05-05T00:23:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-05</time>
 </a>
 
+  
+  
+    
+<div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <!-- fonts.scss -->
+      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
+      <i class="icon-statistics"></i>
+      <span class="post-meta-item-text"> 字数统计:</span>
+      <span class="post-count">921字</span>
+    </span>
+  </span>
+
+  <span class="post-time">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+      <i class="icon-book icon"></i>
+      <span class="post-meta-item-text"> 阅读时长≈</span>
+      <span class="post-count">3分</span>
+    </span>
+  </span>
+</div>
+
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>之前看过几个大佬做的MultiTimer定时器移植到STM32上，可无限扩展定时器任务，简单实用。站在巨人的肩膀上，今天将MultiTimer的移植操作一遍，在此记录记录</p>
+<p>项目移植目的：采用正点原子STM32精英开发板，使用STM32 TIM4定时器扩展出两个定时器，配置两个定时器timer1、timer2，timer1循环1s定时，timer2定时一次2s</p>
+<a id="more"></a>
+
+<h2 id="1-MultiTimer-简介"><a href="#1-MultiTimer-简介" class="headerlink" title="1 MultiTimer 简介"></a>1 MultiTimer 简介</h2><p>MultiTimer 是一个软件定时器扩展模块，可无限扩展你所需的定时器任务，取代传统的标志位判断方式， 更优雅更便捷地管理程序的时间触发时序。</p>
+<p>MultiTimer是Github一位大佬0xabin的杰作，附上其项目连接：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:<span class="comment">//github.com/0x1abin/MultiTimer</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="2-MultiTimer-移植"><a href="#2-MultiTimer-移植" class="headerlink" title="2 MultiTimer 移植"></a>2 MultiTimer 移植</h2><h3 id="2-1-新建工程，并配置TIM3定时器"><a href="#2-1-新建工程，并配置TIM3定时器" class="headerlink" title="2.1 新建工程，并配置TIM3定时器"></a>2.1 新建工程，并配置TIM3定时器</h3><ul>
+<li>用正点原子 STM32精英开发板的第8个例程–定时器中断实验 工程做移植，更改TIM3初始化函数参数，自动重装值arr设置为9，时钟预分频数psc设置为7199，即可得到TM3定时器1ms中断</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TIM3_Int_Init(<span class="number">9</span>,<span class="number">7199</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-2-添加MultiTimer源代码"><a href="#2-2-添加MultiTimer源代码" class="headerlink" title="2.2 添加MultiTimer源代码"></a>2.2 添加MultiTimer源代码</h3><ul>
+<li><p>将下载好的multi_timer文件放入工程的HARDWARE文件夹底下</p>
+</li>
+<li><p>添加multi_timer源文件<br><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200504230928.png" alt=""></p>
+</li>
+<li><p>添加multi_timer头文件路径<br><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200504231116.png" alt=""></p>
+</li>
+<li><p>注意：如果在添加MultiTimer源代码后编译，会有如下错误：<br><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200504231443.png" alt=""></p>
+<p>这是因为MultiTimer的源文件中没有NULL的宏定义，故会报错，添加头文件 #include &lt;stddef.h&gt;即可消除错误，stddef .h 头文件定义了各种变量类型和宏，其中包含有NULL的宏定义<br><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200504232314.png" alt=""></p>
+</li>
+</ul>
+<h3 id="2-3-配置MultiTimer定时器"><a href="#2-3-配置MultiTimer定时器" class="headerlink" title="2.3 配置MultiTimer定时器"></a>2.3 配置MultiTimer定时器</h3><ul>
+<li>先申请一个定时器管理handle</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Timer</span> <span class="title">timer1</span>;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>初始化定时器对象，注册定时器回调处理函数，设置定时时间（ms），循环定时触发时间</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">timer_init(struct Timer* handle, <span class="keyword">void</span>(*timeout_cb)(), <span class="keyword">uint32_t</span> timeout, <span class="keyword">uint32_t</span> repeat);</span><br></pre></td></tr></table></figure>
+<p>参数说明：</p>
+<p> Timer* handle：确定是操作哪一个定时器</p>
+<p> void(*timeout_cb)()：该定时器的定时回调处理函数</p>
+<p> timeout：定时时间</p>
+<p> repeat：循环定时时间</p>
+</li>
+</ul>
+<ul>
+<li>启动定时器</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">timer_start(&amp;timer1);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>设置1ms的硬件定时器循环调用 timer_ticks() 以提供时间基准，在定时器3中断服务程序void TIM3_IRQHandler(void)中添加timer_ticks()</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//定时器3中断服务程序</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">TIM3_IRQHandler</span><span class="params">(<span class="keyword">void</span>)</span>                                 <span class="comment">//TIM3中断</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (TIM_GetITStatus(TIM3, TIM_IT_Update) != RESET)    <span class="comment">//检查TIM3更新中断发生与否</span></span><br><span class="line">		&#123;</span><br><span class="line">		   TIM_ClearITPendingBit(TIM3, TIM_IT_Update  );  <span class="comment">//清除TIMx更新中断标志 </span></span><br><span class="line">		   timer_ticks();     </span><br><span class="line">		&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>在主循环调用定时器后台处理函数，将主函数中没用到的程序删除，只保留串口和MultiTimer定时器相关，配置两个定时器timer1、timer2，timer1循环1s定时，timer2定时一次2s,修改主函数</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"> </span>&#123;		</span><br><span class="line">	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2); <span class="comment">//设置NVIC中断分组2:2位抢占优先级，2位响应优先级</span></span><br><span class="line">	uart_init(<span class="number">115200</span>);	                            <span class="comment">//串口初始化为115200</span></span><br><span class="line">	TIM3_Int_Init(<span class="number">9</span>,<span class="number">7199</span>);                          <span class="comment">//定时为1ms  </span></span><br><span class="line">	 </span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"multi timer test...\r\n"</span>);</span><br><span class="line">	 	 </span><br><span class="line">    timer_init(&amp;timer1, timer1_callback, <span class="number">1000</span>, <span class="number">1000</span>); <span class="comment">//1s loop</span></span><br><span class="line">    timer_start(&amp;timer1);	 </span><br><span class="line">	 </span><br><span class="line">    timer_init(&amp;timer2, timer2_callback, <span class="number">2000</span>, <span class="number">0</span>);   <span class="comment">//2s  delay</span></span><br><span class="line">    timer_start(&amp;timer2);</span><br><span class="line">    </span><br><span class="line">   	<span class="keyword">while</span>(<span class="number">1</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		timer_loop();		   </span><br><span class="line">	&#125;	 </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>配置完成MultiTimer定时器</li>
+</ul>
+<p><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200504235531.png" alt=""></p>
+<h2 id="3-验证MultiTimer定时器"><a href="#3-验证MultiTimer定时器" class="headerlink" title="3 验证MultiTimer定时器"></a>3 验证MultiTimer定时器</h2><ul>
+<li>将配置完成的代码烧写进开发板，在串口调试助手查看串口打印信息</li>
+</ul>
+<p><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200504235801.png" alt=""></p>
+<p>  由串口打印信息可知，代码运行结果与咱们项目移植的目标一致，timer1循环1s定时，timer2定时一次2s</p>
+<p>好文分享：</p>
+<ul>
+<li>STM32笔记–芯片电子签名</li>
+<li>C语言程序设计–hex文件解析</li>
+<li>物联网–MQTT协议(八)：构建UNSUBSCRIBE、UNSUBACK报文</li>
+</ul>
+<blockquote>
+<p>笔者水平有限，若有错误地方欢迎批评指正，若本文对您有所帮助，转发、分享也是笔者坚持的动力；后台回复 MultiTimer 获取MultiTimer源码及移植工程</p>
+</blockquote>
+<p><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20191109220511.png" alt="关注南风过境蜻蜓飞，开启物联网、嵌入式学习之旅"></p>
+
+    
+
+    
+    <div class="page-reward">
+      <a href="javascript:void(0);" class="page-reward-btn tooltip-top" target="_self">
+        <div class="tooltip tooltip-east">
+          <span class="tooltip-item">
+            赏
+          </span>
+          <span class="tooltip-content">
+            <span class="tooltip-text">
+              <span class="tooltip-inner">
+                <p class="reward-p"><i class="icon icon-quo-left"></i>走过路过<i
+                    class="icon icon-quo-right"></i></p>
+                <div class="reward-box">
+                  
+                  <div class="reward-box-item">
+                    <img class="reward-img" src="/img/zfb.jpg">
+                    <span class="reward-type">支付宝</span>
+                  </div>
+                  
+                  
+                  <div class="reward-box-item">
+                    <img class="reward-img" src="/img/wx.png">
+                    <span class="reward-type">微信</span>
+                  </div>
+                  
+                </div>
+              </span>
+            </span>
+          </span>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2020/05/05/%E6%97%A0%E9%99%90%E6%89%A9%E5%B1%95%E5%AE%9A%E6%97%B6%E5%99%A8-MultiTimer-%E7%A7%BB%E6%A4%8D/" target="_blank">无限扩展定时器 MultiTimer 移植 </a>
-  
-    </h1>
-  
+      </a>
+    </div>
+    
 
-
-        <div class="article-info info-on-right">
+    
+    <div class="declare"> 
+      <ul class="post-copyright">
+        <li>
+          <strong>本文作者：</strong>
+          nan feng
+        </li>
+        <li>
+          <strong>本文链接：</strong>
+          <a href="https://nanfeng-iot.cn/2020/05/05/无限扩展定时器-MultiTimer-移植/" title="无限扩展定时器 MultiTimer 移植 " target="_blank">https://nanfeng-iot.cn/2020/05/05/无限扩展定时器-MultiTimer-移植/</a>
+        </li>
+        
+        <li>
+          <strong>版权声明： </strong>
           
-          
+          本博客所有文章除特别声明外，均采用 <a href="https://github.com/JoeyBling/hexo-theme-yilia-plus/blob/master/LICENSE" rel="external nofollow" target="_blank">MIT</a> 许可协议。转载请注明出处！
+        </li>
+        
+      </ul>
+    </div>
+    
 
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+    
+
+    
+
+    
+    
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a> -->
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://nanfeng-iot.cn/2020/05/05/%E6%97%A0%E9%99%90%E6%89%A9%E5%B1%95%E5%AE%9A%E6%97%B6%E5%99%A8-MultiTimer-%E7%A7%BB%E6%A4%8D/" alt="微信分享二维码"> -->
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+
+    
+    <div class="clearfix"></div>
+  </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2020/04/25/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E7%AC%AC%E4%B8%80%E5%A4%A9/" class="archive-article-date">
-        <time datetime="2020-04-25T04:57:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-25</time>
-</a>
 
+
+<nav id="article-nav">
+  
+  
+    <a href="/2020/04/25/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E7%AC%AC%E4%B8%80%E5%A4%A9/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">搭建博客第一天</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2020/04/25/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E7%AC%AC%E4%B8%80%E5%A4%A9/" target="_blank">搭建博客第一天</a>
-  
-    </h1>
-  
+        
+        
+    </div>
+</aside>
 
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2020/04/25/hello-world/" class="archive-article-date">
-        <time datetime="2020-04-25T04:26:52.158Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-25</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2020/04/25/hello-world/" target="_blank">Hello World</a>
-  
-    </h1>
-  
 
 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+
+
+
+
+
+
   
+  <div id="gitment-ctn"></div>
   
-    </div></section>
+    <!-- 中文 -->
+    <link rel="stylesheet" href="/lib/gitment.css">
+    <script src="/lib/gitment.js"></script>
+  
+  <script>
+    <!-- id: "无限扩展定时器 MultiTimer 移植 " -->
+    var gitment = new Gitment({
+      id: "20200505082346",
+      owner: 'Nanfengyuan',
+      repo: 'nanfeng blog',
+      oauth: {
+        client_id: '7656db123fbf8a437d22',
+        client_secret: '89978e13422f7b2a3b061c5707dfe040216919ae',
+      },
+    })
+    gitment.render('gitment-ctn')
+  </script>
+
+
   
 
-    
 
 
           </div>
@@ -350,8 +562,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,
