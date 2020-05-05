@@ -6,14 +6,14 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://nanfeng-iot.cn">
-  <title>无限扩展定时器 MultiTimer 移植  | nanfeng-IOT</title>
+  <title>无限扩展定时器MultiTimer移植 | nanfeng-IOT</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   <meta name="description" content="之前看过几个大佬做的MultiTimer定时器移植到STM32上，可无限扩展定时器任务，简单实用。站在巨人的肩膀上，今天将MultiTimer的移植操作一遍，在此记录记录 项目移植目的：采用正点原子STM32精英开发板，使用STM32 TIM4定时器扩展出两个定时器，配置两个定时器timer1、timer2，timer1循环1s定时，timer2定时一次2s">
 <meta property="og:type" content="article">
-<meta property="og:title" content="无限扩展定时器 MultiTimer 移植 ">
-<meta property="og:url" content="https://nanfeng-iot.cn/2020/05/05/%E6%97%A0%E9%99%90%E6%89%A9%E5%B1%95%E5%AE%9A%E6%97%B6%E5%99%A8-MultiTimer-%E7%A7%BB%E6%A4%8D/index.html">
+<meta property="og:title" content="无限扩展定时器MultiTimer移植">
+<meta property="og:url" content="https://nanfeng-iot.cn/2020/05/05/%E6%97%A0%E9%99%90%E6%89%A9%E5%B1%95%E5%AE%9A%E6%97%B6%E5%99%A8MultiTimer%E7%A7%BB%E6%A4%8D/index.html">
 <meta property="og:site_name" content="nanfeng-IOT">
 <meta property="og:description" content="之前看过几个大佬做的MultiTimer定时器移植到STM32上，可无限扩展定时器任务，简单实用。站在巨人的肩膀上，今天将MultiTimer的移植操作一遍，在此记录记录 项目移植目的：采用正点原子STM32精英开发板，使用STM32 TIM4定时器扩展出两个定时器，配置两个定时器timer1、timer2，timer1循环1s定时，timer2定时一次2s">
 <meta property="og:locale" content="en_US">
@@ -24,8 +24,8 @@
 <meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200504235531.png">
 <meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200504235801.png">
 <meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20191109220511.png">
-<meta property="article:published_time" content="2020-05-05T00:23:46.000Z">
-<meta property="article:modified_time" content="2020-05-05T00:35:02.568Z">
+<meta property="article:published_time" content="2020-05-05T13:43:59.000Z">
+<meta property="article:modified_time" content="2020-05-05T13:47:27.785Z">
 <meta property="article:author" content="nan feng">
 <meta property="article:tag" content="嵌入式设计 物联网 C语言">
 <meta name="twitter:card" content="summary">
@@ -214,14 +214,14 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-无限扩展定时器-MultiTimer-移植" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-无限扩展定时器MultiTimer移植" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
     <h1 class="article-title" itemprop="name">
-      无限扩展定时器 MultiTimer 移植 
+      无限扩展定时器MultiTimer移植
     </h1>
   
 
@@ -233,8 +233,8 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/2020/05/05/%E6%97%A0%E9%99%90%E6%89%A9%E5%B1%95%E5%AE%9A%E6%97%B6%E5%99%A8-MultiTimer-%E7%A7%BB%E6%A4%8D/" class="archive-article-date">
-        <time datetime="2020-05-05T00:23:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-05</time>
+<a href="/2020/05/05/%E6%97%A0%E9%99%90%E6%89%A9%E5%B1%95%E5%AE%9A%E6%97%B6%E5%99%A8MultiTimer%E7%A7%BB%E6%A4%8D/" class="archive-article-date">
+        <time datetime="2020-05-05T13:43:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-05</time>
 </a>
 
   
@@ -247,7 +247,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">921字</span>
+      <span class="post-count">890字</span>
     </span>
   </span>
 
@@ -270,7 +270,6 @@
     <p>之前看过几个大佬做的MultiTimer定时器移植到STM32上，可无限扩展定时器任务，简单实用。站在巨人的肩膀上，今天将MultiTimer的移植操作一遍，在此记录记录</p>
 <p>项目移植目的：采用正点原子STM32精英开发板，使用STM32 TIM4定时器扩展出两个定时器，配置两个定时器timer1、timer2，timer1循环1s定时，timer2定时一次2s</p>
 <a id="more"></a>
-
 <h2 id="1-MultiTimer-简介"><a href="#1-MultiTimer-简介" class="headerlink" title="1 MultiTimer 简介"></a>1 MultiTimer 简介</h2><p>MultiTimer 是一个软件定时器扩展模块，可无限扩展你所需的定时器任务，取代传统的标志位判断方式， 更优雅更便捷地管理程序的时间触发时序。</p>
 <p>MultiTimer是Github一位大佬0xabin的杰作，附上其项目连接：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:<span class="comment">//github.com/0x1abin/MultiTimer</span></span><br></pre></td></tr></table></figure>
@@ -331,14 +330,8 @@
 </ul>
 <p><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200504235801.png" alt=""></p>
 <p>  由串口打印信息可知，代码运行结果与咱们项目移植的目标一致，timer1循环1s定时，timer2定时一次2s</p>
-<p>好文分享：</p>
-<ul>
-<li>STM32笔记–芯片电子签名</li>
-<li>C语言程序设计–hex文件解析</li>
-<li>物联网–MQTT协议(八)：构建UNSUBSCRIBE、UNSUBACK报文</li>
-</ul>
 <blockquote>
-<p>笔者水平有限，若有错误地方欢迎批评指正，若本文对您有所帮助，转发、分享也是笔者坚持的动力；后台回复 MultiTimer 获取MultiTimer源码及移植工程</p>
+<p>笔者水平有限，若有错误地方欢迎批评指正，若本文对您有所帮助，转发、分享也是笔者坚持的动力；关注微信公众号，后台回复 MultiTimer 获取MultiTimer源码及移植工程</p>
 </blockquote>
 <p><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20191109220511.png" alt="关注南风过境蜻蜓飞，开启物联网、嵌入式学习之旅"></p>
 
@@ -387,7 +380,7 @@
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="https://nanfeng-iot.cn/2020/05/05/无限扩展定时器-MultiTimer-移植/" title="无限扩展定时器 MultiTimer 移植 " target="_blank">https://nanfeng-iot.cn/2020/05/05/无限扩展定时器-MultiTimer-移植/</a>
+          <a href="https://nanfeng-iot.cn/2020/05/05/无限扩展定时器MultiTimer移植/" title="无限扩展定时器MultiTimer移植" target="_blank">https://nanfeng-iot.cn/2020/05/05/无限扩展定时器MultiTimer移植/</a>
         </li>
         
         <li>
@@ -454,7 +447,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://nanfeng-iot.cn/2020/05/05/%E6%97%A0%E9%99%90%E6%89%A9%E5%B1%95%E5%AE%9A%E6%97%B6%E5%99%A8-MultiTimer-%E7%A7%BB%E6%A4%8D/" alt="微信分享二维码"> -->
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://nanfeng-iot.cn/2020/05/05/%E6%97%A0%E9%99%90%E6%89%A9%E5%B1%95%E5%AE%9A%E6%97%B6%E5%99%A8MultiTimer%E7%A7%BB%E6%A4%8D/" alt="微信分享二维码"> -->
     </div>
 </div>
 
@@ -512,9 +505,9 @@
     <script src="/lib/gitment.js"></script>
   
   <script>
-    <!-- id: "无限扩展定时器 MultiTimer 移植 " -->
+    <!-- id: "无限扩展定时器MultiTimer移植" -->
     var gitment = new Gitment({
-      id: "20200505082346",
+      id: "20200505214359",
       owner: 'Nanfengyuan',
       repo: 'nanfeng blog',
       oauth: {
