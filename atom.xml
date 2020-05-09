@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://nanfeng-iot.cn/"/>
-  <updated>2020-05-09T09:24:30.866Z</updated>
+  <updated>2020-05-09T13:48:33.245Z</updated>
   <id>https://nanfeng-iot.cn/</id>
   
   <author>
@@ -15,6 +15,25 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>STM32笔记--使用ST-Link下载hex文件</title>
+    <link href="https://nanfeng-iot.cn/2020/05/09/STM32%E7%AC%94%E8%AE%B0-%E4%BD%BF%E7%94%A8ST-Link%E4%B8%8B%E8%BD%BDhex%E6%96%87%E4%BB%B6/"/>
+    <id>https://nanfeng-iot.cn/2020/05/09/STM32%E7%AC%94%E8%AE%B0-%E4%BD%BF%E7%94%A8ST-Link%E4%B8%8B%E8%BD%BDhex%E6%96%87%E4%BB%B6/</id>
+    <published>2020-05-09T13:47:31.000Z</published>
+    <updated>2020-05-09T13:48:33.245Z</updated>
+    
+    <content type="html"><![CDATA[<p><strong>嵌入式产品开发过程中，日常使用ST-Link下载程序时都是在MDK编译器中下载源代码，但ST-Link其实也可以直接下载hex文件，STM32官方就有提供一个ST-Link下载程序的工具STM32 ST-LINK Utility，只需三步，就能将hex文件下载到单片机中，相比使用串口下载hex文件繁琐的步骤操作，真香</strong></p><a id="more"></a><h2 id="1-ST-LINK-Utility下载安装"><a href="#1-ST-LINK-Utility下载安装" class="headerlink" title="1 ST-LINK Utility下载安装"></a>1 ST-LINK Utility下载安装</h2><h3 id="1-1-下载ST-LINK-Utility"><a href="#1-1-下载ST-LINK-Utility" class="headerlink" title="1.1 下载ST-LINK Utility"></a>1.1 下载ST-LINK Utility</h3><ul><li>ST-LINK Utility是意法半导体提供的开源工具，直接在意法半导体官网即可下载 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">下载链接：https:<span class="comment">//www.st.com/en/development-tools/stsw-link004.html</span></span><br></pre></td></tr></table></figure></li><li>下载界面如下：<br><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.14%2020200509174219.png" alt=""></li><li>账号密码登录，点击Get Software即可下载ST-LINK Utility安装包</li></ul><h3 id="1-2-ST-LINK-Utility安装"><a href="#1-2-ST-LINK-Utility安装" class="headerlink" title="1.2 ST-LINK Utility安装"></a>1.2 ST-LINK Utility安装</h3><ul><li><p>解压安装包，双击STM32 ST-LINK Utility v4.5.0，打开界面如下：<br><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200509175622.png" alt=""></p></li><li><p>注意软件安装位置，一直next即可</p></li><li><p>安装完成界面<br><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200509175713.png" alt=""></p></li><li><p>安装完成后，桌面会出现 STM32 ST-LINK Utility 的软件图标<br><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200509175736.png" alt=""></p></li></ul><h2 id="2-ST-LINK-Utility的使用"><a href="#2-ST-LINK-Utility的使用" class="headerlink" title="2 ST-LINK Utility的使用"></a>2 ST-LINK Utility的使用</h2><h3 id="2-1-Connect-to-the-target"><a href="#2-1-Connect-to-the-target" class="headerlink" title="2.1 Connect to the target"></a>2.1 Connect to the target</h3><ul><li><p>打开ST-LINK Utility，界面如下所示：<br><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.14%2020200509180727.png" alt=""></p></li><li><p>将ST-Link连接单片机，并将USB口接到电脑的串口，点击Connect to the target按钮图标（注意：电脑需安装有ST-Link驱动，若电脑没安装驱动可阅读下文 3.2 ST-LINK驱动安装进行驱动安装）<br><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200509213023.png" alt=""></p></li><li><p>如果ST-Link连接正确并通电的情况下，就会读出器件的ID号，以及其它一些信息，如下图所示<br><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.14%2020200509181924.png" alt=""></p></li></ul><h3 id="2-2-Open-file"><a href="#2-2-Open-file" class="headerlink" title="2.2 Open file"></a>2.2 Open file</h3><ul><li><p>点击Open file按钮图标，选择所要下载的hex文件<br><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200509212957.png" alt=""></p></li><li><p>正确的选择hex文件后，会出现以下界面<br><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.14%2020200509192541.png" alt=""></p></li></ul><h3 id="2-3-Program-Verify"><a href="#2-3-Program-Verify" class="headerlink" title="2.3 Program Verify"></a>2.3 Program Verify</h3><ul><li><p>点击Program Verify按钮图标<br><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.14%2020200509193429.png" alt=""></p></li><li><p>会弹出一个窗口，这个窗口的配置都不用修改，默认的即可，点击Start即可开始下载程序<br><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.14%2020200509193634.png" alt=""></p></li><li><p>当日志区域出现 Verification…OK 时即代表hex文件已下载到单片机<br><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.14%2020200509194135.png" alt=""></p></li></ul><h2 id="3-ST-LINK-Utility资料及ST-LINK驱动"><a href="#3-ST-LINK-Utility资料及ST-LINK驱动" class="headerlink" title="3 ST-LINK Utility资料及ST-LINK驱动"></a>3 ST-LINK Utility资料及ST-LINK驱动</h2><h3 id="3-1-ST-LINK-Utility资料"><a href="#3-1-ST-LINK-Utility资料" class="headerlink" title="3.1 ST-LINK Utility资料"></a>3.1 ST-LINK Utility资料</h3><ul><li><p>在ST-LINK Utility安装路径文件夹底下的Docs文件夹即存放着ST-LINK Utility的用户手册等相关资料<br><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.14%2020200509195200.png" alt=""><br><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.14%2020200509195352.png" alt=""></p></li><li><p>也可以在ST-LINK Utility界面点击Help按钮，选择相应的文件名，即能直接打开Docs文件夹底下存放的ST-LINK Utility用户手册等相关资料<br><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.14%2020200509195547.png" alt=""></p></li></ul><h3 id="3-2-ST-LINK驱动安装"><a href="#3-2-ST-LINK驱动安装" class="headerlink" title="3.2 ST-LINK驱动安装"></a>3.2 ST-LINK驱动安装</h3><ul><li><p>在ST-LINK Utility安装路径文件夹底下的ST-LINK_USB_V2_1_Driver文件夹存放ST-LINK驱动<br><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.14%2020200509195903.png" alt=""><br><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.14%2020200509200019.png" alt=""></p></li><li><p>若电脑没有安装ST-LINK驱动，选择相应的驱动.exe文件<br><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.14%2020200509200221.png" alt=""></p></li><li><p>一直点击下一步即可<br><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.14%2020200509200246.png" alt=""></p></li><li><p>驱动安装完成<br><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.14%2020200509200312.png" alt=""></p></li></ul><blockquote><p>笔者知识有限，如果发现本文有错误的地方欢迎批评、指正，若本文对您有所帮助，转发、分享也是笔者坚持的动力，关注微信公众号：南风过境蜻蜓飞，后台回复 ST-LINK 获取ST-LINK Utility安装包</p></blockquote><p><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20191109220511.png" alt="关注南风过境蜻蜓飞，开启物联网、嵌入式学习之旅"></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;strong&gt;嵌入式产品开发过程中，日常使用ST-Link下载程序时都是在MDK编译器中下载源代码，但ST-Link其实也可以直接下载hex文件，STM32官方就有提供一个ST-Link下载程序的工具STM32 ST-LINK Utility，只需三步，就能将hex文件下载到单片机中，相比使用串口下载hex文件繁琐的步骤操作，真香&lt;/strong&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+    
+  </entry>
   
   <entry>
     <title>物联网--MQTT协议第八讲：构建UNSUBSCRIBE、UNSUBACK报文</title>
