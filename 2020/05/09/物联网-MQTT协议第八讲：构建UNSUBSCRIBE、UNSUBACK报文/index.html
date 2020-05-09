@@ -6,20 +6,34 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://nanfeng-iot.cn">
-  <title>Archives: 2020/5 | nanfeng-IOT</title>
+  <title>物联网--MQTT协议第八讲：构建UNSUBSCRIBE、UNSUBACK报文 | nanfeng-IOT</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="分享嵌入式、物联网开发知识总结">
-<meta property="og:type" content="website">
-<meta property="og:title" content="nanfeng-IOT">
-<meta property="og:url" content="https://nanfeng-iot.cn/archives/2020/05/index.html">
+  <meta name="description" content="MQTT协议共14个报文，前面给大家讲解了怎么构建CONNECT、CONNACK、DISCONNECT、PINGREQ、PINGRESP、SUBSCRIBE、SUBACK报文，今天继续给大家讲解构建 UNSUBSCRIBE（取消订阅）及 UNSUBACK（取消订阅确认）报文">
+<meta property="og:type" content="article">
+<meta property="og:title" content="物联网--MQTT协议第八讲：构建UNSUBSCRIBE、UNSUBACK报文">
+<meta property="og:url" content="https://nanfeng-iot.cn/2020/05/09/%E7%89%A9%E8%81%94%E7%BD%91-MQTT%E5%8D%8F%E8%AE%AE%E7%AC%AC%E5%85%AB%E8%AE%B2%EF%BC%9A%E6%9E%84%E5%BB%BAUNSUBSCRIBE%E3%80%81UNSUBACK%E6%8A%A5%E6%96%87/index.html">
 <meta property="og:site_name" content="nanfeng-IOT">
-<meta property="og:description" content="分享嵌入式、物联网开发知识总结">
+<meta property="og:description" content="MQTT协议共14个报文，前面给大家讲解了怎么构建CONNECT、CONNACK、DISCONNECT、PINGREQ、PINGRESP、SUBSCRIBE、SUBACK报文，今天继续给大家讲解构建 UNSUBSCRIBE（取消订阅）及 UNSUBACK（取消订阅确认）报文">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20191109221708.png">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20191109221925.png">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.14%2020191121193716.png">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.14%2020191121194019.png">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.14%2020191121195050.png">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.14%2020191121201113.png">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.14%2020191114205435.png">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.14%2020191115124712.png">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.14%2020191115133854.png">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.14%2020191121204740.png">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/%E5%85%AC%E4%BC%97%E5%8F%B7%E4%BA%8C%E7%BB%B4%E7%A0%81.png">
+<meta property="article:published_time" content="2020-05-09T09:22:10.000Z">
+<meta property="article:modified_time" content="2020-05-09T09:24:30.866Z">
 <meta property="article:author" content="nan feng">
 <meta property="article:tag" content="嵌入式设计 物联网 C语言">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20191109221708.png">
   
     <link rel="alternative" href="/atom.xml" title="nanfeng-IOT" type="application/atom+xml">
   
@@ -204,118 +218,290 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-物联网-MQTT协议第八讲：构建UNSUBSCRIBE、UNSUBACK报文" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
   
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
+    <h1 class="article-title" itemprop="name">
+      物联网--MQTT协议第八讲：构建UNSUBSCRIBE、UNSUBACK报文
+    </h1>
+  
+
+
+  
+  
+        
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
 <a href="/2020/05/09/%E7%89%A9%E8%81%94%E7%BD%91-MQTT%E5%8D%8F%E8%AE%AE%E7%AC%AC%E5%85%AB%E8%AE%B2%EF%BC%9A%E6%9E%84%E5%BB%BAUNSUBSCRIBE%E3%80%81UNSUBACK%E6%8A%A5%E6%96%87/" class="archive-article-date">
         <time datetime="2020-05-09T09:22:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-09</time>
 </a>
 
+  
+  
+    
+<div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <!-- fonts.scss -->
+      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
+      <i class="icon-statistics"></i>
+      <span class="post-meta-item-text"> 字数统计:</span>
+      <span class="post-count">1.4k字</span>
+    </span>
+  </span>
+
+  <span class="post-time">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+      <i class="icon-book icon"></i>
+      <span class="post-meta-item-text"> 阅读时长≈</span>
+      <span class="post-count">5分</span>
+    </span>
+  </span>
+</div>
+
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>MQTT协议共14个报文，前面给大家讲解了怎么构建CONNECT、CONNACK、DISCONNECT、PINGREQ、PINGRESP、SUBSCRIBE、SUBACK报文，今天继续给大家讲解构建 UNSUBSCRIBE（取消订阅）及 UNSUBACK（取消订阅确认）报文</p>
+<a id="more"></a>
+
+<h2 id="一、准备工作"><a href="#一、准备工作" class="headerlink" title="一、准备工作"></a>一、准备工作</h2><h3 id="1-阿里云创建设备"><a href="#1-阿里云创建设备" class="headerlink" title="1.阿里云创建设备"></a>1.阿里云创建设备</h3><p>已在阿里云上创建了一个设备，设备三元组为：<br>  {<br>     “ProductKey”: “a1GOQO9ZBek”,<br>     “DeviceName”: “191106”,<br>     “DeviceSecret”: “wWo0xItypjQzrJQFlLpiITBjOGJhSLWE”<br>  }</p>
+<h3 id="2-网络调试助手的使用"><a href="#2-网络调试助手的使用" class="headerlink" title="2.网络调试助手的使用"></a>2.网络调试助手的使用</h3><p>MQTT协议的所有报文均是16进制表示，故需要进制转换，进制转换工具可以直接使用网络调试助手，即可转换为16进制，并得到转换数据的大小，操作如下：</p>
+<p><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20191109221708.png" alt=""><br><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20191109221925.png" alt=""></p>
+<ul>
+<li><p>输入需要转换的数据时，结束的地方不能多有空格，否则转换过后的数据也会包含空格，导致出错</p>
+</li>
+<li><p>发送完成一次数据之后记得复位计数（右下角），且把按十六进制发送的√取消掉再进行下一次数据转换，否则会数据累加，导致出错</p>
+</li>
+</ul>
+<h2 id="二、UNSUBSCRIBE（取消订阅）报文"><a href="#二、UNSUBSCRIBE（取消订阅）报文" class="headerlink" title="二、UNSUBSCRIBE（取消订阅）报文"></a>二、UNSUBSCRIBE（取消订阅）报文</h2><p>UNSUBSCRIBE（取消订阅）报文如其名字所示，就是取消已订阅的Topic，客户端发送 UNSUBSCRIBE 报文给服务端， 取消订阅主题。UNSUBSCRIBE 报文由固定报头、可变报头、有限负载组成</p>
+<h3 id="1-固定报头"><a href="#1-固定报头" class="headerlink" title="1.固定报头"></a>1.固定报头</h3><p>MQTT协议的 UNSUBSCRIBE 报文的固定报头数据如下：</p>
+<p><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.14%2020191121193716.png" alt=""></p>
+<p>由于UNSUBSCRIBE 报文固定报头的第 3,2,1,0 位是保留位， 必须分别设置为 0,0,1,0。 服务端必须将其它的任<br>何值都当做是不合法的并关闭网络连接，剩余长度的值暂定为：XX</p>
+<p>故可看出<strong>MQTT协议的UNSUBSCRIBE 报文固定报头为：A2 XX</strong></p>
+<h3 id="2-可变报头"><a href="#2-可变报头" class="headerlink" title="2.可变报头"></a>2.可变报头</h3><p>MQTT协议的 UNSUBSCRIBE 报文的可变报头数据如下：<br><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.14%2020191121194019.png" alt=""></p>
+<p>UNSUBSCRIBE 报文的可变报头即为我们要取消的订阅主题的客户端标识符，在上一节中我们设定的SUBSCRIBE报文标识符为11，故此处UNSUBSCRIBE 的可变报头也为11，即<strong>MQTT协议的UNSUBSCRIBE 报文固定报头为：00 0B</strong></p>
+<h3 id="3-有效负载"><a href="#3-有效负载" class="headerlink" title="3.有效负载"></a>3.有效负载</h3><p>MQTT协议的 UNSUBSCRIBE 报文的有效负载数据如下：<br><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.14%2020191121195050.png" alt=""></p>
+<p>byte 1、byte 2为有限负载长度，可先假定为：XX XX</p>
+<p>后面的byte 则为我们要取消订阅的Topic, 我们需要取消订阅的Topic为：/sys/a1GOQO9ZBek/191106/thing/service/property/set ，转换成16进制，为：2F 73 79 73 2F 61 31 47 4F 51 4F 39 5A 42 65 6B 2F 31 39 31 31 30 36 2F 74 68 69 6E 67 2F 73 65 72 76 69 63 65 2F 70 72 6F 70 65 72 74 79 2F 73 65 74 ，故可得出有限负载长度为：50，转换为16进制: 32</p>
+<p>故，*<em>MQTT协议的 UNSUBSCRIBE 报文有效负载为：00 31 2F 73 79 73 2F 61 31 47 4F 51 4F 39 5A 42 65 6B 2F 31 39 31 31 30 36 2F 74 68 69 6E 67 2F 73 65 72 76 69 63 65 2F 70 72 6F 70 65 72 74 79 2F 73 65 74 *</em></p>
+<h3 id="4-UNSUBSCRIBE-报文"><a href="#4-UNSUBSCRIBE-报文" class="headerlink" title="4.UNSUBSCRIBE 报文"></a>4.UNSUBSCRIBE 报文</h3><p>得到可变报头和有效负载即可计算出剩余长度（ 等于可变报头长度 + 有效负载长度 ）的值，为54，转为16进制为：36，则综上所述，可得到构造的*<em>MQTT协议的SUBSCRIBE报文，为：A2 36 00 0B 00 32 2F 73 79 73 2F 61 31 47 4F 51 4F 39 5A 42 65 6B 2F 31 39 31 31 30 36 2F 74 68 69 6E 67 2F 73 65 72 76 69 63 65 2F 70 72 6F 70 65 72 74 79 2F 73 65 74 *</em></p>
+<h2 id="三、UNSUBACK（取消订阅确认）报文"><a href="#三、UNSUBACK（取消订阅确认）报文" class="headerlink" title="三、UNSUBACK（取消订阅确认）报文"></a>三、UNSUBACK（取消订阅确认）报文</h2><p>服务端发送 UNSUBACK 报文给客户端，用于确认收到 UNSUBSCRIBE 报文，UNSUBACK 报文由固定报头、可变报头组成</p>
+<h3 id="1-固定报头-1"><a href="#1-固定报头-1" class="headerlink" title="1.固定报头"></a>1.固定报头</h3><p>MQTT协议的 UNSUBACK 报文的固定报头格式如下：<br><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.14%2020191121201113.png" alt=""></p>
+<p>故可看出<strong>MQTT协议的UNSUBACK 报文固定报头为：E0 02</strong> </p>
+<h3 id="2-可变报头-1"><a href="#2-可变报头-1" class="headerlink" title="2.可变报头"></a>2.可变报头</h3><p>MQTT协议的 UNSUBACK 报文的可变报头格式如下：<br><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.14%2020191114205435.png" alt=""></p>
+<p>UNSUBACK 报文的可变报头即是等待确认取消的 UNSUBACK 报文的报文标识符，也就是我们在 UNSUBSCRIBE 报文可变报头篇章的报文标识符（ 等于 11 的客户端标识符 ），即<strong>MQTT协议的SUBACK 报文可变报头为：00 0B</strong></p>
+<h3 id="4-UNSUBACK-报文"><a href="#4-UNSUBACK-报文" class="headerlink" title="4.UNSUBACK 报文"></a>4.UNSUBACK 报文</h3><p>得到可变报头和有效负载即可计算出剩余长度（ 等于可变报头长度 + 有效负载长度 ）的值等于3，转为16进制为：3，则综上所述，可得到构造的<strong>MQTT协议的UNSUBACK 报文为：B0 02 00 0B</strong></p>
+<h2 id="四、测试报文"><a href="#四、测试报文" class="headerlink" title="四、测试报文"></a>四、测试报文</h2><ul>
+<li><p>网络调试助手中发送 物联网–MQTT协议(四)：构建CONNECT报文构建 中构建好的CONECT报文，可以看到返回：20 02 00 00，说明CONNECT连接被服务端接受，连接上云端设备<br><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.14%2020191115124712.png" alt=""></p>
+</li>
+<li><p>网络调试助手中发送 物联网–MQTT协议(七)：构建SUBSCRIBE、SUBACK报文 我们构造的SUBSCRIBE报文，返回的订阅确认报文为 90 03 00 0B 01，订阅Topic成功<br><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.14%2020191115133854.png" alt=""></p>
+</li>
+<li><p>网络调试助手中发送我们构造的 UNSUBSCRIBE 报文，成功收到取消订阅确认 UNSUBACK 报文，故可验证报文构造是正确的<br><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.14%2020191121204740.png" alt=""></p>
+</li>
+<li><p>其实，UNSUBSCRIBE（取消订阅）报文和SUBSCRIBE（订阅主题）报文基本一致，只有固定报头有区别，且SUBSCRIBE 报文有服务等级区分，而 UNSUBSCRIBE 报文，构造报文的时候可以联系起来记忆，把 SUBSCRIBE 报文的固定报头换为UNSUBSCRIBE 报文的固定报头，去掉末尾的 00 ，相对应的可变负载长度减 1，即可得到 UNSUBSCRIBE 报文</p>
+</li>
+</ul>
+<blockquote>
+<p>笔者知识有限，如果发现本文有错误的地方欢迎批评、指正，若本文对您有所帮助，转发、分享也是笔者坚持的动力</p>
+</blockquote>
+<p><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/%E5%85%AC%E4%BC%97%E5%8F%B7%E4%BA%8C%E7%BB%B4%E7%A0%81.png" alt="关注南风过境蜻蜓飞，开启物联网、嵌入式学习之路"></p>
+
+    
+
+    
+    <div class="page-reward">
+      <a href="javascript:void(0);" class="page-reward-btn tooltip-top" target="_self">
+        <div class="tooltip tooltip-east">
+          <span class="tooltip-item">
+            赏
+          </span>
+          <span class="tooltip-content">
+            <span class="tooltip-text">
+              <span class="tooltip-inner">
+                <p class="reward-p"><i class="icon icon-quo-left"></i>走过路过<i
+                    class="icon icon-quo-right"></i></p>
+                <div class="reward-box">
+                  
+                  <div class="reward-box-item">
+                    <img class="reward-img" src="/img/zfb.jpg">
+                    <span class="reward-type">支付宝</span>
+                  </div>
+                  
+                  
+                  <div class="reward-box-item">
+                    <img class="reward-img" src="/img/wx.png">
+                    <span class="reward-type">微信</span>
+                  </div>
+                  
+                </div>
+              </span>
+            </span>
+          </span>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2020/05/09/%E7%89%A9%E8%81%94%E7%BD%91-MQTT%E5%8D%8F%E8%AE%AE%E7%AC%AC%E5%85%AB%E8%AE%B2%EF%BC%9A%E6%9E%84%E5%BB%BAUNSUBSCRIBE%E3%80%81UNSUBACK%E6%8A%A5%E6%96%87/" target="_blank">物联网--MQTT协议第八讲：构建UNSUBSCRIBE、UNSUBACK报文</a>
-  
-    </h1>
-  
+      </a>
+    </div>
+    
 
-
-        <div class="article-info info-on-right">
+    
+    <div class="declare"> 
+      <ul class="post-copyright">
+        <li>
+          <strong>本文作者：</strong>
+          nan feng
+        </li>
+        <li>
+          <strong>本文链接：</strong>
+          <a href="https://nanfeng-iot.cn/2020/05/09/物联网-MQTT协议第八讲：构建UNSUBSCRIBE、UNSUBACK报文/" title="物联网--MQTT协议第八讲：构建UNSUBSCRIBE、UNSUBACK报文" target="_blank">https://nanfeng-iot.cn/2020/05/09/物联网-MQTT协议第八讲：构建UNSUBSCRIBE、UNSUBACK报文/</a>
+        </li>
+        
+        <li>
+          <strong>版权声明： </strong>
           
-          
+          本博客所有文章除特别声明外，均采用 <a href="https://github.com/JoeyBling/hexo-theme-yilia-plus/blob/master/LICENSE" rel="external nofollow" target="_blank">MIT</a> 许可协议。转载请注明出处！
+        </li>
+        
+      </ul>
+    </div>
+    
 
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+    
+
+    
+
+    
+    
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a> -->
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://nanfeng-iot.cn/2020/05/09/%E7%89%A9%E8%81%94%E7%BD%91-MQTT%E5%8D%8F%E8%AE%AE%E7%AC%AC%E5%85%AB%E8%AE%B2%EF%BC%9A%E6%9E%84%E5%BB%BAUNSUBSCRIBE%E3%80%81UNSUBACK%E6%8A%A5%E6%96%87/" alt="微信分享二维码"> -->
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+
+    
+    <div class="clearfix"></div>
+  </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2020/05/09/hex%E6%96%87%E4%BB%B6%E8%A7%A3%E6%9E%90/" class="archive-article-date">
-        <time datetime="2020-05-09T08:57:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-09</time>
-</a>
 
+
+<nav id="article-nav">
+  
+  
+    <a href="/2020/05/09/hex%E6%96%87%E4%BB%B6%E8%A7%A3%E6%9E%90/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">hex文件解析</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2020/05/09/hex%E6%96%87%E4%BB%B6%E8%A7%A3%E6%9E%90/" target="_blank">hex文件解析</a>
-  
-    </h1>
-  
+        
+        
+    </div>
+</aside>
 
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2020/05/05/%E6%97%A0%E9%99%90%E6%89%A9%E5%B1%95%E5%AE%9A%E6%97%B6%E5%99%A8MultiTimer%E7%A7%BB%E6%A4%8D/" class="archive-article-date">
-        <time datetime="2020-05-05T13:43:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-05</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2020/05/05/%E6%97%A0%E9%99%90%E6%89%A9%E5%B1%95%E5%AE%9A%E6%97%B6%E5%99%A8MultiTimer%E7%A7%BB%E6%A4%8D/" target="_blank">无限扩展定时器MultiTimer移植</a>
-  
-    </h1>
-  
 
 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+
+
+
+
+
+
   
+  <div id="gitment-ctn"></div>
   
-    </div></section>
+    <!-- 中文 -->
+    <link rel="stylesheet" href="/lib/gitment.css">
+    <script src="/lib/gitment.js"></script>
+  
+  <script>
+    <!-- id: "物联网--MQTT协议第八讲：构建UNSUBSCRIBE、UNSUBACK报文" -->
+    var gitment = new Gitment({
+      id: "20200509172210",
+      owner: 'Nanfengyuan',
+      repo: 'nanfeng blog',
+      oauth: {
+        client_id: '7656db123fbf8a437d22',
+        client_secret: '89978e13422f7b2a3b061c5707dfe040216919ae',
+      },
+    })
+    gitment.render('gitment-ctn')
+  </script>
+
+
   
 
-    
 
 
           </div>
@@ -356,8 +542,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,
