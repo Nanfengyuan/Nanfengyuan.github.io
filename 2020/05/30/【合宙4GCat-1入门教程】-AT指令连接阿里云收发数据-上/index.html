@@ -6,20 +6,54 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://nanfeng-iot.cn">
-  <title>Archives: 2020/5 | nanfeng-IOT</title>
+  <title>【合宙4GCat.1入门教程】--AT指令连接阿里云收发数据&lt;上&gt; | nanfeng-IOT</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="分享嵌入式、物联网开发知识总结">
-<meta property="og:type" content="website">
-<meta property="og:title" content="nanfeng-IOT">
-<meta property="og:url" content="https://nanfeng-iot.cn/archives/2020/05/index.html">
+  <meta name="description" content="使用AT指令，快速连接上云服务器进行数据收发，达到给设备联网的效果">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【合宙4GCat.1入门教程】--AT指令连接阿里云收发数据&lt;上&gt;">
+<meta property="og:url" content="https://nanfeng-iot.cn/2020/05/30/%E3%80%90%E5%90%88%E5%AE%994GCat-1%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E3%80%91-AT%E6%8C%87%E4%BB%A4%E8%BF%9E%E6%8E%A5%E9%98%BF%E9%87%8C%E4%BA%91%E6%94%B6%E5%8F%91%E6%95%B0%E6%8D%AE-%E4%B8%8A/index.html">
 <meta property="og:site_name" content="nanfeng-IOT">
-<meta property="og:description" content="分享嵌入式、物联网开发知识总结">
+<meta property="og:description" content="使用AT指令，快速连接上云服务器进行数据收发，达到给设备联网的效果">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200523201149.png">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200523201925.png">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200523202609.png">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200523202735.png">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200523202926.png">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200523203100.png">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200523203433.png">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200524072348.png">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200523204133.png">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200523204313.png">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200523205139.png">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200523205309.png">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200523205406.png">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200523210941.png">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200523211534.png">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200523211452.png">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200523233142.png">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200523233237.png">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200523233512.png">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200523233600.png">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200523234403.png">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200527234903.png">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200528001601.png">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200528233416.png">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200528224336.png">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200528233601.png">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200528233916.png">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200528230159.png">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200528231323.png">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200528231353.png">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/%E5%85%AC%E4%BC%97%E5%8F%B7%E4%BA%8C%E7%BB%B4%E7%A0%81.png">
+<meta property="article:published_time" content="2020-05-30T06:32:55.000Z">
+<meta property="article:modified_time" content="2020-05-30T06:37:20.796Z">
 <meta property="article:author" content="nan feng">
 <meta property="article:tag" content="嵌入式设计 物联网 C语言">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200523201149.png">
   
     <link rel="alternative" href="/atom.xml" title="nanfeng-IOT" type="application/atom+xml">
   
@@ -204,246 +238,355 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-【合宙4GCat-1入门教程】-AT指令连接阿里云收发数据-上" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2020/05/30/%E3%80%90%E5%90%88%E5%AE%994GCat-1%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E3%80%91-AT%E6%8C%87%E4%BB%A4%E8%BF%9E%E6%8E%A5%E9%98%BF%E9%87%8C%E4%BA%91%E6%94%B6%E5%8F%91%E6%95%B0%E6%8D%AE-%E4%B8%8B/" class="archive-article-date">
-        <time datetime="2020-05-30T06:33:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-30</time>
-</a>
-
-        </div>
-    	 
+      <header class="article-header">
   
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2020/05/30/%E3%80%90%E5%90%88%E5%AE%994GCat-1%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E3%80%91-AT%E6%8C%87%E4%BB%A4%E8%BF%9E%E6%8E%A5%E9%98%BF%E9%87%8C%E4%BA%91%E6%94%B6%E5%8F%91%E6%95%B0%E6%8D%AE-%E4%B8%8B/" target="_blank">【合宙4GCat.1入门教程】--AT指令连接阿里云收发数据&lt;下&gt;</a>
   
+    <h1 class="article-title" itemprop="name">
+      【合宙4GCat.1入门教程】--AT指令连接阿里云收发数据&lt;上&gt;
     </h1>
   
 
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
+  
+        
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
 <a href="/2020/05/30/%E3%80%90%E5%90%88%E5%AE%994GCat-1%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E3%80%91-AT%E6%8C%87%E4%BB%A4%E8%BF%9E%E6%8E%A5%E9%98%BF%E9%87%8C%E4%BA%91%E6%94%B6%E5%8F%91%E6%95%B0%E6%8D%AE-%E4%B8%8A/" class="archive-article-date">
         <time datetime="2020-05-30T06:32:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-30</time>
 </a>
 
+  
+  
+    
+<div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <!-- fonts.scss -->
+      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
+      <i class="icon-statistics"></i>
+      <span class="post-meta-item-text"> 字数统计:</span>
+      <span class="post-count">1.8k字</span>
+    </span>
+  </span>
+
+  <span class="post-time">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+      <i class="icon-book icon"></i>
+      <span class="post-meta-item-text"> 阅读时长≈</span>
+      <span class="post-count">6分</span>
+    </span>
+  </span>
+</div>
+
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p><strong>使用AT指令，快速连接上云服务器进行数据收发，达到给设备联网的效果</strong></p>
+<a id="more"></a>
+
+<h2 id="1、阿里云创建设备"><a href="#1、阿里云创建设备" class="headerlink" title="1、阿里云创建设备"></a>1、阿里云创建设备</h2><h3 id="1-1-阿里云创建产品"><a href="#1-1-阿里云创建产品" class="headerlink" title="1.1 阿里云创建产品"></a>1.1 阿里云创建产品</h3><ul>
+<li><p>登录阿里云，支付宝账号或淘宝账号即可</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">阿里云物联网平台地址：https:<span class="comment">//account.aliyun.com/login/login.htm?oauth_callback=https%3A%2F%2Fiot.console.aliyun.com%2Fquick_start</span></span><br></pre></td></tr></table></figure></li>
+<li><p>选择设备管理-&gt;产品-&gt;创建产品<br><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200523201149.png" alt=""></p>
+<p><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200523201925.png" alt=""></p>
+</li>
+<li><p>填写相关参数：产品名称自定义，所属品类选择自定义品类，节点类型选择直连设备，联网方式为蜂窝（2G / 3G / 4G / 5G），数据方式为ICA 标准数据格式（Alink JSON），认证方式为设备密钥<br><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200523202609.png" alt=""></p>
+</li>
+<li><p>成功创建设备<br><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200523202735.png" alt=""></p>
+<h3 id="1-2-创建设备"><a href="#1-2-创建设备" class="headerlink" title="1.2 创建设备"></a>1.2 创建设备</h3></li>
+<li><p>在创建好的产品地下添加设备<br><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200523202926.png" alt=""></p>
+<p><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200523203100.png" alt=""></p>
+</li>
+<li><p>DeviceName自定义，不过需要注意的是同一个产品底下不能有相同的DeviceName<br><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200523203433.png" alt=""></p>
+</li>
+<li><p>创建完设备之后，阿里云会自动生成设备三元组，在后续连接阿里云时会使用到<br><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200524072348.png" alt=""></p>
+</li>
+</ul>
+<h3 id="1-3-产品功能定义"><a href="#1-3-产品功能定义" class="headerlink" title="1.3 产品功能定义"></a>1.3 产品功能定义</h3><ul>
+<li><p>查看创建的产品<br><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200523204133.png" alt=""></p>
+</li>
+<li><p>选择功能定义-&gt;编辑草稿，选择添加标注功能或添加自定义功能皆可，这里我选择添加自定义功能<br><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200523204313.png" alt=""></p>
+</li>
+<li><p>填写相关参数，假如我们想通过4G Cat.1模块往阿里云上发送人数统计的数据<br><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200523205139.png" alt=""></p>
+</li>
+<li><p>发布上线即可<br><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200523205309.png" alt=""></p>
+<p><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200523205406.png" alt=""></p>
+</li>
+</ul>
+<h2 id="2、开发板上云"><a href="#2、开发板上云" class="headerlink" title="2、开发板上云"></a>2、开发板上云</h2><h3 id="2-1-AT指令测试（自适应波特率）"><a href="#2-1-AT指令测试（自适应波特率）" class="headerlink" title="2.1 AT指令测试（自适应波特率）"></a>2.1 AT指令测试（自适应波特率）</h3><ul>
+<li>将配套天线正常连接，且插入4G物联网卡，使用MicroUSB数据线将开发板标号UART的MicroUSB口与电脑连接，开发板开机</li>
+<li>AT指令操作流程参考官方手册：连接阿里云AT流程说明（一机一密认证方案）</li>
+<li>使用串口调试助手，选择开发板所的串口，波特率可为115200（模块自适应波特率），选择加回车换行，往开发板发送字符串“AT”，若返回“OK”,则可继续往下进行，否则检查错误产生原因并解决<br><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200523210941.png" alt=""></li>
+</ul>
+<h3 id="2-2-查看AT固件版本"><a href="#2-2-查看AT固件版本" class="headerlink" title="2.2 查看AT固件版本"></a>2.2 查看AT固件版本</h3><ul>
+<li>串口调试助手发送AT指令“AT+CGMR”，查询AT固件版本，根据官方手册，若版本字符串中小于409，,则该版本不支持阿里云，需要升级固件<br><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200523211534.png" alt=""><br><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200523211452.png" alt=""></li>
+<li>此处开发板版本字符串为243，小于409，不支持阿里云，故需要我们升级固件</li>
+</ul>
+<h3 id="2-3-固件升级"><a href="#2-3-固件升级" class="headerlink" title="2.3 固件升级"></a>2.3 固件升级</h3><ul>
+<li>使用MicroUSB数据线将开发板标号USB的MicroUSB口与电脑连接，开发板开机</li>
+<li>打开固件下载工具，点击设备操作-&gt;720UX系列Cat1模块固件切换为AT版本</li>
+<li>打开之后，选中USB BOOT下载，点击下载<br><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200523233142.png" alt=""><br><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200523233237.png" alt=""><ul>
+<li>按照提示进行操作，按住开发板的U_BOOT，再按下板卡上的重启按钮即开始更新固件<br><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200523233512.png" alt=""></li>
+<li>更新固件成功，开发板上蓝色LED灯会常亮<br><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200523233600.png" alt=""></li>
+<li>使用AT指令测试固件是否更新成功，串口调试助手发送AT指令“AT+CGMR”，返回的参数中版本字符串为409，表示固件已成功更新，该固件版本支持阿里云<br><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200523234403.png" alt=""></li>
+</ul>
+</li>
+</ul>
+<h3 id="2-4-激活数据网络"><a href="#2-4-激活数据网络" class="headerlink" title="2.4 激活数据网络"></a>2.4 激活数据网络</h3><ul>
+<li>串口调试助手发送AT指令 AT+CGATT? ，查询是否附着基站网络， 返回+CGATT: 1 表示附着上了 GPRS 数据网络，可以继续往下操作</li>
+<li>发送AT指令 AT+SAPBR=3,1,”CONTYPE”,”GPRS”，设置HTTP功能的承载类型，模块会返回”OK”</li>
+<li>发送AT指令 AT+SAPBR=3,1,”APN”,”CMIOT”，设置pdp承载参数之APN，模块会返回”OK”</li>
+<li>发送AT指令 AT+SAPBR=1,1，激活该承载的GPRS PDP上下文，模块会返回”OK”</li>
+<li>发送AT指令 AT+SAPBR=2,1，查询下承载的状态，模块会返回一串字符串，包含三个参数，第一个参数1表示cid，第二个参数1表示已经连接，第三个参数表示模块获取的IP地址；SAPBR激活成功即第二个参数为1才可继续往下操作<br><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200527234903.png" alt=""></li>
+</ul>
+<h2 id="3、HTTP鉴权"><a href="#3、HTTP鉴权" class="headerlink" title="3、HTTP鉴权"></a>3、HTTP鉴权</h2><ul>
+<li><p>Air724模块连接阿里云需要认证服务器， 获取到接入服务器的用户名和密码，认证方案采用一机一密</p>
+</li>
+<li><p>AT 交互过程如下：<br><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200528001601.png" alt=""></p>
+</li>
+<li><p>截图第④部的指令“AT+HTTPDATA=98,20000”中98是出现DOWNLOAD之后所发送字符得长度，下面会有讲解怎么计算</p>
+</li>
+<li><p>此过程需要根据自己创建设备时的三元组构建DOWNLOAD之后需要发送的字符串（<strong>注意：发送构建的字符串的时候串口调试助手别加回车换行，即把串口调试助手右下角的加回车换行前的√取消</strong>），构建过程如下：</p>
+</li>
+<li><p>（1）获取设备三元组信息：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ProductKey：a1odIqpc7I7</span><br><span class="line">DeviceName：Air724UG</span><br><span class="line">DeviceSecret：wpnqLvOgVHOdEhqJ4koeVUUXbf6TEH59</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>(2)根据合宙官方给的构造字符串格式构造，<strong>建议直接将字符串复制到txt文件里用自己创建得到的设备三元组替换复制的字符串相关部分</strong>。黄色部分为设备ProductKey；绿色部分是设备经 HmacMD5 算法加密过后的哈希值，下面会讲解其如何加密得到；蓝色部分为设备的clientId，与设备DeviceName相同即可；棕色部分为设备的DeviceName<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">productKey=XXXX&amp;sign=XXXX&amp;clientId=XXXX&amp;deviceName=XXXX</span><br></pre></td></tr></table></figure>
+<img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200528233416.png" alt=""></li>
+</ul>
+</li>
+<li><p>（3）构建sign，即设备经 HmacMD5 算法加密过后的哈希值，HmacMD5算法是通过秘钥给明文加密，可通过加密网站进行加密，这里nan-feng用的加密网站：<a href="http://encode.chahuo.com/。明文构建：蓝色部分为设备的clientId，与设备DeviceName相同即可；棕色部分为设备的DeviceName；黄色部分为设备ProductKey；将自己设备的三元组信息替换相对应部分。秘钥即为设备的DeviceSecret，直接复制粘贴填入即可" target="_blank" rel="noopener">http://encode.chahuo.com/。明文构建：蓝色部分为设备的clientId，与设备DeviceName相同即可；棕色部分为设备的DeviceName；黄色部分为设备ProductKey；将自己设备的三元组信息替换相对应部分。秘钥即为设备的DeviceSecret，直接复制粘贴填入即可</a><br><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200528224336.png" alt=""></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">明文：clientIdXXXXdeviceNameXXXXproductKeyXXXX</span><br></pre></td></tr></table></figure>
+<p><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200528233601.png" alt=""></p>
+</li>
+</ul>
+<ul>
+<li><p>将加密得到的哈希值sign带入上面的字符串，得到完整的数据；</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">字符串数据：productKey=a1odIqpc7I7&amp;sign=<span class="number">8</span>d2519d724d914ec90c55a82b3de4e10&amp;clientId=Air724UG&amp;deviceName=Air724UG</span><br></pre></td></tr></table></figure></li>
+<li><p>附上我在记事本上做的构建字符串数据（注意数据不要有换行）<br><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200528233916.png" alt=""></p>
+</li>
+<li><p>计算上面构造的字符串数据的长度，将字符串复制到串口调试助手，发送该字符串，即可得到该字符串的长度<br><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200528230159.png" alt=""></p>
+</li>
+<li><p>自此，HTTP鉴权部分完成，截图中第⑤步发送AT指令“AT+HTTPACTION=1”，请求连接，若返回的HTTP状态码为200，则表示鉴权成功，若状态码为200之外的其他值，则查看合宙官方的《Luat 4G模块AT命令手册V4.1.6》，对应AT指令“AT+HTTPACTION=1”介绍有相关的状态码取值说明<br><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200528231323.png" alt=""><br><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200528231353.png" alt=""></p>
+</li>
+<li><p>发送AT指令“AT+HTTPREAD”查询 HTTP 服务响应，即可得到经阿里云认证的用户名和密码（此处用户名和密码与上面截图中的不一样，因为nan feng第一次只截图，没保存账号密码，下面这是重新HTTP鉴权得到的用户名和密码）</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">用户名：ENkAiuMXiIS0nySaKnl6000100</span><br><span class="line">密码：^<span class="number">1</span>^<span class="number">1590679060769</span>^<span class="number">3</span>cebfceab74dfae</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<blockquote>
+<p>本文参考合宙官方手册，作为自己备忘所用，如果发现本文有错误的地方欢迎批评、指正，若本文对您有所帮助，转发、分享也是笔者坚持的动力，扫码关注微信公众号，后台回复 合宙Cat.1 获取Air724UG 4G LTE开发板相关资料包</p>
+</blockquote>
+<p><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/%E5%85%AC%E4%BC%97%E5%8F%B7%E4%BA%8C%E7%BB%B4%E7%A0%81.png" alt="关注南风过境蜻蜓飞，开启物联网、嵌入式学习之路"></p>
+
+    
+
+    
+    <div class="page-reward">
+      <a href="javascript:void(0);" class="page-reward-btn tooltip-top" target="_self">
+        <div class="tooltip tooltip-east">
+          <span class="tooltip-item">
+            赏
+          </span>
+          <span class="tooltip-content">
+            <span class="tooltip-text">
+              <span class="tooltip-inner">
+                <p class="reward-p"><i class="icon icon-quo-left"></i>走过路过<i
+                    class="icon icon-quo-right"></i></p>
+                <div class="reward-box">
+                  
+                  <div class="reward-box-item">
+                    <img class="reward-img" src="/img/zfb.jpg">
+                    <span class="reward-type">支付宝</span>
+                  </div>
+                  
+                  
+                  <div class="reward-box-item">
+                    <img class="reward-img" src="/img/wx.png">
+                    <span class="reward-type">微信</span>
+                  </div>
+                  
+                </div>
+              </span>
+            </span>
+          </span>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2020/05/30/%E3%80%90%E5%90%88%E5%AE%994GCat-1%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E3%80%91-AT%E6%8C%87%E4%BB%A4%E8%BF%9E%E6%8E%A5%E9%98%BF%E9%87%8C%E4%BA%91%E6%94%B6%E5%8F%91%E6%95%B0%E6%8D%AE-%E4%B8%8A/" target="_blank">【合宙4GCat.1入门教程】--AT指令连接阿里云收发数据&lt;上&gt;</a>
-  
-    </h1>
-  
+      </a>
+    </div>
+    
 
-
-        <div class="article-info info-on-right">
+    
+    <div class="declare"> 
+      <ul class="post-copyright">
+        <li>
+          <strong>本文作者：</strong>
+          nan feng
+        </li>
+        <li>
+          <strong>本文链接：</strong>
+          <a href="https://nanfeng-iot.cn/2020/05/30/【合宙4GCat-1入门教程】-AT指令连接阿里云收发数据-上/" title="【合宙4GCat.1入门教程】--AT指令连接阿里云收发数据&lt;上&gt;" target="_blank">https://nanfeng-iot.cn/2020/05/30/【合宙4GCat-1入门教程】-AT指令连接阿里云收发数据-上/</a>
+        </li>
+        
+        <li>
+          <strong>版权声明： </strong>
           
-          
+          本博客所有文章除特别声明外，均采用 <a href="https://github.com/JoeyBling/hexo-theme-yilia-plus/blob/master/LICENSE" rel="external nofollow" target="_blank">MIT</a> 许可协议。转载请注明出处！
+        </li>
+        
+      </ul>
+    </div>
+    
 
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+    
+
+    
+
+    
+    
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a> -->
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://nanfeng-iot.cn/2020/05/30/%E3%80%90%E5%90%88%E5%AE%994GCat-1%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E3%80%91-AT%E6%8C%87%E4%BB%A4%E8%BF%9E%E6%8E%A5%E9%98%BF%E9%87%8C%E4%BA%91%E6%94%B6%E5%8F%91%E6%95%B0%E6%8D%AE-%E4%B8%8A/" alt="微信分享二维码"> -->
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+
+    
+    <div class="clearfix"></div>
+  </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-学习笔记">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2020/05/24/Cat-1%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E3%80%91-%E5%88%9D%E8%AF%86Cat-1/" class="archive-article-date">
-        <time datetime="2020-05-24T14:26:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-24</time>
-</a>
 
+
+<nav id="article-nav">
+  
+    <a href="/2020/05/30/%E3%80%90%E5%90%88%E5%AE%994GCat-1%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E3%80%91-AT%E6%8C%87%E4%BB%A4%E8%BF%9E%E6%8E%A5%E9%98%BF%E9%87%8C%E4%BA%91%E6%94%B6%E5%8F%91%E6%95%B0%E6%8D%AE-%E4%B8%8B/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          【合宙4GCat.1入门教程】--AT指令连接阿里云收发数据&lt;下&gt;
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/05/24/Cat-1%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E3%80%91-%E5%88%9D%E8%AF%86Cat-1/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">【合宙4gCat.1入门教程】--初识Cat.1</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2020/05/24/Cat-1%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E3%80%91-%E5%88%9D%E8%AF%86Cat-1/" target="_blank">【合宙4gCat.1入门教程】--初识Cat.1</a>
-  
-    </h1>
-  
+        
+        
+    </div>
+</aside>
 
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2020/05/09/STM32%E7%AC%94%E8%AE%B0-%E4%BD%BF%E7%94%A8ST-Link%E4%B8%8B%E8%BD%BDhex%E6%96%87%E4%BB%B6/" class="archive-article-date">
-        <time datetime="2020-05-09T13:47:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-09</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2020/05/09/STM32%E7%AC%94%E8%AE%B0-%E4%BD%BF%E7%94%A8ST-Link%E4%B8%8B%E8%BD%BDhex%E6%96%87%E4%BB%B6/" target="_blank">STM32笔记--使用ST-Link下载hex文件</a>
-  
-    </h1>
-  
 
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2020/05/09/%E7%89%A9%E8%81%94%E7%BD%91-MQTT%E5%8D%8F%E8%AE%AE%E7%AC%AC%E5%85%AB%E8%AE%B2%EF%BC%9A%E6%9E%84%E5%BB%BAUNSUBSCRIBE%E3%80%81UNSUBACK%E6%8A%A5%E6%96%87/" class="archive-article-date">
-        <time datetime="2020-05-09T09:22:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-09</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2020/05/09/%E7%89%A9%E8%81%94%E7%BD%91-MQTT%E5%8D%8F%E8%AE%AE%E7%AC%AC%E5%85%AB%E8%AE%B2%EF%BC%9A%E6%9E%84%E5%BB%BAUNSUBSCRIBE%E3%80%81UNSUBACK%E6%8A%A5%E6%96%87/" target="_blank">物联网--MQTT协议第八讲：构建UNSUBSCRIBE、UNSUBACK报文</a>
-  
-    </h1>
-  
 
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2020/05/09/hex%E6%96%87%E4%BB%B6%E8%A7%A3%E6%9E%90/" class="archive-article-date">
-        <time datetime="2020-05-09T08:57:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-09</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2020/05/09/hex%E6%96%87%E4%BB%B6%E8%A7%A3%E6%9E%90/" target="_blank">hex文件解析</a>
-  
-    </h1>
-  
 
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2020/05/05/%E6%97%A0%E9%99%90%E6%89%A9%E5%B1%95%E5%AE%9A%E6%97%B6%E5%99%A8MultiTimer%E7%A7%BB%E6%A4%8D/" class="archive-article-date">
-        <time datetime="2020-05-05T13:43:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-05</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2020/05/05/%E6%97%A0%E9%99%90%E6%89%A9%E5%B1%95%E5%AE%9A%E6%97%B6%E5%99%A8MultiTimer%E7%A7%BB%E6%A4%8D/" target="_blank">无限扩展定时器MultiTimer移植</a>
-  
-    </h1>
-  
 
 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
+  <div id="gitment-ctn"></div>
   
-    </div></section>
+    <!-- 中文 -->
+    <link rel="stylesheet" href="/lib/gitment.css">
+    <script src="/lib/gitment.js"></script>
+  
+  <script>
+    <!-- id: "【合宙4GCat.1入门教程】--AT指令连接阿里云收发数据&lt;上&gt;" -->
+    var gitment = new Gitment({
+      id: "20200530143255",
+      owner: 'Nanfengyuan',
+      repo: 'nanfeng blog',
+      oauth: {
+        client_id: '7656db123fbf8a437d22',
+        client_secret: '89978e13422f7b2a3b061c5707dfe040216919ae',
+      },
+    })
+    gitment.render('gitment-ctn')
+  </script>
+
+
   
 
-    
 
 
           </div>
@@ -484,8 +627,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,
