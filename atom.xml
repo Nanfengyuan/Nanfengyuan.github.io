@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://nanfeng-iot.cn/"/>
-  <updated>2020-05-30T06:38:22.142Z</updated>
+  <updated>2020-06-14T12:30:26.557Z</updated>
   <id>https://nanfeng-iot.cn/</id>
   
   <author>
@@ -15,6 +15,25 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>DIY济南大学纪念名片</title>
+    <link href="https://nanfeng-iot.cn/2020/06/14/DIY%E6%B5%8E%E5%8D%97%E5%A4%A7%E5%AD%A6%E7%BA%AA%E5%BF%B5%E5%90%8D%E7%89%87/"/>
+    <id>https://nanfeng-iot.cn/2020/06/14/DIY%E6%B5%8E%E5%8D%97%E5%A4%A7%E5%AD%A6%E7%BA%AA%E5%BF%B5%E5%90%8D%E7%89%87/</id>
+    <published>2020-06-14T12:27:46.000Z</published>
+    <updated>2020-06-14T12:30:26.557Z</updated>
+    
+    <content type="html"><![CDATA[<p><strong>济南大学毕业即将两周年，DIY一片NFC济南大学纪念名片，可自动添加联系人、自动连接WIFI等功能，好玩不贵，一片的成本不到5块钱，O(∩_∩)O哈哈~</strong></p><a id="more"></a><h2 id="1-样品展示"><a href="#1-样品展示" class="headerlink" title="1 样品展示"></a>1 样品展示</h2><p><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/B612Kaji_20200614_094307_467.jpg" alt="正面"></p><p><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/B612Kaji_20200614_094338_699.jpg" alt="背面"></p><p>正面主要就是放置济南大学校徽和校训，背面放置一个微积分公式（意思为生活就是不断的学习、进取）及程序员标配的 “hello word” 代码</p><p>也没想到什么更好的素材，就先暂时放这些，有好的素材可以考虑做第二版，大家也可以给我留言提提意见</p><h2 id="2-绘制电路PCB板"><a href="#2-绘制电路PCB板" class="headerlink" title="2 绘制电路PCB板"></a>2 绘制电路PCB板</h2><p>   绘制电路板我用的是国产 立创EDA 绘图软件，立创EDA我认为最好的一点就是不需要自己画封装，省了很多麻烦，而且在立创可以绘图，打板，买元件一条龙服务</p><p>   SchDoc如下：<br>  <img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200614100533.png" alt=""></p><p>   PcbDoc如下：<br><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/%E5%9B%BE%E7%89%87_20200614100612.png" alt=""></p><p> 电路板很简单，就一个电阻、一个电容、一个LED灯，再加一个NFC射频卡芯片，五个元件就组成了这块纪念名片</p><p> 绘制完电路板后生成光绘文件，然后在嘉立创投板生产即可，嘉立创打板每个月有两次5元打板且包邮的活动，非常适合个人DIY打板</p><h2 id="3-购买元件及焊接"><a href="#3-购买元件及焊接" class="headerlink" title="3 购买元件及焊接"></a>3 购买元件及焊接</h2><p>板卡上面元件很少，我们所使用的电阻、电容、LED灯均选用0603封装，购买时需留意，本次制作样品我们只需购买47R电阻、220uF电容、贴片06.3 LED灯及NT3H1101W0FHKH射频卡芯片</p><p>这是采购5套的价格，共32.01元，主要是射频卡芯片贵了点：<br><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/%E5%9B%BE%E7%89%87_20200614101925.png" alt=""></p><p>焊接过程挺考验焊接技术的，我焊接7片，成功了四片（其中还弄坏了一片射频卡芯片，4块多钱就没了，心疼），射频卡芯片封装小，焊接时候得用风枪吹才可以，注意风枪温度和风量</p><h2 id="4-写入标签"><a href="#4-写入标签" class="headerlink" title="4 写入标签"></a>4 写入标签</h2><p>该电子名片不需要编程，只需要用NXP 的管方软件 TagWriter 往射频卡芯片里写入你需要存储的信息即可，该芯片的容量为868个字节，所以最多只能写入868个字节的内容</p><p><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200614103138.png" alt="TagWriter"></p><p>TagWriter主页：</p><p><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/%E5%9B%BE%E7%89%87_20200614103537.png" alt=""></p><p>可写入射频卡芯片的信息如下所示，可只写入一条，也可写入多条，只要不超过最大容量868字节即可</p><p><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/%E5%9B%BE%E7%89%87_20200614103428.png" alt=""></p><h3 id="4-1-写入个人名片"><a href="#4-1-写入个人名片" class="headerlink" title="4.1 写入个人名片"></a>4.1 写入个人名片</h3><p>具体写入方法可关注我公众号查看推送的视频：电子名片写入信息视频演示，视频相比文字更方便，直观</p><h3 id="4-2-写入WIFI密码"><a href="#4-2-写入WIFI密码" class="headerlink" title="4.2 写入WIFI密码"></a>4.2 写入WIFI密码</h3><p>具体写入方法可关注我公众号查看推送的视频：WIFI连接神器演示，视频相比文字更方便，直观</p><ul><li>要想实现WIFI自动连接，需修改下 TagWriter 里WIFI的默认设置，修改步骤如下：</li></ul><p><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/%E5%9B%BE%E7%89%87_20200614185248.png" alt=""></p><p><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/%E5%9B%BE%E7%89%87_20200614185423.png" alt=""></p><p><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/%E5%9B%BE%E7%89%87_20200614185512.png" alt=""></p><ul><li>写入WIFI信息时有两个注意点，如下所示：</li></ul><p><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/%E5%9B%BE%E7%89%87_20200614190127.png" alt=""></p><h2 id="5-使用方法"><a href="#5-使用方法" class="headerlink" title="5 使用方法"></a>5 使用方法</h2><p>使用时，只需将带NFC的手机贴着名片，既能自动读取射频卡芯片里的信息，比如添加联系人、连接WIFI、连接Bluetooth等</p><h2 id="6-原理探索"><a href="#6-原理探索" class="headerlink" title="6 原理探索"></a>6 原理探索</h2><h3 id="6-1-NFC技术原理"><a href="#6-1-NFC技术原理" class="headerlink" title="6.1 NFC技术原理"></a>6.1 NFC技术原理</h3><p>支持NFC的设备可以在主动或被动模式下交换数据。在被动模式下，启动NFC通信的设备，也称为NFC发起设备(主设备)，在整个通信过程中提供射频场(RF-field)，。它可以选择106kbps、212kbps或424kbps其中一种传输速度，将数据发送到另一台设备。另一台设备称为NFC目标设备(从设备)，不必产生射频场，而使用负载调制(load modulation)技术，即可以相同的速度将数据传回发起设备。此通信机制与基于ISO14443A、MIFARE和FeliCa的非接触式智能卡兼容，因此，NFC发起设备在被动模式下，可以用相同的连接和初始化过程检测非接触式智能卡或NFC目标设备，并与之建立联系。</p><h3 id="6-2-NFC与蓝牙、红外对比"><a href="#6-2-NFC与蓝牙、红外对比" class="headerlink" title="6.2 NFC与蓝牙、红外对比"></a>6.2 NFC与蓝牙、红外对比</h3><p>和传统的近距通讯相比，近场通讯（NFC）就有天然的安全性，以及连接建立的快速性，具体对比如下表：</p><p><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/%E5%9B%BE%E7%89%87_20200614195223.png" alt=""></p><p><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/END%E7%AC%A6.gif" alt=""></p><blockquote><p>笔者知识有限，如果发现本文有错误的地方欢迎批评、指正，若本文对您有所帮助，转发、分享也是笔者坚持的动力，关注微信公众号：南风过境蜻蜓飞，后台回复 济南大学纪念名片 获取 电路PCB板源文件及TagWriter安装包</p></blockquote><p><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/%E9%A1%B5%E5%B0%BE.gif" alt=""></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;strong&gt;济南大学毕业即将两周年，DIY一片NFC济南大学纪念名片，可自动添加联系人、自动连接WIFI等功能，好玩不贵，一片的成本不到5块钱，O(∩_∩)O哈哈~&lt;/strong&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+    
+  </entry>
   
   <entry>
     <title>【合宙4GCat.1入门教程】--AT指令连接阿里云收发数据&lt;下&gt;</title>

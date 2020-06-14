@@ -6,34 +6,38 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://nanfeng-iot.cn">
-  <title>【合宙4GCat.1入门教程】--AT指令连接阿里云收发数据&lt;下&gt; | nanfeng-IOT</title>
+  <title>DIY济南大学纪念名片 | nanfeng-IOT</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="通过使用AT指令，快速连接上云服务器进行数据收发，达到给设备联网的效果">
+  <meta name="description" content="济南大学毕业即将两周年，DIY一片NFC济南大学纪念名片，可自动添加联系人、自动连接WIFI等功能，好玩不贵，一片的成本不到5块钱，O(∩_∩)O哈哈~">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【合宙4GCat.1入门教程】--AT指令连接阿里云收发数据&lt;下&gt;">
-<meta property="og:url" content="https://nanfeng-iot.cn/2020/05/30/%E3%80%90%E5%90%88%E5%AE%994GCat-1%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E3%80%91-AT%E6%8C%87%E4%BB%A4%E8%BF%9E%E6%8E%A5%E9%98%BF%E9%87%8C%E4%BA%91%E6%94%B6%E5%8F%91%E6%95%B0%E6%8D%AE-%E4%B8%8B/index.html">
+<meta property="og:title" content="DIY济南大学纪念名片">
+<meta property="og:url" content="https://nanfeng-iot.cn/2020/06/14/DIY%E6%B5%8E%E5%8D%97%E5%A4%A7%E5%AD%A6%E7%BA%AA%E5%BF%B5%E5%90%8D%E7%89%87/index.html">
 <meta property="og:site_name" content="nanfeng-IOT">
-<meta property="og:description" content="通过使用AT指令，快速连接上云服务器进行数据收发，达到给设备联网的效果">
+<meta property="og:description" content="济南大学毕业即将两周年，DIY一片NFC济南大学纪念名片，可自动添加联系人、自动连接WIFI等功能，好玩不贵，一片的成本不到5块钱，O(∩_∩)O哈哈~">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200530120418.png">
-<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200530121002.png">
-<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200530122801.png">
-<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200530123335.png">
-<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200530123921.png">
-<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200530124914.png">
-<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200530125505.png">
-<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200530125505.png">
-<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200530130516.png">
-<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200530130251.png">
-<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/%E5%85%AC%E4%BC%97%E5%8F%B7%E4%BA%8C%E7%BB%B4%E7%A0%81.png">
-<meta property="article:published_time" content="2020-05-30T06:33:25.000Z">
-<meta property="article:modified_time" content="2020-05-30T06:38:22.142Z">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/B612Kaji_20200614_094307_467.jpg">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/B612Kaji_20200614_094338_699.jpg">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200614100533.png">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/%E5%9B%BE%E7%89%87_20200614100612.png">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/%E5%9B%BE%E7%89%87_20200614101925.png">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200614103138.png">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/%E5%9B%BE%E7%89%87_20200614103537.png">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/%E5%9B%BE%E7%89%87_20200614103428.png">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/%E5%9B%BE%E7%89%87_20200614185248.png">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/%E5%9B%BE%E7%89%87_20200614185423.png">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/%E5%9B%BE%E7%89%87_20200614185512.png">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/%E5%9B%BE%E7%89%87_20200614190127.png">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/%E5%9B%BE%E7%89%87_20200614195223.png">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/END%E7%AC%A6.gif">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/%E9%A1%B5%E5%B0%BE.gif">
+<meta property="article:published_time" content="2020-06-14T12:27:46.000Z">
+<meta property="article:modified_time" content="2020-06-14T12:30:26.557Z">
 <meta property="article:author" content="nan feng">
 <meta property="article:tag" content="嵌入式设计 物联网 C语言">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200530120418.png">
+<meta name="twitter:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/B612Kaji_20200614_094307_467.jpg">
   
     <link rel="alternative" href="/atom.xml" title="nanfeng-IOT" type="application/atom+xml">
   
@@ -218,14 +222,14 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-【合宙4GCat-1入门教程】-AT指令连接阿里云收发数据-下" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-DIY济南大学纪念名片" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
     <h1 class="article-title" itemprop="name">
-      【合宙4GCat.1入门教程】--AT指令连接阿里云收发数据&lt;下&gt;
+      DIY济南大学纪念名片
     </h1>
   
 
@@ -237,8 +241,8 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/2020/05/30/%E3%80%90%E5%90%88%E5%AE%994GCat-1%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E3%80%91-AT%E6%8C%87%E4%BB%A4%E8%BF%9E%E6%8E%A5%E9%98%BF%E9%87%8C%E4%BA%91%E6%94%B6%E5%8F%91%E6%95%B0%E6%8D%AE-%E4%B8%8B/" class="archive-article-date">
-        <time datetime="2020-05-30T06:33:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-30</time>
+<a href="/2020/06/14/DIY%E6%B5%8E%E5%8D%97%E5%A4%A7%E5%AD%A6%E7%BA%AA%E5%BF%B5%E5%90%8D%E7%89%87/" class="archive-article-date">
+        <time datetime="2020-06-14T12:27:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-14</time>
 </a>
 
   
@@ -251,7 +255,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">784字</span>
+      <span class="post-count">1.2k字</span>
     </span>
   </span>
 
@@ -260,7 +264,7 @@
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">2分</span>
+      <span class="post-count">4分</span>
     </span>
   </span>
 </div>
@@ -271,54 +275,49 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <p><strong>通过使用AT指令，快速连接上云服务器进行数据收发，达到给设备联网的效果</strong></p>
+    <p><strong>济南大学毕业即将两周年，DIY一片NFC济南大学纪念名片，可自动添加联系人、自动连接WIFI等功能，好玩不贵，一片的成本不到5块钱，O(∩_∩)O哈哈~</strong></p>
 <a id="more"></a>
 
-<h2 id="1、连接阿里云"><a href="#1、连接阿里云" class="headerlink" title="1、连接阿里云"></a>1、连接阿里云</h2><p>  以下AT指令若有疑问可参考合宙的Luat 4G模块AT命令手册V4.1.6，这里对AT指令不做细致描述</p>
+
+<h2 id="1-样品展示"><a href="#1-样品展示" class="headerlink" title="1 样品展示"></a>1 样品展示</h2><p><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/B612Kaji_20200614_094307_467.jpg" alt="正面"></p>
+<p><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/B612Kaji_20200614_094338_699.jpg" alt="背面"></p>
+<p>正面主要就是放置济南大学校徽和校训，背面放置一个微积分公式（意思为生活就是不断的学习、进取）及程序员标配的 “hello word” 代码</p>
+<p>也没想到什么更好的素材，就先暂时放这些，有好的素材可以考虑做第二版，大家也可以给我留言提提意见</p>
+<h2 id="2-绘制电路PCB板"><a href="#2-绘制电路PCB板" class="headerlink" title="2 绘制电路PCB板"></a>2 绘制电路PCB板</h2><p>   绘制电路板我用的是国产 立创EDA 绘图软件，立创EDA我认为最好的一点就是不需要自己画封装，省了很多麻烦，而且在立创可以绘图，打板，买元件一条龙服务</p>
+<p>   SchDoc如下：<br>  <img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200614100533.png" alt=""></p>
+<p>   PcbDoc如下：<br><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/%E5%9B%BE%E7%89%87_20200614100612.png" alt=""></p>
+<p> 电路板很简单，就一个电阻、一个电容、一个LED灯，再加一个NFC射频卡芯片，五个元件就组成了这块纪念名片</p>
+<p> 绘制完电路板后生成光绘文件，然后在嘉立创投板生产即可，嘉立创打板每个月有两次5元打板且包邮的活动，非常适合个人DIY打板</p>
+<h2 id="3-购买元件及焊接"><a href="#3-购买元件及焊接" class="headerlink" title="3 购买元件及焊接"></a>3 购买元件及焊接</h2><p>板卡上面元件很少，我们所使用的电阻、电容、LED灯均选用0603封装，购买时需留意，本次制作样品我们只需购买47R电阻、220uF电容、贴片06.3 LED灯及NT3H1101W0FHKH射频卡芯片</p>
+<p>这是采购5套的价格，共32.01元，主要是射频卡芯片贵了点：<br><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/%E5%9B%BE%E7%89%87_20200614101925.png" alt=""></p>
+<p>焊接过程挺考验焊接技术的，我焊接7片，成功了四片（其中还弄坏了一片射频卡芯片，4块多钱就没了，心疼），射频卡芯片封装小，焊接时候得用风枪吹才可以，注意风枪温度和风量</p>
+<h2 id="4-写入标签"><a href="#4-写入标签" class="headerlink" title="4 写入标签"></a>4 写入标签</h2><p>该电子名片不需要编程，只需要用NXP 的管方软件 TagWriter 往射频卡芯片里写入你需要存储的信息即可，该芯片的容量为868个字节，所以最多只能写入868个字节的内容</p>
+<p><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200614103138.png" alt="TagWriter"></p>
+<p>TagWriter主页：</p>
+<p><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/%E5%9B%BE%E7%89%87_20200614103537.png" alt=""></p>
+<p>可写入射频卡芯片的信息如下所示，可只写入一条，也可写入多条，只要不超过最大容量868字节即可</p>
+<p><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/%E5%9B%BE%E7%89%87_20200614103428.png" alt=""></p>
+<h3 id="4-1-写入个人名片"><a href="#4-1-写入个人名片" class="headerlink" title="4.1 写入个人名片"></a>4.1 写入个人名片</h3><p>具体写入方法可关注我公众号查看推送的视频：电子名片写入信息视频演示，视频相比文字更方便，直观</p>
+<h3 id="4-2-写入WIFI密码"><a href="#4-2-写入WIFI密码" class="headerlink" title="4.2 写入WIFI密码"></a>4.2 写入WIFI密码</h3><p>具体写入方法可关注我公众号查看推送的视频：WIFI连接神器演示，视频相比文字更方便，直观</p>
 <ul>
-<li>根据【合宙4G Cat.1入门教程】–Cat.1 AT指令连接阿里云收发数据&lt; 上 &gt; 得到的用户名和密码，分别发送以下AT指令，即可连接到阿里云<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ProductKey：a1odIqpc7I7</span><br><span class="line">DeviceName：Air724UG</span><br><span class="line">DeviceSecret：wpnqLvOgVHOdEhqJ4koeVUUXbf6TEH59</span><br><span class="line">用户名（iotId）：ENkAiuMXiIS0nySaKnl6000100</span><br><span class="line">密码（iotToken）：^<span class="number">1</span>^<span class="number">1590679060769</span>^<span class="number">3</span>cebfceab74dfae</span><br></pre></td></tr></table></figure>
+<li>要想实现WIFI自动连接，需修改下 TagWriter 里WIFI的默认设置，修改步骤如下：</li>
+</ul>
+<p><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/%E5%9B%BE%E7%89%87_20200614185248.png" alt=""></p>
+<p><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/%E5%9B%BE%E7%89%87_20200614185423.png" alt=""></p>
+<p><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/%E5%9B%BE%E7%89%87_20200614185512.png" alt=""></p>
 <ul>
-<li>（1）AT+MCONFIG=”DeviceName”,”iotId”,”iotToken”，配置MQTT连接参数</li>
-<li>（2）AT+SSLMIPSTART=”ProductKey.iot-as-mqtt.cn-shanghai.aliyuncs.com”,1883，建立连接</li>
-<li>（3）AT+MCONNECT=1,300，建立会话，当发送（2）的AT指令返回CONNECT OK应立即发送指令建立会话，不然会被服务器踢下线</li>
-<li>以上三个指令（注意：三个指令里面对应的参数需根据自己的项目设备做对应修改）发送完成后，在阿里云平台可以看到我们建立的设备的状态为在线，表示我们已成功使用AT指令将模块连接上阿里云<br><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200530120418.png" alt=""></li>
-<li>发送指令过程<br><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200530121002.png" alt=""></li>
+<li>写入WIFI信息时有两个注意点，如下所示：</li>
 </ul>
-</li>
-</ul>
-<h2 id="2、订阅主题"><a href="#2、订阅主题" class="headerlink" title="2、订阅主题"></a>2、订阅主题</h2><ul>
-<li><p>在阿里云找到需要订阅的主题，只需订阅云端下发数据的主题即可<br><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200530122801.png" alt=""></p>
-</li>
-<li><p>发送AT指令：AT+MSUB=”/sys/a1odIqpc7I7/Air724UG/thing/service/property/set”,0 ，订阅云端下发数据的主题，订阅成功则返回 SUBACK，注意主题需根据设备情况做修改</p>
-</li>
-<li><p>发送AT指令：AT+MQTTMSGSET=0，设置收到数据时的打印方式<br><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200530123335.png" alt=""></p>
-</li>
-</ul>
-<h2 id="3、收发数据"><a href="#3、收发数据" class="headerlink" title="3、收发数据"></a>3、收发数据</h2><h3 id="3-1-发送数据到阿里云"><a href="#3-1-发送数据到阿里云" class="headerlink" title="3.1 发送数据到阿里云"></a>3.1 发送数据到阿里云</h3><ul>
-<li><p>在 【合宙4G Cat.1入门教程】–Cat.1 AT指令连接阿里云收发数据&lt; 上 &gt;  1.3 产品功能定义中定义了一个标识符为num，下面将会用到<br><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200530123921.png" alt=""></p>
-<ul>
-<li>发送AT指令：AT+MPUB=”/sys/a1odIqpc7I7/Air724UG/thing/event/property/post”,0,0,”{“params”:{“num”:4}}”，注意主题需根据设备情况做修改<br><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200530124914.png" alt=""></li>
-<li>返回OK，即发送数据成功，可在阿里云看到发送的数据信息<br><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200530125505.png" alt=""></li>
-</ul>
-<h3 id="3-2-阿里云下发数据"><a href="#3-2-阿里云下发数据" class="headerlink" title="3.2 阿里云下发数据"></a>3.2 阿里云下发数据</h3><ul>
-<li>在阿里云进入，在线调试，往模块发送数据<br><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200530125505.png" alt=""></li>
-</ul>
-<p><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200530130516.png" alt=""></p>
-<ul>
-<li>在串口调试助手里可看到阿里云下发的数据<br><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/20200530130251.png" alt=""></li>
-</ul>
-</li>
-</ul>
-<h2 id="应用分析"><a href="#应用分析" class="headerlink" title="应用分析"></a>应用分析</h2><ul>
-<li><p>基于模块和云端的上下行数据，即是一个简单的物联网产品框架，给设备联网，能上报数据，能接收数据，这也就是目前火爆的物联网产品的基本定义</p>
-</li>
-<li><p>举个简单例子：将一个温湿度传感器连接到模块，传感器采集到的温湿度数据通过Cat.1模块发送到云端，云端再做数据推送到移动端APP，即可在手机上远程查看温湿度信息</p>
+<p><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/%E5%9B%BE%E7%89%87_20200614190127.png" alt=""></p>
+<h2 id="5-使用方法"><a href="#5-使用方法" class="headerlink" title="5 使用方法"></a>5 使用方法</h2><p>使用时，只需将带NFC的手机贴着名片，既能自动读取射频卡芯片里的信息，比如添加联系人、连接WIFI、连接Bluetooth等</p>
+<h2 id="6-原理探索"><a href="#6-原理探索" class="headerlink" title="6 原理探索"></a>6 原理探索</h2><h3 id="6-1-NFC技术原理"><a href="#6-1-NFC技术原理" class="headerlink" title="6.1 NFC技术原理"></a>6.1 NFC技术原理</h3><p>支持NFC的设备可以在主动或被动模式下交换数据。在被动模式下，启动NFC通信的设备，也称为NFC发起设备(主设备)，在整个通信过程中提供射频场(RF-field)，。它可以选择106kbps、212kbps或424kbps其中一种传输速度，将数据发送到另一台设备。另一台设备称为NFC目标设备(从设备)，不必产生射频场，而使用负载调制(load modulation)技术，即可以相同的速度将数据传回发起设备。此通信机制与基于ISO14443A、MIFARE和FeliCa的非接触式智能卡兼容，因此，NFC发起设备在被动模式下，可以用相同的连接和初始化过程检测非接触式智能卡或NFC目标设备，并与之建立联系。</p>
+<h3 id="6-2-NFC与蓝牙、红外对比"><a href="#6-2-NFC与蓝牙、红外对比" class="headerlink" title="6.2 NFC与蓝牙、红外对比"></a>6.2 NFC与蓝牙、红外对比</h3><p>和传统的近距通讯相比，近场通讯（NFC）就有天然的安全性，以及连接建立的快速性，具体对比如下表：</p>
+<p><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/%E5%9B%BE%E7%89%87_20200614195223.png" alt=""></p>
+<p><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/END%E7%AC%A6.gif" alt=""></p>
 <blockquote>
-<p>nan-feng知识有限，如果发现本文有错误的地方欢迎批评、指正，若本文对您有所帮助，转发、分享也是笔者坚持的动力，扫码关注微信公众号，后台回复 合宙Cat.1 获取Air724UG 4G LTE开发板相关资料包</p>
+<p>笔者知识有限，如果发现本文有错误的地方欢迎批评、指正，若本文对您有所帮助，转发、分享也是笔者坚持的动力，关注微信公众号：南风过境蜻蜓飞，后台回复 济南大学纪念名片 获取 电路PCB板源文件及TagWriter安装包</p>
 </blockquote>
-</li>
-</ul>
-<p><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/%E5%85%AC%E4%BC%97%E5%8F%B7%E4%BA%8C%E7%BB%B4%E7%A0%81.png" alt="关注南风过境蜻蜓飞，开启物联网、嵌入式学习之路"></p>
+<p><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/%E9%A1%B5%E5%B0%BE.gif" alt=""></p>
 
     
 
@@ -365,7 +364,7 @@
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="https://nanfeng-iot.cn/2020/05/30/【合宙4GCat-1入门教程】-AT指令连接阿里云收发数据-下/" title="【合宙4GCat.1入门教程】--AT指令连接阿里云收发数据&lt;下&gt;" target="_blank">https://nanfeng-iot.cn/2020/05/30/【合宙4GCat-1入门教程】-AT指令连接阿里云收发数据-下/</a>
+          <a href="https://nanfeng-iot.cn/2020/06/14/DIY济南大学纪念名片/" title="DIY济南大学纪念名片" target="_blank">https://nanfeng-iot.cn/2020/06/14/DIY济南大学纪念名片/</a>
         </li>
         
         <li>
@@ -432,7 +431,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://nanfeng-iot.cn/2020/05/30/%E3%80%90%E5%90%88%E5%AE%994GCat-1%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E3%80%91-AT%E6%8C%87%E4%BB%A4%E8%BF%9E%E6%8E%A5%E9%98%BF%E9%87%8C%E4%BA%91%E6%94%B6%E5%8F%91%E6%95%B0%E6%8D%AE-%E4%B8%8B/" alt="微信分享二维码"> -->
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://nanfeng-iot.cn/2020/06/14/DIY%E6%B5%8E%E5%8D%97%E5%A4%A7%E5%AD%A6%E7%BA%AA%E5%BF%B5%E5%90%8D%E7%89%87/" alt="微信分享二维码"> -->
     </div>
 </div>
 
@@ -447,18 +446,9 @@
 
 <nav id="article-nav">
   
-    <a href="/2020/06/14/DIY%E6%B5%8E%E5%8D%97%E5%A4%A7%E5%AD%A6%E7%BA%AA%E5%BF%B5%E5%90%8D%E7%89%87/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          DIY济南大学纪念名片
-        
-      </div>
-    </a>
   
-  
-    <a href="/2020/05/30/%E3%80%90%E5%90%88%E5%AE%994GCat-1%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E3%80%91-AT%E6%8C%87%E4%BB%A4%E8%BF%9E%E6%8E%A5%E9%98%BF%E9%87%8C%E4%BA%91%E6%94%B6%E5%8F%91%E6%95%B0%E6%8D%AE-%E4%B8%8A/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">【合宙4GCat.1入门教程】--AT指令连接阿里云收发数据&lt;上&gt;</div>
+    <a href="/2020/05/30/%E3%80%90%E5%90%88%E5%AE%994GCat-1%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E3%80%91-AT%E6%8C%87%E4%BB%A4%E8%BF%9E%E6%8E%A5%E9%98%BF%E9%87%8C%E4%BA%91%E6%94%B6%E5%8F%91%E6%95%B0%E6%8D%AE-%E4%B8%8B/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">【合宙4GCat.1入门教程】--AT指令连接阿里云收发数据&lt;下&gt;</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -499,9 +489,9 @@
     <script src="/lib/gitment.js"></script>
   
   <script>
-    <!-- id: "【合宙4GCat.1入门教程】--AT指令连接阿里云收发数据&lt;下&gt;" -->
+    <!-- id: "DIY济南大学纪念名片" -->
     var gitment = new Gitment({
-      id: "20200530143325",
+      id: "20200614202746",
       owner: 'Nanfengyuan',
       repo: 'nanfeng blog',
       oauth: {
