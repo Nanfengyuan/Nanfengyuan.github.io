@@ -6,37 +6,39 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://nanfeng-iot.cn">
-  <title>EC20连接阿里云进行数据收发 | nanfeng-IOT</title>
+  <title>EC20固件升级 | nanfeng-IOT</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="物联网产品框架:传统设备使用通信模组连接云服务器(即上云)做数据收发。本文将使用EC20 封装好的AT指令通过 MQTT 协议连接阿里云，简单的介绍下移远4G通信模块 EC20 是如何连接服务器进行数据收发">
+  <meta name="description" content="使用移远 QFlash_V4.14 工具升级移远 EC20 4G模块固件">
 <meta property="og:type" content="article">
-<meta property="og:title" content="EC20连接阿里云进行数据收发">
-<meta property="og:url" content="https://nanfeng-iot.cn/2020/06/29/EC20%E8%BF%9E%E6%8E%A5%E9%98%BF%E9%87%8C%E4%BA%91%E8%BF%9B%E8%A1%8C%E6%95%B0%E6%8D%AE%E6%94%B6%E5%8F%91/index.html">
+<meta property="og:title" content="EC20固件升级">
+<meta property="og:url" content="https://nanfeng-iot.cn/2020/07/04/EC20%E5%9B%BA%E4%BB%B6%E5%8D%87%E7%BA%A7/index.html">
 <meta property="og:site_name" content="nanfeng-IOT">
-<meta property="og:description" content="物联网产品框架:传统设备使用通信模组连接云服务器(即上云)做数据收发。本文将使用EC20 封装好的AT指令通过 MQTT 协议连接阿里云，简单的介绍下移远4G通信模块 EC20 是如何连接服务器进行数据收发">
+<meta property="og:description" content="使用移远 QFlash_V4.14 工具升级移远 EC20 4G模块固件">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.14%2020200623113903.png">
-<meta property="og:image" content="https://static01.imgkr.com/temp/b6757daa9e2049bf9e79fd9923929a07.png">
-<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.14%2020200623155724.png">
-<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.14%2020200628170023.png">
-<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.14%2020200629183824.png">
-<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.14%2020200628165251.png">
-<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.14%2020200628165607.png">
-<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.14%2020200629143703.png">
-<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.14%2020200629144357.png">
-<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.14%2020200629165856.png">
-<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.14%2020200629170333.png">
-<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.14%2020200629170523.png">
-<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.14%2020200629171306.png">
-<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.14%2020200629171709.png">
-<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.14%2020200629184243.png">
-<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.14%2020200629184412.png">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.14%2020200630114621.png">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.14%2020200630114819.png">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.14%2020200630114911.png">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.14%2020200630115403.png">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.14%2020200630145038.png">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.14%2020200630115930.png">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.14%2020200630134444.png">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.14%2020200630134540.png">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.14%2020200630134547.png">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.14%2020200630134728.png">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.14%2020200630135033.png">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.14%2020200630135828.png">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.14%2020200630140251.png">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.14%2020200630141048.png">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.14%2020200630141249.png">
+<meta property="og:image" content="https://static01.imgkr.com/temp/e886375f4bc745b7b862295b9073bf08.png">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.14%2020200630143354.png">
 <meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7/END%E7%AC%A6.gif">
 <meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7/%E9%A1%B5%E5%B0%BE.gif">
-<meta property="article:published_time" content="2020-06-29T14:45:42.269Z">
-<meta property="article:modified_time" content="2020-06-29T14:49:08.291Z">
+<meta property="article:published_time" content="2020-07-04T00:58:21.401Z">
+<meta property="article:modified_time" content="2020-07-04T01:00:14.798Z">
 <meta property="article:author" content="nan feng">
 <meta property="article:tag" content="嵌入式设计 物联网 C语言">
 <meta name="twitter:card" content="summary">
@@ -225,14 +227,14 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-EC20连接阿里云进行数据收发" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-EC20固件升级" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
     <h1 class="article-title" itemprop="name">
-      EC20连接阿里云进行数据收发
+      EC20固件升级
     </h1>
   
 
@@ -244,8 +246,8 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/2020/06/29/EC20%E8%BF%9E%E6%8E%A5%E9%98%BF%E9%87%8C%E4%BA%91%E8%BF%9B%E8%A1%8C%E6%95%B0%E6%8D%AE%E6%94%B6%E5%8F%91/" class="archive-article-date">
-        <time datetime="2020-06-29T14:45:42.269Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-29</time>
+<a href="/2020/07/04/EC20%E5%9B%BA%E4%BB%B6%E5%8D%87%E7%BA%A7/" class="archive-article-date">
+        <time datetime="2020-07-04T00:58:21.401Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-04</time>
 </a>
 
   
@@ -258,7 +260,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">1.3k字</span>
+      <span class="post-count">900字</span>
     </span>
   </span>
 
@@ -267,7 +269,7 @@
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">5分</span>
+      <span class="post-count">3分</span>
     </span>
   </span>
 </div>
@@ -278,145 +280,53 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <p><strong>物联网产品框架:传统设备使用通信模组连接云服务器(即上云)做数据收发。本文将使用EC20 封装好的AT指令通过 MQTT 协议连接阿里云，简单的介绍下移远4G通信模块 EC20 是如何连接服务器进行数据收发</strong></p>
+    <p><strong>使用移远 QFlash_V4.14 工具升级移远 EC20 4G模块固件</strong></p>
 <a id="more"></a>
 
-<h2 id="1-关于EC20模块"><a href="#1-关于EC20模块" class="headerlink" title="1 关于EC20模块"></a>1 关于EC20模块</h2><h3 id="1-1-EC20概述"><a href="#1-1-EC20概述" class="headerlink" title="1.1 EC20概述"></a>1.1 EC20概述</h3><p>EC20 R2.1 是移远通信推出的 LTE Cat 4 无线通信模块，采用 LTE 3GPP Rel.11 技术，支持最大下行速率 150Mbps 和最大上行速率 50Mbps；同时在封装上兼容移远通信 UMTS/HSPA+ UC20 模块以及多网络制式 LTE EC20/EC21/EC25/EG25-G 模块，实现了3G网络与4G网络之间的无缝切换。</p>
-<p>EC20 R2.1 内置多星座高精度定位 GNSS（GPS/GLONASS/BeiDou/Galileo/QZSS）接收机；在简化产品设计的同时，还大大提升了定位速度及精度。</p>
-<p>EC20 R2.1 内置丰富的网络协议，集成多个工业标准接口，并支持多种驱动和软件功能（适用于 Windows 7/8/8.1/10，Linux，Android 等操作系统下的 USB 驱动、eCall* 等），极大地拓展了 EC20 R2.1 在 M2M 领域的应用范围，如 CPE、路由器、数据卡、平板电脑、车载、安防以及工业级 PDA 等。</p>
-<h3 id="1-2-EC20优势"><a href="#1-2-EC20优势" class="headerlink" title="1.2 EC20优势"></a>1.2 EC20优势</h3><ul>
-<li><p>专为 M2M 和 IoT 应用而设计的 LTE Cat 4 无线模块</p>
-</li>
-<li><p>各网络制式的全面覆盖</p>
-</li>
-<li><p>集成多星座 GNSS 接收机，满足不同环境下对快速、精准定位的需求</p>
-</li>
-<li><p>支持 DFOTA、eCall* 和 DTMF 功能</p>
-</li>
-<li><p>MIMO 技术满足无线通信系统对数据速率和连接可靠性的要求</p>
-</li>
-</ul>
-<h2 id="2-准备工作"><a href="#2-准备工作" class="headerlink" title="2 准备工作"></a>2 准备工作</h2><h3 id="2-1-EC20-USB驱动安装"><a href="#2-1-EC20-USB驱动安装" class="headerlink" title="2.1 EC20 USB驱动安装"></a>2.1 EC20 USB驱动安装</h3><p>安装过程参考移远官方手册：《Quectel_LTE&amp;5G_Windows_USB_Driver_安装指导_V1.0.pdf》，有详细USB安装指导，该手册及驱动文件可以去移远官方下载或后续在公众号下载</p>
+<h2 id="1-准备工作"><a href="#1-准备工作" class="headerlink" title="1 准备工作"></a>1 准备工作</h2><h3 id="1-1-EC20-USB驱动安装"><a href="#1-1-EC20-USB驱动安装" class="headerlink" title="1.1 EC20 USB驱动安装"></a>1.1 EC20 USB驱动安装</h3><p>安装过程参考移远官方手册：《Quectel_LTE&amp;5G_Windows_USB_Driver_安装指导_V1.0.pdf》，有详细USB安装指导，该手册及驱动文件可以去移远官方下载或后续在公众号下载</p>
 <p>驱动安装成功后，在电脑的设备管理器界面可以看到三个虚拟串口，如下所示：</p>
 <p><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.14%2020200623113903.png" alt=""></p>
-<h3 id="2-2-阿里云创建设备"><a href="#2-2-阿里云创建设备" class="headerlink" title="2.2 阿里云创建设备"></a>2.2 阿里云创建设备</h3><p>登录阿里云物联网平台：<a href="https://account.aliyun.com/login/login.htm?oauth_callback=https%3A%2F%2Fiot.console.aliyun.com%2Fquick_start" target="_blank" rel="noopener">https://account.aliyun.com/login/login.htm?oauth_callback=https%3A%2F%2Fiot.console.aliyun.com%2Fquick_start</a></p>
-<p>创建产品，填写产品相关信息:</p>
-<p><img src="https://static01.imgkr.com/temp/b6757daa9e2049bf9e79fd9923929a07.png" alt=""></p>
-<p><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.14%2020200623155724.png" alt=""></p>
-<p>产品功能定义<br><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.14%2020200628170023.png" alt=""></p>
-<p>再自定义一个标识符用作数据下发，且发布上线：<br><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.14%2020200629183824.png" alt=""></p>
-<p>创建设备：<br><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.14%2020200628165251.png" alt=""></p>
-<p>得到设备的三元组信息：<br><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.14%2020200628165607.png" alt=""></p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">三元组信息：</span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">"ProductKey"</span>: <span class="string">"a1ciEJx0Tqx"</span>,</span><br><span class="line">  <span class="string">"DeviceName"</span>: <span class="string">"test01"</span>,</span><br><span class="line">  <span class="string">"DeviceSecret"</span>: <span class="string">"2a202572cf9ab480ee012ae103cca21d"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>查看设备的Topic信息:<br><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.14%2020200629143703.png" alt=""></p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">设备Topic：</span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">"发布主题"</span>: <span class="string">"/sys/a1ciEJx0Tqx/test01/thing/event/property/post"</span></span><br><span class="line">  <span class="string">"订阅主题"</span>: <span class="string">"/sys/a1ciEJx0Tqx/test01/thing/service/property/set"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-<h2 id="2-连接阿里云"><a href="#2-连接阿里云" class="headerlink" title="2 连接阿里云"></a>2 连接阿里云</h2><p>使用串口调试助手，选择 USB AT Port端口，并对串口调试助手做简单设置</p>
-<p><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.14%2020200629144357.png" alt=""></p>
-<h3 id="2-1-AT指令连接阿里云："><a href="#2-1-AT指令连接阿里云：" class="headerlink" title="2.1 AT指令连接阿里云："></a>2.1 AT指令连接阿里云：</h3><p>AT指令连接阿里云过程：</p>
-<p>1)AT指令入网、模块测试</p>
-<table>
-<thead>
-<tr>
-<th align="left">序号</th>
-<th align="left">AT指令</th>
-<th align="left">指令解析</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">1</td>
-<td align="left">AT</td>
-<td align="left">测试指令，若返回OK，则模块可正常通信</td>
-</tr>
-<tr>
-<td align="left">2</td>
-<td align="left">AT+CPIN?</td>
-<td align="left">检查SIM卡是否在位</td>
-</tr>
-<tr>
-<td align="left">3</td>
-<td align="left">AT+CSQ</td>
-<td align="left">查询信号质量</td>
-</tr>
-<tr>
-<td align="left">4</td>
-<td align="left">AT+CREG?</td>
-<td align="left">查询入网状态</td>
-</tr>
-<tr>
-<td align="left">5</td>
-<td align="left">AT+CGATT=1</td>
-<td align="left">激活网络</td>
-</tr>
-<tr>
-<td align="left">6</td>
-<td align="left">AT+CGATT?</td>
-<td align="left">查询激活状态</td>
-</tr>
-<tr>
-<td align="left">7</td>
-<td align="left">AT+CGPADDR</td>
-<td align="left">获取PDP地址</td>
-</tr>
-</tbody></table>
-<p><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.14%2020200629165856.png" alt=""></p>
-<p>2）AT指令连接阿里云服务器<br>| 序号   | AT指令 | 指令解析  |<br>| :—– | :– | :—— |<br>| 1 |  AT+QMTCFG=”recv/mode”,0,0,1  | 配置为接收模式 |<br>| 2 |  AT+QMTCFG=”aliauth”,0,”ProductKey”,”DeviceName”,”DeviceSecret”  | 配置阿里云上的设备信息 |<br>| 3|  AT+QMTOPEN=0,”iot-as-mqtt.cn-shanghai.aliyuncs.com”,1883  | 打开一个MQTT客户端网络 |<br>| 4|  AT+QMTCONN=0,”DeviceName”  | 连接MQTT服务器 |</p>
-<p><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.14%2020200629170333.png" alt=""></p>
-<p>此时可在阿里云物联网平台看到设备 test01 的状态已由未激活转为在线状态</p>
-<p><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.14%2020200629170523.png" alt=""></p>
-<p>注意将AT指令里面的三元组信息替换给自己设备的三元组，AT指令详细的参数解析可参考移远的AT指令手册：《Quectel_EC20_R2.1_AT_Commands_Manual_V1.0.pdf》、《Quectel_EC2x&amp;EG9x&amp;EM05_TCP(IP)_AT_Commands_Manual_V1.0.pdf》、《Quectel_EC20_R2.1_AT_Commands_Manual_V1.0.pdf》，AT指令手册可在移远官方下载，也可在公众号后台回复 EC20模块获取EC20模块全套资料</p>
-<h3 id="2-2-发送数据"><a href="#2-2-发送数据" class="headerlink" title="2.2 发送数据"></a>2.2 发送数据</h3><p>AT指令发送数据的过程如下：</p>
-<table>
-<thead>
-<tr>
-<th align="left">序号</th>
-<th align="left">AT指令</th>
-<th align="left">指令解析</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">1</td>
-<td align="left">AT+QMTPUB=0,0,0,0,”/sys/ProductKey/DeviceName/thing/event/property/post”</td>
-<td align="left">发布主题消息</td>
-</tr>
-<tr>
-<td align="left">2</td>
-<td align="left">{params:{IndoorTemperature:27.5}}</td>
-<td align="left">发送的JSON数据</td>
-</tr>
-<tr>
-<td align="left">3</td>
-<td align="left">1a</td>
-<td align="left">数据结束符，需采用HEX形式发送</td>
-</tr>
-</tbody></table>
-<p><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.14%2020200629171306.png" alt=""></p>
-<p>此时，可在阿里云设备详情界面看到我们用EC20发送到阿里云的数据</p>
-<p><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.14%2020200629171709.png" alt=""></p>
-<h3 id="2-3-接收数据"><a href="#2-3-接收数据" class="headerlink" title="2.3 接收数据"></a>2.3 接收数据</h3><p>AT指令接收服务器数据指令如下：</p>
-<p>EC20接收服务器下发的数据只需要订阅服务器的发布主题，及设备订阅主题：/sys/a1ciEJx0Tqx/test01/thing/service/property/set 即能接收到服务器下发的数据</p>
-<table>
-<thead>
-<tr>
-<th align="left">序号</th>
-<th align="left">AT指令</th>
-<th align="left">指令解析</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">1</td>
-<td align="left">AT+QMTSUB=0,1,”/sys/ProductKey/DeviceName/thing/service/property/set”,0</td>
-<td align="left">订阅服务器发布主题</td>
-</tr>
-</tbody></table>
-<p>当阿里云在线调试界面下发数据时，在本地串口调试助手数据接收区就能收到服务器下发的数据</p>
-<p><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.14%2020200629184243.png" alt=""></p>
-<p><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.14%2020200629184412.png" alt=""></p>
+<h3 id="1-2-QFlash-V4-14工具及固件包"><a href="#1-2-QFlash-V4-14工具及固件包" class="headerlink" title="1.2 QFlash_V4.14工具及固件包"></a>1.2 QFlash_V4.14工具及固件包</h3><p>QFlash_V4.14可在移远官网下载，也可后续在公众号下载</p>
+<p>相关版本固件包向移远FAE技术支持工程师咨询索要，这里提供A08、A15版本做测试，后续在公众号下载</p>
+<p>注意：QFlash_V4.14和固件包的路径最好别包含中文</p>
+<h2 id="2-固件升级"><a href="#2-固件升级" class="headerlink" title="2 固件升级"></a>2 固件升级</h2><h3 id="2-1-QFlash-V4-14介绍"><a href="#2-1-QFlash-V4-14介绍" class="headerlink" title="2.1 QFlash_V4.14介绍"></a>2.1 QFlash_V4.14介绍</h3><p>QFlash_V4.14不需要安装，解压即可使用，解压后，有两个文件，一个是QFlash_V4.14，一个是QFlash_V4.14用户手册</p>
+<p><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.14%2020200630114621.png" alt=""></p>
+<p>QFlash_V4.14图标</p>
+<p><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.14%2020200630114819.png" alt=""></p>
+<p>QFlash_V4.14界面</p>
+<p><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.14%2020200630114911.png" alt=""></p>
+<h3 id="2-2-选择固件升级串口"><a href="#2-2-选择固件升级串口" class="headerlink" title="2.2 选择固件升级串口"></a>2.2 选择固件升级串口</h3><p>在EC20 USB驱动安装成功后，会有三个串口，固件升级应选择 USB DM port 这一个串口，我的设备USB DM port为COM9</p>
+<p><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.14%2020200630115403.png" alt=""></p>
+<p>使用串口调试助手，发送AT指令：AT+ATI 查看固件版本，固件版本为A08</p>
+<p><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.14%2020200630145038.png" alt=""></p>
+<h3 id="2-3-加载固件文件"><a href="#2-3-加载固件文件" class="headerlink" title="2.3 加载固件文件"></a>2.3 加载固件文件</h3><p>以A15固件包为例，将固件包解压，需要升级的固件为固件包的 EC20CEFAGR06A15M4G\update\firehose 目录下 prog_nand_firehose_9x07.mbn 文件</p>
+<p><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.14%2020200630115930.png" alt=""></p>
+<h3 id="2-4-升级固件"><a href="#2-4-升级固件" class="headerlink" title="2.4 升级固件"></a>2.4 升级固件</h3><p>波特率选择460800，点击Start开始升级固件</p>
+<p><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.14%2020200630134444.png" alt=""></p>
+<p>固件升级过程（随机截取）</p>
+<p><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.14%2020200630134540.png" alt=""></p>
+<p><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.14%2020200630134547.png" alt=""></p>
+<p>固件升级完成</p>
+<p><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.14%2020200630134728.png" alt=""></p>
+<p>使用串口调试助手，发送AT指令：AT+ATI 查看固件版本，固件版本已更新为A15</p>
+<p><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.14%2020200630135033.png" alt=""></p>
+<h2 id="3-异常问题总结"><a href="#3-异常问题总结" class="headerlink" title="3 异常问题总结"></a>3 异常问题总结</h2><h3 id="3-1-串口选择错误"><a href="#3-1-串口选择错误" class="headerlink" title="3.1 串口选择错误"></a>3.1 串口选择错误</h3><p>固件升级过程中若出现如下所示的错误提示，则产生错误的原因为串口选择错误，重新选择 USB DM port 做固件升级 </p>
+<p><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.14%2020200630135828.png" alt=""></p>
+<h3 id="3-2-串口被占用"><a href="#3-2-串口被占用" class="headerlink" title="3.2 串口被占用"></a>3.2 串口被占用</h3><p>固件升级过程中若出现如下所示的错误提示，则产生错误的原因为所选串口被占用，检查将占用该串口的软件关闭</p>
+<p><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.14%2020200630140251.png" alt=""></p>
+<h3 id="3-3-波特率不支持"><a href="#3-3-波特率不支持" class="headerlink" title="3.3 波特率不支持"></a>3.3 波特率不支持</h3><p>固件升级过程中若出现如下所示的错误提示，则产生错误的原因为选择的波特率不支持，重新选择波特率460800</p>
+<p>![](<a href="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.14" target="_blank" rel="noopener">https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.14</a> 20200630143041.png)</p>
+<h3 id="3-3-固件文件无效"><a href="#3-3-固件文件无效" class="headerlink" title="3.3 固件文件无效"></a>3.3 固件文件无效</h3><p>固件升级过程中若出现如下所示的错误提示，则产生错误的原因为固件文件无效，重新核对选择固件升级文件</p>
+<p><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.14%2020200630141048.png" alt=""></p>
+<h3 id="3-4-电源异常"><a href="#3-4-电源异常" class="headerlink" title="3.4 电源异常"></a>3.4 电源异常</h3><p>固件升级过程中若出现如下所示的错误提示，则产生错误的原因为电源异常，检查模块供电电源</p>
+<p><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.14%2020200630141249.png" alt=""></p>
+<h3 id="3-5-串口连接异常"><a href="#3-5-串口连接异常" class="headerlink" title="3.5 串口连接异常"></a>3.5 串口连接异常</h3><p>固件升级过程中若出现如下所示的错误提示，则产生错误的原因为串口连接异常，检查模块与电脑之间的串口连接</p>
+<p><img src="https://static01.imgkr.com/temp/e886375f4bc745b7b862295b9073bf08.png" alt=""></p>
+<h3 id="3-6-超时错误"><a href="#3-6-超时错误" class="headerlink" title="3.6 超时错误"></a>3.6 超时错误</h3><p>固件升级过程中若出现如下所示的错误提示，则产生错误的原因为超时，再次尝试更新固件步骤</p>
+<p><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.14%2020200630143354.png" alt=""></p>
 <p><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7/END%E7%AC%A6.gif" alt=""></p>
 <blockquote>
-<p>笔者知识有限，如果发现本文有错误的地方欢迎批评、指正，若本文对您有所帮助，点赞、在看也是笔者坚持的动力；扫码关注微信公众号，后台回复 EC20模块获取EC20全套资料</p>
+<p>笔者知识有限，如果发现本文有错误的地方欢迎批评、指正，若本文对您有所帮助，点赞、在看也是笔者坚持的动力；扫码关注公众号，后台回复 EC20固件升级获取本文固件升级资料</p>
 </blockquote>
 <p><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7/%E9%A1%B5%E5%B0%BE.gif" alt=""></p>
 
@@ -465,7 +375,7 @@
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="https://nanfeng-iot.cn/2020/06/29/EC20连接阿里云进行数据收发/" title="EC20连接阿里云进行数据收发" target="_blank">https://nanfeng-iot.cn/2020/06/29/EC20连接阿里云进行数据收发/</a>
+          <a href="https://nanfeng-iot.cn/2020/07/04/EC20固件升级/" title="EC20固件升级" target="_blank">https://nanfeng-iot.cn/2020/07/04/EC20固件升级/</a>
         </li>
         
         <li>
@@ -532,7 +442,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://nanfeng-iot.cn/2020/06/29/EC20%E8%BF%9E%E6%8E%A5%E9%98%BF%E9%87%8C%E4%BA%91%E8%BF%9B%E8%A1%8C%E6%95%B0%E6%8D%AE%E6%94%B6%E5%8F%91/" alt="微信分享二维码"> -->
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://nanfeng-iot.cn/2020/07/04/EC20%E5%9B%BA%E4%BB%B6%E5%8D%87%E7%BA%A7/" alt="微信分享二维码"> -->
     </div>
 </div>
 
@@ -547,18 +457,18 @@
 
 <nav id="article-nav">
   
-    <a href="/2020/07/04/EC20%E5%9B%BA%E4%BB%B6%E5%8D%87%E7%BA%A7/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2020/07/04/EC20%E8%BF%9E%E6%8E%A5%E7%A7%81%E6%9C%89%E4%BA%91%E8%BF%9B%E8%A1%8C%E6%95%B0%E6%8D%AE%E6%94%B6%E5%8F%91/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          EC20固件升级
+          EC20连接私有云进行数据收发
         
       </div>
     </a>
   
   
-    <a href="/2020/06/28/Window%E7%B3%BB%E7%BB%9F%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B8%8Bcd%E4%B8%8D%E8%83%BD%E5%88%87%E6%8D%A2%E7%9B%98%E7%AC%A6%E9%97%AE%E9%A2%98/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Window系统命令行下cd不能切换盘符问题</div>
+    <a href="/2020/06/29/EC20%E8%BF%9E%E6%8E%A5%E9%98%BF%E9%87%8C%E4%BA%91%E8%BF%9B%E8%A1%8C%E6%95%B0%E6%8D%AE%E6%94%B6%E5%8F%91/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">EC20连接阿里云进行数据收发</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -599,9 +509,9 @@
     <script src="/lib/gitment.js"></script>
   
   <script>
-    <!-- id: "EC20连接阿里云进行数据收发" -->
+    <!-- id: "EC20固件升级" -->
     var gitment = new Gitment({
-      id: "20200629224542",
+      id: "20200704085821",
       owner: 'Nanfengyuan',
       repo: 'nanfeng blog',
       oauth: {
