@@ -6,20 +6,30 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://nanfeng-iot.cn">
-  <title>Archives | nanfeng-IOT</title>
+  <title>VS-Code终端无法输入问题 | nanfeng-IOT</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="分享嵌入式、物联网开发知识总结">
-<meta property="og:type" content="website">
-<meta property="og:title" content="nanfeng-IOT">
-<meta property="og:url" content="https://nanfeng-iot.cn/archives/page/2/index.html">
+  <meta name="description" content="小技巧解决VS Code终端无法输入的问题 1 问题表述刚开始使用VS Code，敲完helloword程序，打开终端，准备输入gcc编译命令，确发现终端不能输入，也为显示路径，如下图所示：  2 解决方法 关闭VS Code ,右键单击VS Code 图标，选择属性-&gt;兼容性，取消勾选 已兼容模式运行这个程序    选择属性-&gt;快捷方式，在目标的框 “ 后面加 –disable-gp">
+<meta property="og:type" content="article">
+<meta property="og:title" content="VS-Code终端无法输入问题">
+<meta property="og:url" content="https://nanfeng-iot.cn/2020/07/08/VS-Code%E7%BB%88%E7%AB%AF%E6%97%A0%E6%B3%95%E8%BE%93%E5%85%A5%E9%97%AE%E9%A2%98/index.html">
 <meta property="og:site_name" content="nanfeng-IOT">
-<meta property="og:description" content="分享嵌入式、物联网开发知识总结">
+<meta property="og:description" content="小技巧解决VS Code终端无法输入的问题 1 问题表述刚开始使用VS Code，敲完helloword程序，打开终端，准备输入gcc编译命令，确发现终端不能输入，也为显示路径，如下图所示：  2 解决方法 关闭VS Code ,右键单击VS Code 图标，选择属性-&gt;兼容性，取消勾选 已兼容模式运行这个程序    选择属性-&gt;快捷方式，在目标的框 “ 后面加 –disable-gp">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/%E5%9B%BE%E7%89%87_20200708220914.png">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/%E5%9B%BE%E7%89%87_20200708221240.png">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/%E5%9B%BE%E7%89%87_20200708221458.png">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/%E5%9B%BE%E7%89%87_20200708221625.png">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/%E5%9B%BE%E7%89%87_20200708221840.png">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7/END%E7%AC%A6.gif">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7/%E9%A1%B5%E5%B0%BE.gif">
+<meta property="article:published_time" content="2020-07-08T13:50:18.788Z">
+<meta property="article:modified_time" content="2020-07-08T14:54:43.914Z">
 <meta property="article:author" content="nan feng">
 <meta property="article:tag" content="嵌入式设计 物联网 C语言">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/%E5%9B%BE%E7%89%87_20200708220914.png">
   
     <link rel="alternative" href="/atom.xml" title="nanfeng-IOT" type="application/atom+xml">
   
@@ -204,186 +214,269 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-VS-Code终端无法输入问题" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2020/05/09/%E7%89%A9%E8%81%94%E7%BD%91-MQTT%E5%8D%8F%E8%AE%AE%E7%AC%AC%E5%85%AB%E8%AE%B2%EF%BC%9A%E6%9E%84%E5%BB%BAUNSUBSCRIBE%E3%80%81UNSUBACK%E6%8A%A5%E6%96%87/" class="archive-article-date">
-        <time datetime="2020-05-09T09:22:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-09</time>
-</a>
-
-        </div>
-    	 
+      <header class="article-header">
   
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2020/05/09/%E7%89%A9%E8%81%94%E7%BD%91-MQTT%E5%8D%8F%E8%AE%AE%E7%AC%AC%E5%85%AB%E8%AE%B2%EF%BC%9A%E6%9E%84%E5%BB%BAUNSUBSCRIBE%E3%80%81UNSUBACK%E6%8A%A5%E6%96%87/" target="_blank">物联网--MQTT协议第八讲：构建UNSUBSCRIBE、UNSUBACK报文</a>
   
+    <h1 class="article-title" itemprop="name">
+      VS-Code终端无法输入问题
     </h1>
   
 
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2020/05/09/hex%E6%96%87%E4%BB%B6%E8%A7%A3%E6%9E%90/" class="archive-article-date">
-        <time datetime="2020-05-09T08:57:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-09</time>
+  
+        
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
+<a href="/2020/07/08/VS-Code%E7%BB%88%E7%AB%AF%E6%97%A0%E6%B3%95%E8%BE%93%E5%85%A5%E9%97%AE%E9%A2%98/" class="archive-article-date">
+        <time datetime="2020-07-08T13:50:18.788Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-08</time>
 </a>
 
+  
+  
+    
+<div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <!-- fonts.scss -->
+      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
+      <i class="icon-statistics"></i>
+      <span class="post-meta-item-text"> 字数统计:</span>
+      <span class="post-count">348字</span>
+    </span>
+  </span>
+
+  <span class="post-time">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+      <i class="icon-book icon"></i>
+      <span class="post-meta-item-text"> 阅读时长≈</span>
+      <span class="post-count">1分</span>
+    </span>
+  </span>
+</div>
+
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p><strong>小技巧解决VS Code终端无法输入的问题</strong></p>
+<h2 id="1-问题表述"><a href="#1-问题表述" class="headerlink" title="1 问题表述"></a>1 问题表述</h2><p>刚开始使用VS Code，敲完helloword程序，打开终端，准备输入gcc编译命令，确发现终端不能输入，也为显示路径，如下图所示：</p>
+<p><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/%E5%9B%BE%E7%89%87_20200708220914.png" alt=""></p>
+<h2 id="2-解决方法"><a href="#2-解决方法" class="headerlink" title="2 解决方法"></a>2 解决方法</h2><ul>
+<li>关闭VS Code ,右键单击VS Code 图标，选择属性-&gt;兼容性，取消勾选 已兼容模式运行这个程序</li>
+</ul>
+<p><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/%E5%9B%BE%E7%89%87_20200708221240.png" alt=""></p>
+<ul>
+<li>选择属性-&gt;快捷方式，在目标的框 “ 后面加 –disable-gpu；注意：”与–disable-gpu应该加一个空格，否则会报错</li>
+</ul>
+<p><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/%E5%9B%BE%E7%89%87_20200708221458.png" alt="报错信息"></p>
+<p><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/%E5%9B%BE%E7%89%87_20200708221625.png" alt=""></p>
+<ul>
+<li>再次打开 VS Code ,终端正常，常显示路径且能正常输入</li>
+</ul>
+<p><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/%E5%9B%BE%E7%89%87_20200708221840.png" alt=""></p>
+<h2 id="3-不懂就问"><a href="#3-不懂就问" class="headerlink" title="3 不懂就问"></a>3 不懂就问</h2><p>刚开始遇到问题的时候百度了下，尝试了一些网友的办法，最终使用这个方法最有效，查询了下–disable-gpu是禁用 GPU 硬件加速（禁用 GPU 加速，可以节约显存空间）的意思</p>
+<p>为什么在属性的目标中加入这个指令即可解决vs Code终端无法输入的问题，原理是什么呢，两者之间什么联系，这我也没弄懂，大家有知道的希望留言给我解答解答疑惑</p>
+<p><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7/END%E7%AC%A6.gif" alt=""></p>
+<blockquote>
+<p>笔者知识有限，如果发现本文有错误的地方欢迎批评、指正，若本文对您有所帮助，转发、分享也是笔者坚持的动力</p>
+</blockquote>
+<p><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7/%E9%A1%B5%E5%B0%BE.gif" alt=""></p>
+
+    
+
+    
+    <div class="page-reward">
+      <a href="javascript:void(0);" class="page-reward-btn tooltip-top" target="_self">
+        <div class="tooltip tooltip-east">
+          <span class="tooltip-item">
+            赏
+          </span>
+          <span class="tooltip-content">
+            <span class="tooltip-text">
+              <span class="tooltip-inner">
+                <p class="reward-p"><i class="icon icon-quo-left"></i>走过路过<i
+                    class="icon icon-quo-right"></i></p>
+                <div class="reward-box">
+                  
+                  <div class="reward-box-item">
+                    <img class="reward-img" src="/img/zfb.jpg">
+                    <span class="reward-type">支付宝</span>
+                  </div>
+                  
+                  
+                  <div class="reward-box-item">
+                    <img class="reward-img" src="/img/wx.png">
+                    <span class="reward-type">微信</span>
+                  </div>
+                  
+                </div>
+              </span>
+            </span>
+          </span>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2020/05/09/hex%E6%96%87%E4%BB%B6%E8%A7%A3%E6%9E%90/" target="_blank">hex文件解析</a>
-  
-    </h1>
-  
+      </a>
+    </div>
+    
 
-
-        <div class="article-info info-on-right">
+    
+    <div class="declare"> 
+      <ul class="post-copyright">
+        <li>
+          <strong>本文作者：</strong>
+          nan feng
+        </li>
+        <li>
+          <strong>本文链接：</strong>
+          <a href="https://nanfeng-iot.cn/2020/07/08/VS-Code终端无法输入问题/" title="VS-Code终端无法输入问题" target="_blank">https://nanfeng-iot.cn/2020/07/08/VS-Code终端无法输入问题/</a>
+        </li>
+        
+        <li>
+          <strong>版权声明： </strong>
           
-          
+          本博客所有文章除特别声明外，均采用 <a href="https://github.com/JoeyBling/hexo-theme-yilia-plus/blob/master/LICENSE" rel="external nofollow" target="_blank">MIT</a> 许可协议。转载请注明出处！
+        </li>
+        
+      </ul>
+    </div>
+    
 
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+    
+
+    
+
+    
+    
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a> -->
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://nanfeng-iot.cn/2020/07/08/VS-Code%E7%BB%88%E7%AB%AF%E6%97%A0%E6%B3%95%E8%BE%93%E5%85%A5%E9%97%AE%E9%A2%98/" alt="微信分享二维码"> -->
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+
+    
+    <div class="clearfix"></div>
+  </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2020/05/05/%E6%97%A0%E9%99%90%E6%89%A9%E5%B1%95%E5%AE%9A%E6%97%B6%E5%99%A8MultiTimer%E7%A7%BB%E6%A4%8D/" class="archive-article-date">
-        <time datetime="2020-05-05T13:43:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-05</time>
-</a>
 
+
+<nav id="article-nav">
+  
+  
+    <a href="/2020/07/04/EC20%E8%BF%9E%E6%8E%A5%E7%A7%81%E6%9C%89%E4%BA%91%E8%BF%9B%E8%A1%8C%E6%95%B0%E6%8D%AE%E6%94%B6%E5%8F%91/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">EC20连接私有云进行数据收发</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2020/05/05/%E6%97%A0%E9%99%90%E6%89%A9%E5%B1%95%E5%AE%9A%E6%97%B6%E5%99%A8MultiTimer%E7%A7%BB%E6%A4%8D/" target="_blank">无限扩展定时器MultiTimer移植</a>
-  
-    </h1>
-  
+        
+        
+    </div>
+</aside>
 
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2020/04/25/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E7%AC%AC%E4%B8%80%E5%A4%A9/" class="archive-article-date">
-        <time datetime="2020-04-25T04:57:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-25</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2020/04/25/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E7%AC%AC%E4%B8%80%E5%A4%A9/" target="_blank">搭建博客第一天</a>
-  
-    </h1>
-  
 
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2020/04/25/hello-world/" class="archive-article-date">
-        <time datetime="2020-04-25T04:26:52.158Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-25</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2020/04/25/hello-world/" target="_blank">Hello World</a>
-  
-    </h1>
-  
 
 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+
+
+
+
   
+  <div id="gitment-ctn"></div>
   
-    </div></section>
+    <!-- 中文 -->
+    <link rel="stylesheet" href="/lib/gitment.css">
+    <script src="/lib/gitment.js"></script>
+  
+  <script>
+    <!-- id: "VS-Code终端无法输入问题" -->
+    var gitment = new Gitment({
+      id: "20200708215018",
+      owner: 'Nanfengyuan',
+      repo: 'nanfeng blog',
+      oauth: {
+        client_id: '7656db123fbf8a437d22',
+        client_secret: '89978e13422f7b2a3b061c5707dfe040216919ae',
+      },
+    })
+    gitment.render('gitment-ctn')
+  </script>
+
+
   
 
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/">&amp;laquo; Prev</a><a class="page-number" href="/archives/">1</a><span class="page-number current">2</span>
-    </nav>
-  
 
 
           </div>
@@ -424,8 +517,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,
