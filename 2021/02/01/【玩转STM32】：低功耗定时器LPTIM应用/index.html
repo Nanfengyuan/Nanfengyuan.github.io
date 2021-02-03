@@ -6,24 +6,47 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://nanfeng-iot.cn">
-  <title>nanfeng-IOT</title>
+  <title>【玩转STM32】：低功耗定时器LPTIM应用 | nanfeng-IOT</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-    
-    <!-- <meta name="keywords" content="嵌入式设计 物联网 C语言">
-    <meta name="description" content="分享嵌入式、物联网开发知识总结"> -->
-  
-  <meta name="description" content="分享嵌入式、物联网开发知识总结">
-<meta property="og:type" content="website">
-<meta property="og:title" content="nanfeng-IOT">
-<meta property="og:url" content="https://nanfeng-iot.cn/page/2/index.html">
+  <meta name="description" content="目标实现：使用LPTIM1，在低功耗stop模式下定时1s，1s后将STM32从stop模式唤醒，并且点亮LED灯">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【玩转STM32】：低功耗定时器LPTIM应用">
+<meta property="og:url" content="https://nanfeng-iot.cn/2021/02/01/%E3%80%90%E7%8E%A9%E8%BD%ACSTM32%E3%80%91%EF%BC%9A%E4%BD%8E%E5%8A%9F%E8%80%97%E5%AE%9A%E6%97%B6%E5%99%A8LPTIM%E5%BA%94%E7%94%A8/index.html">
 <meta property="og:site_name" content="nanfeng-IOT">
-<meta property="og:description" content="分享嵌入式、物联网开发知识总结">
+<meta property="og:description" content="目标实现：使用LPTIM1，在低功耗stop模式下定时1s，1s后将STM32从stop模式唤醒，并且点亮LED灯">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.14%20%E5%BC%95%E5%AF%BC%E5%85%B3%E6%B3%A8.gif">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/10%E6%9C%88/01.31/%E6%94%AF%E6%8C%81%E8%8A%AF%E7%89%87.png">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/10%E6%9C%88/01.31/%E6%A0%BC%E5%BC%8F.png">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/10%E6%9C%88/01.31/11.png">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/10%E6%9C%88/01.31/%E6%97%A0%E6%A0%87%E9%A2%98.png">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/10%E6%9C%88/01.31/%E5%88%9D%E5%A7%8B%E5%8C%96.png">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/10%E6%9C%88/01.31/123.png">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/10%E6%9C%88/01.31/12345.png">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/10%E6%9C%88/01.31/1234.png">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/10%E6%9C%88/01.31/3.png">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/10%E6%9C%88/01.31/5.png">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/10%E6%9C%88/01.31/6.png">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.147.png">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.141.png">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.142.png">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.143.png">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.144.png">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.145.png">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.148.png">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.149.png">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.14333.png">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.142.png">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/10%E6%9C%88/01.31/23132.png">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7/%E9%A1%B5%E5%B0%BE.gif">
+<meta property="article:published_time" content="2021-02-01T14:50:34.130Z">
+<meta property="article:modified_time" content="2021-02-01T14:51:02.413Z">
 <meta property="article:author" content="nan feng">
 <meta property="article:tag" content="嵌入式设计 物联网 C语言">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.14%20%E5%BC%95%E5%AF%BC%E5%85%B3%E6%B3%A8.gif">
   
     <link rel="alternative" href="/atom.xml" title="nanfeng-IOT" type="application/atom+xml">
   
@@ -208,47 +231,242 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-
-  
-    <article id="post-物联网-MQTT协议第十讲：构建PUBACK报文" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-【玩转STM32】：低功耗定时器LPTIM应用" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2020/07/23/%E7%89%A9%E8%81%94%E7%BD%91-MQTT%E5%8D%8F%E8%AE%AE%E7%AC%AC%E5%8D%81%E8%AE%B2%EF%BC%9A%E6%9E%84%E5%BB%BAPUBACK%E6%8A%A5%E6%96%87/" target="_blank">物联网-MQTT协议第十讲：构建PUBACK报文</a>
-  
+    <h1 class="article-title" itemprop="name">
+      【玩转STM32】：低功耗定时器LPTIM应用
     </h1>
   
 
 
   
   
-<a href="/2020/07/23/%E7%89%A9%E8%81%94%E7%BD%91-MQTT%E5%8D%8F%E8%AE%AE%E7%AC%AC%E5%8D%81%E8%AE%B2%EF%BC%9A%E6%9E%84%E5%BB%BAPUBACK%E6%8A%A5%E6%96%87/" class="archive-article-date">
-        <time datetime="2020-07-23T14:49:15.138Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-23</time>
+        
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
+<a href="/2021/02/01/%E3%80%90%E7%8E%A9%E8%BD%ACSTM32%E3%80%91%EF%BC%9A%E4%BD%8E%E5%8A%9F%E8%80%97%E5%AE%9A%E6%97%B6%E5%99%A8LPTIM%E5%BA%94%E7%94%A8/" class="archive-article-date">
+        <time datetime="2021-02-01T14:50:34.130Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-02-01</time>
 </a>
 
   
   
     
+<div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <!-- fonts.scss -->
+      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
+      <i class="icon-statistics"></i>
+      <span class="post-meta-item-text"> 字数统计:</span>
+      <span class="post-count">1.7k字</span>
+    </span>
+  </span>
+
+  <span class="post-time">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+      <i class="icon-book icon"></i>
+      <span class="post-meta-item-text"> 阅读时长≈</span>
+      <span class="post-count">6分</span>
+    </span>
+  </span>
+</div>
+
 
   
   </header>
   
   <div class="article-entry" itemprop="articleBody">
     
-    <p><strong>物联网–MQTT协议（十）讲：构建PUBACK报文</strong></p>
-<p>了解MQTT协议底层报文构成，手把手带你构建PUBACK报文</p>
-    
-    <a class="article-more-a" href="/2020/07/23/%E7%89%A9%E8%81%94%E7%BD%91-MQTT%E5%8D%8F%E8%AE%AE%E7%AC%AC%E5%8D%81%E8%AE%B2%EF%BC%9A%E6%9E%84%E5%BB%BAPUBACK%E6%8A%A5%E6%96%87/#more">more >></a>
-    
-    
+    <p><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.14%20%E5%BC%95%E5%AF%BC%E5%85%B3%E6%B3%A8.gif" alt=""></p>
+<p>目标实现：使用LPTIM1，在低功耗stop模式下定时1s，1s后将STM32从stop模式唤醒，并且点亮LED灯</p>
+<a id="more"></a>
+
+<h2 id="1-LPTIM-介绍"><a href="#1-LPTIM-介绍" class="headerlink" title="1 LPTIM 介绍"></a>1 LPTIM 介绍</h2><p>LPTIM，顾名思义，即低功耗定时器的意思，与普通定时器的差别是LPTIM在睡眠或者停机模式下依然可以工作（待机模式除外），支持低速时钟 LSI、 LSE 或者外部输入时钟。LPTIM是低功耗产品在低功耗功耗模式下定时的不二之选</p>
+<ul>
+<li><p>支持芯片：并不是STM32的所有芯片都有LPTIM这个外设，，从官方资料可知，支持LPTIM的芯片有：STM32F410、STM32F413/423、STM32F7系列, STM32G0系列, STM32H7系列, STM32L0系列, STM32L4系列, STM32L4+系列, STM32L5系列, STM32WB系列<br><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/10%E6%9C%88/01.31/%E6%94%AF%E6%8C%81%E8%8A%AF%E7%89%87.png" alt=""></p>
+<p><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/10%E6%9C%88/01.31/%E6%A0%BC%E5%BC%8F.png" alt=""></p>
+</li>
+<li><p>STM32L431芯片手册对LPTIM的介绍</p>
+<p><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/10%E6%9C%88/01.31/11.png" alt=""></p>
+</li>
+</ul>
+<p><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/10%E6%9C%88/01.31/%E6%97%A0%E6%A0%87%E9%A2%98.png" alt=""></p>
+<h2 id="2-LPTIM-功能"><a href="#2-LPTIM-功能" class="headerlink" title="2 LPTIM 功能"></a>2 LPTIM 功能</h2><p>LPTIM 低功耗定时器有以下 6 种模式：</p>
+<ul>
+<li>单脉冲模式</li>
+<li>PWM 模式</li>
+<li>单次模式：在此模式下，当满足匹配条件时，输出可以切换高低电平（如果输出极性配置为高，则为低电平至高电平变化，反之亦然）</li>
+<li>编码器模式</li>
+<li>超时模式：有效的边沿触发输入可复位定时器。第一个触发事件将启动计时器，任何连续触发事件将重置计<br>数器并重新开始。</li>
+<li>计数器模式：计数器可用于计算来自 Input1 的外部事件或用于计算内部时钟周期</li>
+</ul>
+<p>主要有以下三个使用场景，本文将介绍LPTIM超时唤醒的应用：</p>
+<ul>
+<li><p>Asynchronous pulse counter in Stop mode（异步脉冲计数）</p>
+</li>
+<li><p>PWM generator in Stop mode（PWM输出）</p>
+</li>
+<li><p>Timeout wakeup mode（超时唤醒）</p>
+</li>
+</ul>
+<h2 id="3-LPTIM初始化结构体"><a href="#3-LPTIM初始化结构体" class="headerlink" title="3 LPTIM初始化结构体"></a>3 LPTIM初始化结构体</h2><p>介绍下LPTIM初始化结构体各个参数的含义及配置</p>
+<p><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/10%E6%9C%88/01.31/%E5%88%9D%E5%A7%8B%E5%8C%96.png" alt=""></p>
+<h3 id="3-1-Clock"><a href="#3-1-Clock" class="headerlink" title="3.1 Clock"></a>3.1 Clock</h3><ul>
+<li><p>Clock用于设置时钟源和时钟分频<br><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/10%E6%9C%88/01.31/123.png" alt=""></p>
+</li>
+<li><p>其中，时钟源参数 Source 可以选择如下两种：<br><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/10%E6%9C%88/01.31/12345.png" alt=""></p>
+<ul>
+<li><p>#define LPTIM_CLOCKSOURCE_APBCLOCK_LPOSC ((uint32_t)0x00U)<br>表示 LPTIM 由内部时钟源（APB 时钟或 APB 或 LSE、 LSI 和 HSI 等）提供时钟</p>
+</li>
+<li><p>#define LPTIM_CLOCKSOURCE_ULPTIM LPTIM_CFGR_CKSEL<br>表示 LPTIM 由外部时钟源通过 LPTIM 外部 Input1 提供时钟</p>
+</li>
+</ul>
+</li>
+<li><p>Prescaler 时钟分频参数则可以选择八种，有1、2、4、8、16、32、64、128分频：<br><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/10%E6%9C%88/01.31/1234.png" alt=""></p>
+</li>
+</ul>
+<h3 id="3-2-UltraLowPowerClock"><a href="#3-2-UltraLowPowerClock" class="headerlink" title="3.2 UltraLowPowerClock"></a>3.2 UltraLowPowerClock</h3><ul>
+<li><p>UltraLowPowerClock参数仅在使用超低功耗时钟源时使用，用于设置所选择的外部时钟<br><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/10%E6%9C%88/01.31/3.png" alt=""></p>
+</li>
+<li><p>其中，时钟极性参数 Polarity 用于选择有效的时钟极性，如果使能了双边沿，Auxiliary Clock（一种低功耗振荡器）必须处于激活状态<br><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/10%E6%9C%88/01.31/5.png" alt=""></p>
+</li>
+<li><p>SampleTime 参数用于配置时钟干扰滤波器<br><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/10%E6%9C%88/01.31/6.png" alt=""></p>
+</li>
+</ul>
+<h3 id="3-3-Trigger"><a href="#3-3-Trigger" class="headerlink" title="3.3 Trigger"></a>3.3 Trigger</h3><ul>
+<li><p>Trigger 用于配置触发参数<br><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.147.png" alt=""></p>
+</li>
+<li><p>其中，Source 参数配置触发源，可选配置如下：<br><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.141.png" alt=""></p>
+</li>
+<li><p>ActiveEdge 参数用于设置有效的触发边沿，可以选择上升沿，下降沿或者双边沿触发<br><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.142.png" alt=""></p>
+</li>
+<li><p>SampleTime参数配置采样时间<br><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.143.png" alt=""></p>
+</li>
+</ul>
+<h3 id="3-4-OutputPolarity"><a href="#3-4-OutputPolarity" class="headerlink" title="3.4 OutputPolarity"></a>3.4 OutputPolarity</h3><ul>
+<li>OutputPolarity 用于配置输出极性，可选择高电平或者低电平输出<br><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.144.png" alt=""></li>
+</ul>
+<h3 id="3-5-UpdateMode"><a href="#3-5-UpdateMode" class="headerlink" title="3.5 UpdateMode"></a>3.5 UpdateMode</h3><ul>
+<li>UpdateMode用于配置是否立即更新自动重装寄存器和比较寄存器，可以选择立即更新，或者当前周期结束后更新<br><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.145.png" alt=""></li>
+</ul>
+<h3 id="3-5-CounterSource"><a href="#3-5-CounterSource" class="headerlink" title="3.5 CounterSource"></a>3.5 CounterSource</h3><ul>
+<li>CounterSource用于配置定时器计数器在每个内部事件或者外部事件后递增计数，可以选择内部或者外部<br><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.148.png" alt=""></li>
+</ul>
+<h3 id="3-6-Input1Source"><a href="#3-6-Input1Source" class="headerlink" title="3.6 Input1Source"></a>3.6 Input1Source</h3><ul>
+<li>Input1Source用于配置 Input1 的输入源，可以选择 GPIO，比较器输出或者 SAI FSA/FSB<br><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.149.png" alt=""></li>
+</ul>
+<h3 id="3-7-Input2ource"><a href="#3-7-Input2ource" class="headerlink" title="3.7 Input2ource"></a>3.7 Input2ource</h3><ul>
+<li>Input2ource用于配置 Input2 的输入源，可以选择 GPIO 和比较器（注意：此参数仅用于编码器模式）<br><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.14333.png" alt=""></li>
+</ul>
+<h2 id="3-LPTIM-超时唤醒应用"><a href="#3-LPTIM-超时唤醒应用" class="headerlink" title="3 LPTIM 超时唤醒应用"></a>3 LPTIM 超时唤醒应用</h2><p>需求：使用LPTIM1，在低功耗stop模式下定时1s，1s后将STM32从stop模式唤醒，并且点亮LED灯</p>
+<h3 id="3-1-LPTIM1时钟初始化"><a href="#3-1-LPTIM1时钟初始化" class="headerlink" title="3.1 LPTIM1时钟初始化"></a>3.1 LPTIM1时钟初始化</h3><ul>
+<li>配置LPTIM1时钟为LSE，即外部低速时钟32768Hz，也可配置为内部低速时钟LSI，修改对应配置即可<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">RCC_PeriphCLKInitTypeDef RCC_PeriphCLKInitStruct = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">RCC_OscInitTypeDef RCC_OscInitStruct = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_LSE;</span><br><span class="line">RCC_OscInitStruct.LSEState = RCC_LSE_ON;</span><br><span class="line">RCC_OscInitStruct.PLL.PLLState = RCC_PLL_NONE;</span><br><span class="line"><span class="keyword">if</span> (HAL_RCC_OscConfig(&amp;RCC_OscInitStruct)!= HAL_OK)</span><br><span class="line">&#123;</span><br><span class="line">Error_Handler(__FILE__, __LINE__);</span><br><span class="line">&#125;</span><br><span class="line">RCC_PeriphCLKInitStruct.PeriphClockSelection = RCC_PERIPHCLK_LPTIM1;</span><br><span class="line">RCC_PeriphCLKInitStruct.Lptim1ClockSelection = RCC_LPTIM1CLKSOURCE_LSE;</span><br><span class="line">HAL_RCCEx_PeriphCLKConfig(&amp;RCC_PeriphCLKInitStruct);</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="3-2-LPTIM1初始化"><a href="#3-2-LPTIM1初始化" class="headerlink" title="3.2 LPTIM1初始化"></a>3.2 LPTIM1初始化</h3><ul>
+<li><p>按上面概述的参数配置，对LPTIM1进行配置如下</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">LPTIM_HandleTypeDef hlptim1;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">MX_LPTIM1_Init</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  hlptim1.Instance = LPTIM1;</span><br><span class="line">  hlptim1.Init.Clock.Source = LPTIM_CLOCKSOURCE_APBCLOCK_LPOSC;  <span class="comment">//选择内部时钟源</span></span><br><span class="line">  hlptim1.Init.Clock.Prescaler = LPTIM_PRESCALER_DIV64;           <span class="comment">//设置LPTIM时钟分频</span></span><br><span class="line">  hlptim1.Init.Trigger.Source = LPTIM_TRIGSOURCE_SOFTWARE;                        <span class="comment">//设置软件触发</span></span><br><span class="line">  hlptim1.Init.Trigger.ActiveEdge = LPTIM_ACTIVEEDGE_RISING;                      <span class="comment">//设置上升沿触发</span></span><br><span class="line">  hlptim1.Init.Trigger.SampleTime = LPTIM_TRIGSAMPLETIME_DIRECTTRANSITION;        <span class="comment">//设置时钟干扰滤波器</span></span><br><span class="line">  hlptim1.Init.OutputPolarity = LPTIM_OUTPUTPOLARITY_HIGH;     <span class="comment">//设置输出高电平</span></span><br><span class="line">  hlptim1.Init.UpdateMode = LPTIM_UPDATE_IMMEDIATE;            <span class="comment">//比较寄存器和ARR自动重载寄存器选择更改后立即更新</span></span><br><span class="line">  hlptim1.Init.CounterSource = LPTIM_COUNTERSOURCE_INTERNAL;   <span class="comment">//LPTIM计数器对内部时钟源计数</span></span><br><span class="line">  hlptim1.Init.Input1Source = LPTIM_INPUT1SOURCE_GPIO;         <span class="comment">//外部输入1，本配置未使用</span></span><br><span class="line">  hlptim1.Init.Input2Source = LPTIM_INPUT2SOURCE_GPIO;         <span class="comment">//外部输入2，本配置未使用</span></span><br><span class="line">  <span class="keyword">if</span> (HAL_LPTIM_Init(&amp;hlptim1) != HAL_OK)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">while</span> (<span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">      Error_Handler(__FILE__, __LINE__);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>当 HAL_LPTIM_Init（）运行时会调用 HAL_LPTIM_MspInit（）函数，这是一个虚函数，还需要我们重新定义，开启LPTIM时钟及 LPTIM1_IRQn 初始化</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">HAL_LPTIM_MspInit</span><span class="params">(LPTIM_HandleTypeDef* hlptim)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(hlptim-&gt;Instance==LPTIM1)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="comment">/* Peripheral clock enable */</span></span><br><span class="line">    __HAL_RCC_LPTIM1_CLK_ENABLE();</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* Peripheral interrupt init */</span></span><br><span class="line">    HAL_NVIC_SetPriority(LPTIM1_IRQn, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">    HAL_NVIC_EnableIRQ(LPTIM1_IRQn);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="3-3-中断函数"><a href="#3-3-中断函数" class="headerlink" title="3.3 中断函数"></a>3.3 中断函数</h3><ul>
+<li>编写中断回调函数，当定时时间到，点亮LED灯</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">LPTIM1_IRQHandler</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  HAL_LPTIM_IRQHandler(&amp;hlptim1);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">HAL_LPTIM_CompareMatchCallback</span><span class="params">(LPTIM_HandleTypeDef *hlptim)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="comment">/* Timeout was reached, turn on LED */</span></span><br><span class="line">  BSP_LED_On();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-4-开启定时器"><a href="#3-4-开启定时器" class="headerlink" title="3.4 开启定时器"></a>3.4 开启定时器</h3><ul>
+<li>开启定时器及进入stop模式</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PERIOD  65535</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PULSE  32767 </span></span><br><span class="line">HAL_LPTIM_TimeOut_Start_IT(&amp;hlptim1, PERIOD, PULSE);</span><br><span class="line"></span><br><span class="line">HAL_PWREx_EnterSTOP2Mode(PWR_STOPENTRY_WFI);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>第1个参数是 LPTIM_HandleTypeDef 类型结构体指针变量</li>
+<li>第2个参数是低功耗定时器的周期配置，范围 0 – 0xFFFF。</li>
+<li>第3个参数是低功耗定时器的超时时间配置，范围 0 -0xFFFF。</li>
+<li>返回值，返回 HAL_ERROR 表示配置失败，HAL_OK 表示配置成功，HAL_BUSY 表示忙（操作中），HAL_TIMEOUT 表示时间溢出</li>
+<li>超时时间由 Compare 寄存器决定，即第3个参数，超时配置用不到第2个参数</li>
+<li>超时时间计算方式：timeout = (Compare + 1) / LSE_Frequency，如配置Compare = 32767，LSE = 32768Hz，则超时时间为1s</li>
+</ul>
+<h2 id="4-踩坑记录"><a href="#4-踩坑记录" class="headerlink" title="4 踩坑记录"></a>4 踩坑记录</h2><ul>
+<li><p>在使用官方例程的时候，不能触发定时中断，将触发源由 LPTIM_TRIGSOURCE_0 改为 LPTIM_TRIGSOURCE_SOFTWARE</p>
+</li>
+<li><p>移植官方例程时，未在 stm32l4xx_hal_conf.h 文件内打开LPTIM 外设的宏定义，导致一直报错<br><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.142.png" alt=""></p>
+<p><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/10%E6%9C%88/01.31/23132.png" alt=""></p>
+</li>
+<li><p>配置定时时间时候，未注意到参数范围是 0 -0xFFFF ，导致达不到自己想要的定时时间,最大可配置为65535,在Prescaler参数配置为 LPTIM_PRESCALER_DIV1 1分频的时候，超时时间最大为（65535+1）/32768 = 2s</p>
+</li>
+</ul>
+<blockquote>
+<p>若有需要完整代码及其他AsynchPulseCounter_STOP2、PWMGenerator_STOP两种应用的例程，关注微信公众号：南风过程蜻蜓飞 ，回复LPTIM获取低功耗定时器相关资料及代码</p>
+</blockquote>
+<p><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7/%E9%A1%B5%E5%B0%BE.gif" alt=""></p>
 
     
 
+    
+    <div class="page-reward">
+      <a href="javascript:void(0);" class="page-reward-btn tooltip-top" target="_self">
+        <div class="tooltip tooltip-east">
+          <span class="tooltip-item">
+            赏
+          </span>
+          <span class="tooltip-content">
+            <span class="tooltip-text">
+              <span class="tooltip-inner">
+                <p class="reward-p"><i class="icon icon-quo-left"></i>走过路过<i
+                    class="icon icon-quo-right"></i></p>
+                <div class="reward-box">
+                  
+                  <div class="reward-box-item">
+                    <img class="reward-img" src="/img/zfb.jpg">
+                    <span class="reward-type">支付宝</span>
+                  </div>
+                  
+                  
+                  <div class="reward-box-item">
+                    <img class="reward-img" src="/img/wx.png">
+                    <span class="reward-type">微信</span>
+                  </div>
+                  
+                </div>
+              </span>
+            </span>
+          </span>
+        </div>
+      </a>
+    </div>
+    
+
+    
+    <div class="declare"> 
+      <ul class="post-copyright">
+        <li>
+          <strong>本文作者：</strong>
+          nan feng
+        </li>
+        <li>
+          <strong>本文链接：</strong>
+          <a href="https://nanfeng-iot.cn/2021/02/01/【玩转STM32】：低功耗定时器LPTIM应用/" title="【玩转STM32】：低功耗定时器LPTIM应用" target="_blank">https://nanfeng-iot.cn/2021/02/01/【玩转STM32】：低功耗定时器LPTIM应用/</a>
+        </li>
+        
+        <li>
+          <strong>版权声明： </strong>
+          
+          本博客所有文章除特别声明外，均采用 <a href="https://github.com/JoeyBling/hexo-theme-yilia-plus/blob/master/LICENSE" rel="external nofollow" target="_blank">MIT</a> 许可协议。转载请注明出处！
+        </li>
+        
+      </ul>
+    </div>
     
 
   </div>
@@ -258,16 +476,76 @@
     
 
     
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2020/07/23/%E7%89%A9%E8%81%94%E7%BD%91-MQTT%E5%8D%8F%E8%AE%AE%E7%AC%AC%E5%8D%81%E8%AE%B2%EF%BC%9A%E6%9E%84%E5%BB%BAPUBACK%E6%8A%A5%E6%96%87/">展开全文 >></a>
-    </p>
+
     
+    
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a> -->
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://nanfeng-iot.cn/2021/02/01/%E3%80%90%E7%8E%A9%E8%BD%ACSTM32%E3%80%91%EF%BC%9A%E4%BD%8E%E5%8A%9F%E8%80%97%E5%AE%9A%E6%97%B6%E5%99%A8LPTIM%E5%BA%94%E7%94%A8/" alt="微信分享二维码"> -->
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
 
     
     <div class="clearfix"></div>
   </div>
   </div>
 </article>
+
+
+<nav id="article-nav">
+  
+  
+    <a href="/2021/01/24/%E3%80%90%E7%8E%A9%E8%BD%ACMDK%E3%80%91MDK%E7%BC%96%E8%AF%91%E8%BF%87%E7%A8%8B%E8%A7%A3%E6%9E%90/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">【玩转MDK】MDK编译过程解析</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -288,706 +566,37 @@
 
 
 
-  
-    <article id="post-物联网-MQTT协议第九讲：构建PUBLISH报文" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2020/07/23/%E7%89%A9%E8%81%94%E7%BD%91-MQTT%E5%8D%8F%E8%AE%AE%E7%AC%AC%E4%B9%9D%E8%AE%B2%EF%BC%9A%E6%9E%84%E5%BB%BAPUBLISH%E6%8A%A5%E6%96%87/" target="_blank">物联网-MQTT协议第九讲：构建PUBLISH报文</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2020/07/23/%E7%89%A9%E8%81%94%E7%BD%91-MQTT%E5%8D%8F%E8%AE%AE%E7%AC%AC%E4%B9%9D%E8%AE%B2%EF%BC%9A%E6%9E%84%E5%BB%BAPUBLISH%E6%8A%A5%E6%96%87/" class="archive-article-date">
-        <time datetime="2020-07-23T13:18:50.409Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-23</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>了解MQTT协议底层报文构成，手把手带你构建PUBLISH报文</p>
-    
-    <a class="article-more-a" href="/2020/07/23/%E7%89%A9%E8%81%94%E7%BD%91-MQTT%E5%8D%8F%E8%AE%AE%E7%AC%AC%E4%B9%9D%E8%AE%B2%EF%BC%9A%E6%9E%84%E5%BB%BAPUBLISH%E6%8A%A5%E6%96%87/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2020/07/23/%E7%89%A9%E8%81%94%E7%BD%91-MQTT%E5%8D%8F%E8%AE%AE%E7%AC%AC%E4%B9%9D%E8%AE%B2%EF%BC%9A%E6%9E%84%E5%BB%BAPUBLISH%E6%8A%A5%E6%96%87/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-VS-Code终端无法输入问题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2020/07/08/VS-Code%E7%BB%88%E7%AB%AF%E6%97%A0%E6%B3%95%E8%BE%93%E5%85%A5%E9%97%AE%E9%A2%98/" target="_blank">VS-Code终端无法输入问题</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2020/07/08/VS-Code%E7%BB%88%E7%AB%AF%E6%97%A0%E6%B3%95%E8%BE%93%E5%85%A5%E9%97%AE%E9%A2%98/" class="archive-article-date">
-        <time datetime="2020-07-08T13:50:18.788Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-08</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p><strong>小技巧解决VS Code终端无法输入的问题</strong></p>
-    
-    <a class="article-more-a" href="/2020/07/08/VS-Code%E7%BB%88%E7%AB%AF%E6%97%A0%E6%B3%95%E8%BE%93%E5%85%A5%E9%97%AE%E9%A2%98/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2020/07/08/VS-Code%E7%BB%88%E7%AB%AF%E6%97%A0%E6%B3%95%E8%BE%93%E5%85%A5%E9%97%AE%E9%A2%98/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-EC20连接私有云进行数据收发" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2020/07/04/EC20%E8%BF%9E%E6%8E%A5%E7%A7%81%E6%9C%89%E4%BA%91%E8%BF%9B%E8%A1%8C%E6%95%B0%E6%8D%AE%E6%94%B6%E5%8F%91/" target="_blank">EC20连接私有云进行数据收发</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2020/07/04/EC20%E8%BF%9E%E6%8E%A5%E7%A7%81%E6%9C%89%E4%BA%91%E8%BF%9B%E8%A1%8C%E6%95%B0%E6%8D%AE%E6%94%B6%E5%8F%91/" class="archive-article-date">
-        <time datetime="2020-07-04T00:58:21.417Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-04</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p><strong>物联网产品框架:传统设备使用通信模组连接云服务器(即上云)做数据收发</strong></p>
-<p>在之前的文章 物联网基础：EC20 连接阿里云进行数据收发 已经介绍过EC20模块并用AT指令测试EC20连接阿里云进行数据收发，本文将使用EC20 封装好的AT指令通过 MQTT 协议连接私有云服务器进行数据</p>
-    
-    <a class="article-more-a" href="/2020/07/04/EC20%E8%BF%9E%E6%8E%A5%E7%A7%81%E6%9C%89%E4%BA%91%E8%BF%9B%E8%A1%8C%E6%95%B0%E6%8D%AE%E6%94%B6%E5%8F%91/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2020/07/04/EC20%E8%BF%9E%E6%8E%A5%E7%A7%81%E6%9C%89%E4%BA%91%E8%BF%9B%E8%A1%8C%E6%95%B0%E6%8D%AE%E6%94%B6%E5%8F%91/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-EC20固件升级" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2020/07/04/EC20%E5%9B%BA%E4%BB%B6%E5%8D%87%E7%BA%A7/" target="_blank">EC20固件升级</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2020/07/04/EC20%E5%9B%BA%E4%BB%B6%E5%8D%87%E7%BA%A7/" class="archive-article-date">
-        <time datetime="2020-07-04T00:58:21.401Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-04</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p><strong>使用移远 QFlash_V4.14 工具升级移远 EC20 4G模块固件</strong></p>
-    
-    <a class="article-more-a" href="/2020/07/04/EC20%E5%9B%BA%E4%BB%B6%E5%8D%87%E7%BA%A7/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2020/07/04/EC20%E5%9B%BA%E4%BB%B6%E5%8D%87%E7%BA%A7/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-EC20连接阿里云进行数据收发" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2020/06/29/EC20%E8%BF%9E%E6%8E%A5%E9%98%BF%E9%87%8C%E4%BA%91%E8%BF%9B%E8%A1%8C%E6%95%B0%E6%8D%AE%E6%94%B6%E5%8F%91/" target="_blank">EC20连接阿里云进行数据收发</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2020/06/29/EC20%E8%BF%9E%E6%8E%A5%E9%98%BF%E9%87%8C%E4%BA%91%E8%BF%9B%E8%A1%8C%E6%95%B0%E6%8D%AE%E6%94%B6%E5%8F%91/" class="archive-article-date">
-        <time datetime="2020-06-29T14:45:42.269Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-29</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p><strong>物联网产品框架:传统设备使用通信模组连接云服务器(即上云)做数据收发。本文将使用EC20 封装好的AT指令通过 MQTT 协议连接阿里云，简单的介绍下移远4G通信模块 EC20 是如何连接服务器进行数据收发</strong></p>
-    
-    <a class="article-more-a" href="/2020/06/29/EC20%E8%BF%9E%E6%8E%A5%E9%98%BF%E9%87%8C%E4%BA%91%E8%BF%9B%E8%A1%8C%E6%95%B0%E6%8D%AE%E6%94%B6%E5%8F%91/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2020/06/29/EC20%E8%BF%9E%E6%8E%A5%E9%98%BF%E9%87%8C%E4%BA%91%E8%BF%9B%E8%A1%8C%E6%95%B0%E6%8D%AE%E6%94%B6%E5%8F%91/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Window系统命令行下cd不能切换盘符问题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2020/06/28/Window%E7%B3%BB%E7%BB%9F%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B8%8Bcd%E4%B8%8D%E8%83%BD%E5%88%87%E6%8D%A2%E7%9B%98%E7%AC%A6%E9%97%AE%E9%A2%98/" target="_blank">Window系统命令行下cd不能切换盘符问题</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2020/06/28/Window%E7%B3%BB%E7%BB%9F%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B8%8Bcd%E4%B8%8D%E8%83%BD%E5%88%87%E6%8D%A2%E7%9B%98%E7%AC%A6%E9%97%AE%E9%A2%98/" class="archive-article-date">
-        <time datetime="2020-06-28T14:40:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-28</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p><strong>小技巧解决Window系统命令行下 cd 不能切换盘符问题</strong></p>
-    
-    <a class="article-more-a" href="/2020/06/28/Window%E7%B3%BB%E7%BB%9F%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B8%8Bcd%E4%B8%8D%E8%83%BD%E5%88%87%E6%8D%A2%E7%9B%98%E7%AC%A6%E9%97%AE%E9%A2%98/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2020/06/28/Window%E7%B3%BB%E7%BB%9F%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B8%8Bcd%E4%B8%8D%E8%83%BD%E5%88%87%E6%8D%A2%E7%9B%98%E7%AC%A6%E9%97%AE%E9%A2%98/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-DIY济南大学纪念名片" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2020/06/14/DIY%E6%B5%8E%E5%8D%97%E5%A4%A7%E5%AD%A6%E7%BA%AA%E5%BF%B5%E5%90%8D%E7%89%87/" target="_blank">DIY济南大学纪念名片</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2020/06/14/DIY%E6%B5%8E%E5%8D%97%E5%A4%A7%E5%AD%A6%E7%BA%AA%E5%BF%B5%E5%90%8D%E7%89%87/" class="archive-article-date">
-        <time datetime="2020-06-14T12:27:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-14</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p><strong>济南大学毕业即将两周年，DIY一片NFC济南大学纪念名片，可自动添加联系人、自动连接WIFI等功能，好玩不贵，一片的成本不到5块钱，O(∩_∩)O哈哈~</strong></p>
-    
-    <a class="article-more-a" href="/2020/06/14/DIY%E6%B5%8E%E5%8D%97%E5%A4%A7%E5%AD%A6%E7%BA%AA%E5%BF%B5%E5%90%8D%E7%89%87/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2020/06/14/DIY%E6%B5%8E%E5%8D%97%E5%A4%A7%E5%AD%A6%E7%BA%AA%E5%BF%B5%E5%90%8D%E7%89%87/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-【合宙4GCat-1入门教程】-AT指令连接阿里云收发数据-下" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2020/05/30/%E3%80%90%E5%90%88%E5%AE%994GCat-1%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E3%80%91-AT%E6%8C%87%E4%BB%A4%E8%BF%9E%E6%8E%A5%E9%98%BF%E9%87%8C%E4%BA%91%E6%94%B6%E5%8F%91%E6%95%B0%E6%8D%AE-%E4%B8%8B/" target="_blank">【合宙4GCat.1入门教程】--AT指令连接阿里云收发数据&lt;下&gt;</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2020/05/30/%E3%80%90%E5%90%88%E5%AE%994GCat-1%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E3%80%91-AT%E6%8C%87%E4%BB%A4%E8%BF%9E%E6%8E%A5%E9%98%BF%E9%87%8C%E4%BA%91%E6%94%B6%E5%8F%91%E6%95%B0%E6%8D%AE-%E4%B8%8B/" class="archive-article-date">
-        <time datetime="2020-05-30T06:33:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-30</time>
-</a>
-
-  
-  
-    
 
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p><strong>通过使用AT指令，快速连接上云服务器进行数据收发，达到给设备联网的效果</strong></p>
-    
-    <a class="article-more-a" href="/2020/05/30/%E3%80%90%E5%90%88%E5%AE%994GCat-1%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E3%80%91-AT%E6%8C%87%E4%BB%A4%E8%BF%9E%E6%8E%A5%E9%98%BF%E9%87%8C%E4%BA%91%E6%94%B6%E5%8F%91%E6%95%B0%E6%8D%AE-%E4%B8%8B/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2020/05/30/%E3%80%90%E5%90%88%E5%AE%994GCat-1%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E3%80%91-AT%E6%8C%87%E4%BB%A4%E8%BF%9E%E6%8E%A5%E9%98%BF%E9%87%8C%E4%BA%91%E6%94%B6%E5%8F%91%E6%95%B0%E6%8D%AE-%E4%B8%8B/">展开全文 >></a>
-    </p>
-    
 
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
 
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
 
 
 
 
   
-    <article id="post-【合宙4GCat-1入门教程】-AT指令连接阿里云收发数据-上" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
+  <div id="gitment-ctn"></div>
   
+    <!-- 中文 -->
+    <link rel="stylesheet" href="/lib/gitment.css">
+    <script src="/lib/gitment.js"></script>
   
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2020/05/30/%E3%80%90%E5%90%88%E5%AE%994GCat-1%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E3%80%91-AT%E6%8C%87%E4%BB%A4%E8%BF%9E%E6%8E%A5%E9%98%BF%E9%87%8C%E4%BA%91%E6%94%B6%E5%8F%91%E6%95%B0%E6%8D%AE-%E4%B8%8A/" target="_blank">【合宙4GCat.1入门教程】--AT指令连接阿里云收发数据&lt;上&gt;</a>
-  
-    </h1>
-  
-
+  <script>
+    <!-- id: "【玩转STM32】：低功耗定时器LPTIM应用" -->
+    var gitment = new Gitment({
+      id: "20210201225034",
+      owner: 'Nanfengyuan',
+      repo: 'nanfeng blog',
+      oauth: {
+        client_id: '7656db123fbf8a437d22',
+        client_secret: '89978e13422f7b2a3b061c5707dfe040216919ae',
+      },
+    })
+    gitment.render('gitment-ctn')
+  </script>
 
-  
-  
-<a href="/2020/05/30/%E3%80%90%E5%90%88%E5%AE%994GCat-1%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E3%80%91-AT%E6%8C%87%E4%BB%A4%E8%BF%9E%E6%8E%A5%E9%98%BF%E9%87%8C%E4%BA%91%E6%94%B6%E5%8F%91%E6%95%B0%E6%8D%AE-%E4%B8%8A/" class="archive-article-date">
-        <time datetime="2020-05-30T06:32:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-30</time>
-</a>
-
-  
-  
-    
 
   
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p><strong>使用AT指令，快速连接上云服务器进行数据收发，达到给设备联网的效果</strong></p>
-    
-    <a class="article-more-a" href="/2020/05/30/%E3%80%90%E5%90%88%E5%AE%994GCat-1%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E3%80%91-AT%E6%8C%87%E4%BB%A4%E8%BF%9E%E6%8E%A5%E9%98%BF%E9%87%8C%E4%BA%91%E6%94%B6%E5%8F%91%E6%95%B0%E6%8D%AE-%E4%B8%8A/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2020/05/30/%E3%80%90%E5%90%88%E5%AE%994GCat-1%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E3%80%91-AT%E6%8C%87%E4%BB%A4%E8%BF%9E%E6%8E%A5%E9%98%BF%E9%87%8C%E4%BA%91%E6%94%B6%E5%8F%91%E6%95%B0%E6%8D%AE-%E4%B8%8A/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
 
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-  
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next &amp;raquo;</a>
-    </nav>
-  
 
 
           </div>
@@ -1027,8 +636,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: true,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,

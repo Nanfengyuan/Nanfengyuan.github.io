@@ -6,24 +6,30 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://nanfeng-iot.cn">
-  <title>nanfeng-IOT</title>
+  <title>【玩转MDK】MDK编译过程解析 | nanfeng-IOT</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-    
-    <!-- <meta name="keywords" content="嵌入式设计 物联网 C语言">
-    <meta name="description" content="分享嵌入式、物联网开发知识总结"> -->
-  
-  <meta name="description" content="分享嵌入式、物联网开发知识总结">
-<meta property="og:type" content="website">
-<meta property="og:title" content="nanfeng-IOT">
-<meta property="og:url" content="https://nanfeng-iot.cn/page/2/index.html">
+  <meta name="description" content="【玩转MDK】MDK编译过程解析">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【玩转MDK】MDK编译过程解析">
+<meta property="og:url" content="https://nanfeng-iot.cn/2021/01/24/%E3%80%90%E7%8E%A9%E8%BD%ACMDK%E3%80%91MDK%E7%BC%96%E8%AF%91%E8%BF%87%E7%A8%8B%E8%A7%A3%E6%9E%90/index.html">
 <meta property="og:site_name" content="nanfeng-IOT">
-<meta property="og:description" content="分享嵌入式、物联网开发知识总结">
+<meta property="og:description" content="【玩转MDK】MDK编译过程解析">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.14%20%E5%BC%95%E5%AF%BC%E5%85%B3%E6%B3%A8.gif">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/10%E6%9C%88/01.24/%E7%BC%96%E8%AF%91.png">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/10%E6%9C%88/01.24/%E6%AF%94.png">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/10%E6%9C%88/01.24/333.png">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/10%E6%9C%88/01.24/%E5%B7%A5%E5%85%B7.png">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/10%E6%9C%88/01.24/2323.png">
+<meta property="og:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7/%E9%A1%B5%E5%B0%BE.gif">
+<meta property="article:published_time" content="2021-01-24T14:08:29.376Z">
+<meta property="article:modified_time" content="2021-01-24T14:09:19.123Z">
 <meta property="article:author" content="nan feng">
 <meta property="article:tag" content="嵌入式设计 物联网 C语言">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.14%20%E5%BC%95%E5%AF%BC%E5%85%B3%E6%B3%A8.gif">
   
     <link rel="alternative" href="/atom.xml" title="nanfeng-IOT" type="application/atom+xml">
   
@@ -208,47 +214,159 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-
-  
-    <article id="post-物联网-MQTT协议第十讲：构建PUBACK报文" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-【玩转MDK】MDK编译过程解析" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2020/07/23/%E7%89%A9%E8%81%94%E7%BD%91-MQTT%E5%8D%8F%E8%AE%AE%E7%AC%AC%E5%8D%81%E8%AE%B2%EF%BC%9A%E6%9E%84%E5%BB%BAPUBACK%E6%8A%A5%E6%96%87/" target="_blank">物联网-MQTT协议第十讲：构建PUBACK报文</a>
-  
+    <h1 class="article-title" itemprop="name">
+      【玩转MDK】MDK编译过程解析
     </h1>
   
 
 
   
   
-<a href="/2020/07/23/%E7%89%A9%E8%81%94%E7%BD%91-MQTT%E5%8D%8F%E8%AE%AE%E7%AC%AC%E5%8D%81%E8%AE%B2%EF%BC%9A%E6%9E%84%E5%BB%BAPUBACK%E6%8A%A5%E6%96%87/" class="archive-article-date">
-        <time datetime="2020-07-23T14:49:15.138Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-23</time>
+        
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
+<a href="/2021/01/24/%E3%80%90%E7%8E%A9%E8%BD%ACMDK%E3%80%91MDK%E7%BC%96%E8%AF%91%E8%BF%87%E7%A8%8B%E8%A7%A3%E6%9E%90/" class="archive-article-date">
+        <time datetime="2021-01-24T14:08:29.376Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-24</time>
 </a>
 
   
   
     
+<div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <!-- fonts.scss -->
+      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
+      <i class="icon-statistics"></i>
+      <span class="post-meta-item-text"> 字数统计:</span>
+      <span class="post-count">774字</span>
+    </span>
+  </span>
+
+  <span class="post-time">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+      <i class="icon-book icon"></i>
+      <span class="post-meta-item-text"> 阅读时长≈</span>
+      <span class="post-count">2分</span>
+    </span>
+  </span>
+</div>
+
 
   
   </header>
   
   <div class="article-entry" itemprop="articleBody">
     
-    <p><strong>物联网–MQTT协议（十）讲：构建PUBACK报文</strong></p>
-<p>了解MQTT协议底层报文构成，手把手带你构建PUBACK报文</p>
-    
-    <a class="article-more-a" href="/2020/07/23/%E7%89%A9%E8%81%94%E7%BD%91-MQTT%E5%8D%8F%E8%AE%AE%E7%AC%AC%E5%8D%81%E8%AE%B2%EF%BC%9A%E6%9E%84%E5%BB%BAPUBACK%E6%8A%A5%E6%96%87/#more">more >></a>
-    
-    
+    <p><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/11.14%20%E5%BC%95%E5%AF%BC%E5%85%B3%E6%B3%A8.gif" alt=""></p>
+<p>【玩转MDK】MDK编译过程解析</p>
+<a id="more"></a>
+
+<h2 id="1、MDK编译过程"><a href="#1、MDK编译过程" class="headerlink" title="1、MDK编译过程"></a>1、MDK编译过程</h2><ul>
+<li><p>在MDK工程下，点击编译按钮，MDK将会完成整个编译过程，如下图所示</p>
+<p><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/10%E6%9C%88/01.24/%E7%BC%96%E8%AF%91.png" alt=""></p>
+</li>
+</ul>
+<ul>
+<li><p>编译，MDK 软件使用的编译器是 armcc 和 armasm，它们根据每个c/c++和汇编源文件编译成对应的以“.o”为后缀名的对象文件(Object Code，也称目标文件)，其内容主要是从源文件编译得到的机器码，包含了代码、数据以及调试使用的信息；</p>
+</li>
+<li><p>链接，链接器 armlink 把各个.o 文件及库文件链接成一个映像文件“.axf”或“.elf”；</p>
+</li>
+<li><p>格式转换，一般来说 Windows 或 Linux 系统使用链接器直接生成可执行映像文件 elf后，内核根据该文件的信息加载后，就可以运行程序了，但在单片机平台上，需要把该文件的内容加载到芯片上，所以还需要对链接器生成的 elf 映像文件利用格式转换器fromelf 转换成“.bin”或“.hex”文件，交给下载器下载到芯片的 FLASH 或 ROM 中。</p>
+</li>
+</ul>
+<h2 id="2、编译过程实例解析"><a href="#2、编译过程实例解析" class="headerlink" title="2、编译过程实例解析"></a>2、编译过程实例解析</h2><ul>
+<li><p>MDK工程下点击编译按钮，在MDK的“Build Output”窗口会看到编译过程信息<br><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/10%E6%9C%88/01.24/%E6%AF%94.png" alt=""></p>
+<p><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/10%E6%9C%88/01.24/333.png" alt=""></p>
+</li>
+</ul>
+<ul>
+<li><p>1、提示信息的第一部分说明构建过程调用的编译器。图中的编译器名字是“V5.06(build20)”，后面附带了该编译器所在的文件夹。在电脑上打开该路径，即\ARM\ARMCC\bin，可看到该编译器包含 armar、 armasm、 armcc、 armlink 及 fromelf，后面四个工具上面内容已有讲解，而 armar 是用于把.o 文件打包成 lib 文件的<br><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/10%E6%9C%88/01.24/%E5%B7%A5%E5%85%B7.png" alt=""></p>
+</li>
+<li><p>2、使用 armasm 编译汇编文件。图中列出了编译 startup 启动文件时的提示，编译后每个汇编源文件都对应有一个独立的.o 文件</p>
+</li>
+<li><p>3、使用 armcc 编译 c/c++文件。图中列出了工程中所有的 c/c++文件的提示，同样地，编译后每个 c/c++源文件都对应有一个独立的.o 文件。</p>
+</li>
+<li><p>4、使用 armlink 链接对象文件，根据程序的调用把各个.o 文件的内容链接起来，最后生成程序的 axf 映像文件，并附带程序各个域大小的说明，包括 Code、 RO-data、 RW-data及 ZI-data 的大小。</p>
+</li>
+<li><p>5、使用 fromelf 生成下载格式文件，它根据 axf 映像文件转化成 hex 文件，并列出编译过程出现的错误(Error)和警告(Warning)数量。</p>
+</li>
+<li><p>6、最后一段提示给出了整个构建过程消耗的时间</p>
+</li>
+<li><p>编译完成后，可在工程的“Output”及“Listing”目录下找到由以上过程生成的各种文件，每个 C 源文件都对应生成了.o、 .d 及.crf 后缀的文件，还有一些额外的.dep、 .hex、 .axf、 .htm、 .lnp、 .sct、 .lst 及.map 文件</p>
+<p><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/10%E6%9C%88/01.24/2323.png" alt=""></p>
+</li>
+</ul>
+<blockquote>
+<p>nan-feng知识有限，如果发现本文有错误的地方欢迎批评、指正，若本文对您有所帮助，转发、分享也是笔者坚持的动力</p>
+</blockquote>
+<p><img src="https://nan-feng.oss-cn-qingdao.aliyuncs.com/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7/%E9%A1%B5%E5%B0%BE.gif" alt="扫码关注，开启物联网、嵌入式学习之路"></p>
 
     
 
+    
+    <div class="page-reward">
+      <a href="javascript:void(0);" class="page-reward-btn tooltip-top" target="_self">
+        <div class="tooltip tooltip-east">
+          <span class="tooltip-item">
+            赏
+          </span>
+          <span class="tooltip-content">
+            <span class="tooltip-text">
+              <span class="tooltip-inner">
+                <p class="reward-p"><i class="icon icon-quo-left"></i>走过路过<i
+                    class="icon icon-quo-right"></i></p>
+                <div class="reward-box">
+                  
+                  <div class="reward-box-item">
+                    <img class="reward-img" src="/img/zfb.jpg">
+                    <span class="reward-type">支付宝</span>
+                  </div>
+                  
+                  
+                  <div class="reward-box-item">
+                    <img class="reward-img" src="/img/wx.png">
+                    <span class="reward-type">微信</span>
+                  </div>
+                  
+                </div>
+              </span>
+            </span>
+          </span>
+        </div>
+      </a>
+    </div>
+    
+
+    
+    <div class="declare"> 
+      <ul class="post-copyright">
+        <li>
+          <strong>本文作者：</strong>
+          nan feng
+        </li>
+        <li>
+          <strong>本文链接：</strong>
+          <a href="https://nanfeng-iot.cn/2021/01/24/【玩转MDK】MDK编译过程解析/" title="【玩转MDK】MDK编译过程解析" target="_blank">https://nanfeng-iot.cn/2021/01/24/【玩转MDK】MDK编译过程解析/</a>
+        </li>
+        
+        <li>
+          <strong>版权声明： </strong>
+          
+          本博客所有文章除特别声明外，均采用 <a href="https://github.com/JoeyBling/hexo-theme-yilia-plus/blob/master/LICENSE" rel="external nofollow" target="_blank">MIT</a> 许可协议。转载请注明出处！
+        </li>
+        
+      </ul>
+    </div>
     
 
   </div>
@@ -258,16 +376,85 @@
     
 
     
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2020/07/23/%E7%89%A9%E8%81%94%E7%BD%91-MQTT%E5%8D%8F%E8%AE%AE%E7%AC%AC%E5%8D%81%E8%AE%B2%EF%BC%9A%E6%9E%84%E5%BB%BAPUBACK%E6%8A%A5%E6%96%87/">展开全文 >></a>
-    </p>
+
     
+    
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a> -->
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://nanfeng-iot.cn/2021/01/24/%E3%80%90%E7%8E%A9%E8%BD%ACMDK%E3%80%91MDK%E7%BC%96%E8%AF%91%E8%BF%87%E7%A8%8B%E8%A7%A3%E6%9E%90/" alt="微信分享二维码"> -->
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
 
     
     <div class="clearfix"></div>
   </div>
   </div>
 </article>
+
+
+<nav id="article-nav">
+  
+    <a href="/2021/02/01/%E3%80%90%E7%8E%A9%E8%BD%ACSTM32%E3%80%91%EF%BC%9A%E4%BD%8E%E5%8A%9F%E8%80%97%E5%AE%9A%E6%97%B6%E5%99%A8LPTIM%E5%BA%94%E7%94%A8/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          【玩转STM32】：低功耗定时器LPTIM应用
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/01/24/TortoiseGit%20%E6%B1%89%E5%8C%96%E6%97%B6%E6%97%A0%E6%B3%95%E6%9F%A5%E6%89%BE%E5%88%B0%E4%B8%AD%E6%96%87%E8%AF%AD%E8%A8%80%E5%8C%85%E9%97%AE%E9%A2%98/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">TortoiseGit 汉化时无法查找到中文语言包问题</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -288,706 +475,37 @@
 
 
 
-  
-    <article id="post-物联网-MQTT协议第九讲：构建PUBLISH报文" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2020/07/23/%E7%89%A9%E8%81%94%E7%BD%91-MQTT%E5%8D%8F%E8%AE%AE%E7%AC%AC%E4%B9%9D%E8%AE%B2%EF%BC%9A%E6%9E%84%E5%BB%BAPUBLISH%E6%8A%A5%E6%96%87/" target="_blank">物联网-MQTT协议第九讲：构建PUBLISH报文</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2020/07/23/%E7%89%A9%E8%81%94%E7%BD%91-MQTT%E5%8D%8F%E8%AE%AE%E7%AC%AC%E4%B9%9D%E8%AE%B2%EF%BC%9A%E6%9E%84%E5%BB%BAPUBLISH%E6%8A%A5%E6%96%87/" class="archive-article-date">
-        <time datetime="2020-07-23T13:18:50.409Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-23</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>了解MQTT协议底层报文构成，手把手带你构建PUBLISH报文</p>
-    
-    <a class="article-more-a" href="/2020/07/23/%E7%89%A9%E8%81%94%E7%BD%91-MQTT%E5%8D%8F%E8%AE%AE%E7%AC%AC%E4%B9%9D%E8%AE%B2%EF%BC%9A%E6%9E%84%E5%BB%BAPUBLISH%E6%8A%A5%E6%96%87/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2020/07/23/%E7%89%A9%E8%81%94%E7%BD%91-MQTT%E5%8D%8F%E8%AE%AE%E7%AC%AC%E4%B9%9D%E8%AE%B2%EF%BC%9A%E6%9E%84%E5%BB%BAPUBLISH%E6%8A%A5%E6%96%87/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-VS-Code终端无法输入问题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2020/07/08/VS-Code%E7%BB%88%E7%AB%AF%E6%97%A0%E6%B3%95%E8%BE%93%E5%85%A5%E9%97%AE%E9%A2%98/" target="_blank">VS-Code终端无法输入问题</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2020/07/08/VS-Code%E7%BB%88%E7%AB%AF%E6%97%A0%E6%B3%95%E8%BE%93%E5%85%A5%E9%97%AE%E9%A2%98/" class="archive-article-date">
-        <time datetime="2020-07-08T13:50:18.788Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-08</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p><strong>小技巧解决VS Code终端无法输入的问题</strong></p>
-    
-    <a class="article-more-a" href="/2020/07/08/VS-Code%E7%BB%88%E7%AB%AF%E6%97%A0%E6%B3%95%E8%BE%93%E5%85%A5%E9%97%AE%E9%A2%98/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2020/07/08/VS-Code%E7%BB%88%E7%AB%AF%E6%97%A0%E6%B3%95%E8%BE%93%E5%85%A5%E9%97%AE%E9%A2%98/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-EC20连接私有云进行数据收发" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2020/07/04/EC20%E8%BF%9E%E6%8E%A5%E7%A7%81%E6%9C%89%E4%BA%91%E8%BF%9B%E8%A1%8C%E6%95%B0%E6%8D%AE%E6%94%B6%E5%8F%91/" target="_blank">EC20连接私有云进行数据收发</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2020/07/04/EC20%E8%BF%9E%E6%8E%A5%E7%A7%81%E6%9C%89%E4%BA%91%E8%BF%9B%E8%A1%8C%E6%95%B0%E6%8D%AE%E6%94%B6%E5%8F%91/" class="archive-article-date">
-        <time datetime="2020-07-04T00:58:21.417Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-04</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p><strong>物联网产品框架:传统设备使用通信模组连接云服务器(即上云)做数据收发</strong></p>
-<p>在之前的文章 物联网基础：EC20 连接阿里云进行数据收发 已经介绍过EC20模块并用AT指令测试EC20连接阿里云进行数据收发，本文将使用EC20 封装好的AT指令通过 MQTT 协议连接私有云服务器进行数据</p>
-    
-    <a class="article-more-a" href="/2020/07/04/EC20%E8%BF%9E%E6%8E%A5%E7%A7%81%E6%9C%89%E4%BA%91%E8%BF%9B%E8%A1%8C%E6%95%B0%E6%8D%AE%E6%94%B6%E5%8F%91/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2020/07/04/EC20%E8%BF%9E%E6%8E%A5%E7%A7%81%E6%9C%89%E4%BA%91%E8%BF%9B%E8%A1%8C%E6%95%B0%E6%8D%AE%E6%94%B6%E5%8F%91/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-EC20固件升级" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2020/07/04/EC20%E5%9B%BA%E4%BB%B6%E5%8D%87%E7%BA%A7/" target="_blank">EC20固件升级</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2020/07/04/EC20%E5%9B%BA%E4%BB%B6%E5%8D%87%E7%BA%A7/" class="archive-article-date">
-        <time datetime="2020-07-04T00:58:21.401Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-04</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p><strong>使用移远 QFlash_V4.14 工具升级移远 EC20 4G模块固件</strong></p>
-    
-    <a class="article-more-a" href="/2020/07/04/EC20%E5%9B%BA%E4%BB%B6%E5%8D%87%E7%BA%A7/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2020/07/04/EC20%E5%9B%BA%E4%BB%B6%E5%8D%87%E7%BA%A7/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-EC20连接阿里云进行数据收发" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2020/06/29/EC20%E8%BF%9E%E6%8E%A5%E9%98%BF%E9%87%8C%E4%BA%91%E8%BF%9B%E8%A1%8C%E6%95%B0%E6%8D%AE%E6%94%B6%E5%8F%91/" target="_blank">EC20连接阿里云进行数据收发</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2020/06/29/EC20%E8%BF%9E%E6%8E%A5%E9%98%BF%E9%87%8C%E4%BA%91%E8%BF%9B%E8%A1%8C%E6%95%B0%E6%8D%AE%E6%94%B6%E5%8F%91/" class="archive-article-date">
-        <time datetime="2020-06-29T14:45:42.269Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-29</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p><strong>物联网产品框架:传统设备使用通信模组连接云服务器(即上云)做数据收发。本文将使用EC20 封装好的AT指令通过 MQTT 协议连接阿里云，简单的介绍下移远4G通信模块 EC20 是如何连接服务器进行数据收发</strong></p>
-    
-    <a class="article-more-a" href="/2020/06/29/EC20%E8%BF%9E%E6%8E%A5%E9%98%BF%E9%87%8C%E4%BA%91%E8%BF%9B%E8%A1%8C%E6%95%B0%E6%8D%AE%E6%94%B6%E5%8F%91/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2020/06/29/EC20%E8%BF%9E%E6%8E%A5%E9%98%BF%E9%87%8C%E4%BA%91%E8%BF%9B%E8%A1%8C%E6%95%B0%E6%8D%AE%E6%94%B6%E5%8F%91/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Window系统命令行下cd不能切换盘符问题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2020/06/28/Window%E7%B3%BB%E7%BB%9F%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B8%8Bcd%E4%B8%8D%E8%83%BD%E5%88%87%E6%8D%A2%E7%9B%98%E7%AC%A6%E9%97%AE%E9%A2%98/" target="_blank">Window系统命令行下cd不能切换盘符问题</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2020/06/28/Window%E7%B3%BB%E7%BB%9F%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B8%8Bcd%E4%B8%8D%E8%83%BD%E5%88%87%E6%8D%A2%E7%9B%98%E7%AC%A6%E9%97%AE%E9%A2%98/" class="archive-article-date">
-        <time datetime="2020-06-28T14:40:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-28</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p><strong>小技巧解决Window系统命令行下 cd 不能切换盘符问题</strong></p>
-    
-    <a class="article-more-a" href="/2020/06/28/Window%E7%B3%BB%E7%BB%9F%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B8%8Bcd%E4%B8%8D%E8%83%BD%E5%88%87%E6%8D%A2%E7%9B%98%E7%AC%A6%E9%97%AE%E9%A2%98/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2020/06/28/Window%E7%B3%BB%E7%BB%9F%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B8%8Bcd%E4%B8%8D%E8%83%BD%E5%88%87%E6%8D%A2%E7%9B%98%E7%AC%A6%E9%97%AE%E9%A2%98/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-DIY济南大学纪念名片" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2020/06/14/DIY%E6%B5%8E%E5%8D%97%E5%A4%A7%E5%AD%A6%E7%BA%AA%E5%BF%B5%E5%90%8D%E7%89%87/" target="_blank">DIY济南大学纪念名片</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2020/06/14/DIY%E6%B5%8E%E5%8D%97%E5%A4%A7%E5%AD%A6%E7%BA%AA%E5%BF%B5%E5%90%8D%E7%89%87/" class="archive-article-date">
-        <time datetime="2020-06-14T12:27:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-14</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p><strong>济南大学毕业即将两周年，DIY一片NFC济南大学纪念名片，可自动添加联系人、自动连接WIFI等功能，好玩不贵，一片的成本不到5块钱，O(∩_∩)O哈哈~</strong></p>
-    
-    <a class="article-more-a" href="/2020/06/14/DIY%E6%B5%8E%E5%8D%97%E5%A4%A7%E5%AD%A6%E7%BA%AA%E5%BF%B5%E5%90%8D%E7%89%87/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2020/06/14/DIY%E6%B5%8E%E5%8D%97%E5%A4%A7%E5%AD%A6%E7%BA%AA%E5%BF%B5%E5%90%8D%E7%89%87/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-【合宙4GCat-1入门教程】-AT指令连接阿里云收发数据-下" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2020/05/30/%E3%80%90%E5%90%88%E5%AE%994GCat-1%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E3%80%91-AT%E6%8C%87%E4%BB%A4%E8%BF%9E%E6%8E%A5%E9%98%BF%E9%87%8C%E4%BA%91%E6%94%B6%E5%8F%91%E6%95%B0%E6%8D%AE-%E4%B8%8B/" target="_blank">【合宙4GCat.1入门教程】--AT指令连接阿里云收发数据&lt;下&gt;</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2020/05/30/%E3%80%90%E5%90%88%E5%AE%994GCat-1%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E3%80%91-AT%E6%8C%87%E4%BB%A4%E8%BF%9E%E6%8E%A5%E9%98%BF%E9%87%8C%E4%BA%91%E6%94%B6%E5%8F%91%E6%95%B0%E6%8D%AE-%E4%B8%8B/" class="archive-article-date">
-        <time datetime="2020-05-30T06:33:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-30</time>
-</a>
-
-  
-  
-    
 
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p><strong>通过使用AT指令，快速连接上云服务器进行数据收发，达到给设备联网的效果</strong></p>
-    
-    <a class="article-more-a" href="/2020/05/30/%E3%80%90%E5%90%88%E5%AE%994GCat-1%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E3%80%91-AT%E6%8C%87%E4%BB%A4%E8%BF%9E%E6%8E%A5%E9%98%BF%E9%87%8C%E4%BA%91%E6%94%B6%E5%8F%91%E6%95%B0%E6%8D%AE-%E4%B8%8B/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2020/05/30/%E3%80%90%E5%90%88%E5%AE%994GCat-1%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E3%80%91-AT%E6%8C%87%E4%BB%A4%E8%BF%9E%E6%8E%A5%E9%98%BF%E9%87%8C%E4%BA%91%E6%94%B6%E5%8F%91%E6%95%B0%E6%8D%AE-%E4%B8%8B/">展开全文 >></a>
-    </p>
-    
 
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
 
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
 
 
 
 
   
-    <article id="post-【合宙4GCat-1入门教程】-AT指令连接阿里云收发数据-上" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
+  <div id="gitment-ctn"></div>
   
+    <!-- 中文 -->
+    <link rel="stylesheet" href="/lib/gitment.css">
+    <script src="/lib/gitment.js"></script>
   
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2020/05/30/%E3%80%90%E5%90%88%E5%AE%994GCat-1%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E3%80%91-AT%E6%8C%87%E4%BB%A4%E8%BF%9E%E6%8E%A5%E9%98%BF%E9%87%8C%E4%BA%91%E6%94%B6%E5%8F%91%E6%95%B0%E6%8D%AE-%E4%B8%8A/" target="_blank">【合宙4GCat.1入门教程】--AT指令连接阿里云收发数据&lt;上&gt;</a>
-  
-    </h1>
-  
-
+  <script>
+    <!-- id: "【玩转MDK】MDK编译过程解析" -->
+    var gitment = new Gitment({
+      id: "20210124220829",
+      owner: 'Nanfengyuan',
+      repo: 'nanfeng blog',
+      oauth: {
+        client_id: '7656db123fbf8a437d22',
+        client_secret: '89978e13422f7b2a3b061c5707dfe040216919ae',
+      },
+    })
+    gitment.render('gitment-ctn')
+  </script>
 
-  
-  
-<a href="/2020/05/30/%E3%80%90%E5%90%88%E5%AE%994GCat-1%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E3%80%91-AT%E6%8C%87%E4%BB%A4%E8%BF%9E%E6%8E%A5%E9%98%BF%E9%87%8C%E4%BA%91%E6%94%B6%E5%8F%91%E6%95%B0%E6%8D%AE-%E4%B8%8A/" class="archive-article-date">
-        <time datetime="2020-05-30T06:32:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-30</time>
-</a>
-
-  
-  
-    
 
   
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p><strong>使用AT指令，快速连接上云服务器进行数据收发，达到给设备联网的效果</strong></p>
-    
-    <a class="article-more-a" href="/2020/05/30/%E3%80%90%E5%90%88%E5%AE%994GCat-1%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E3%80%91-AT%E6%8C%87%E4%BB%A4%E8%BF%9E%E6%8E%A5%E9%98%BF%E9%87%8C%E4%BA%91%E6%94%B6%E5%8F%91%E6%95%B0%E6%8D%AE-%E4%B8%8A/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2020/05/30/%E3%80%90%E5%90%88%E5%AE%994GCat-1%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E3%80%91-AT%E6%8C%87%E4%BB%A4%E8%BF%9E%E6%8E%A5%E9%98%BF%E9%87%8C%E4%BA%91%E6%94%B6%E5%8F%91%E6%95%B0%E6%8D%AE-%E4%B8%8A/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
 
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-  
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next &amp;raquo;</a>
-    </nav>
-  
 
 
           </div>
@@ -1027,8 +545,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: true,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
